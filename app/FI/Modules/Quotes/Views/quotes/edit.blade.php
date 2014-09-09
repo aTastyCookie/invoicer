@@ -87,7 +87,7 @@
 			<div class="col-sm-4 invoice-col">
 				{{ trans('fi.to') }}
 				<address>
-					<strong>{{ $quote->client->name }}</strong><br>
+                    <strong><a href="{{ route('clients.show', array($quote->client_id)) }}">{{ $quote->client->name }}</a></strong><br>
 					{{ $quote->client->formatted_address }}<br>
 					{{ trans('fi.phone') }}: {{ $quote->client->phone }}<br>
 					{{ trans('fi.email') }}: {{ $quote->client->email }}

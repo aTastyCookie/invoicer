@@ -2331,6 +2331,7 @@ return array(
     'Version234' => $baseDir . '/app/database/migrations/2014_08_17_225249_version_234.php',
     'Version235' => $baseDir . '/app/database/migrations/2014_08_26_014451_version_235.php',
     'Version236' => $baseDir . '/app/database/migrations/2014_08_27_031232_version_236.php',
+    'Version237' => $baseDir . '/app/database/migrations/2014_09_06_040727_version_237.php',
     'Whoops\\Exception\\ErrorException' => $vendorDir . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
     'Whoops\\Exception\\Frame' => $vendorDir . '/filp/whoops/src/Whoops/Exception/Frame.php',
     'Whoops\\Exception\\FrameCollection' => $vendorDir . '/filp/whoops/src/Whoops/Exception/FrameCollection.php',

@@ -19,7 +19,7 @@ class Logo {
 	{
 		if (Config::get('fi.logo') and file_exists(Config::get('fi.uploadPath') . '/' . Config::get('fi.logo')))
 		{
-			$logo = base64_encode(file_get_contents('./uploads/' . Config::get('fi.logo')));
+			$logo = base64_encode(file_get_contents(Config::get('fi.uploadPath') . '/' . Config::get('fi.logo')));
 
 			return '<img src="data:image/png;base64,' . $logo . '" style="width: ' . $width . 'px;">';
 		}
