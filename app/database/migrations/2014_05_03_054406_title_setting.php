@@ -14,7 +14,7 @@ class TitleSetting extends Migration {
 	{
 		$setting = App::make('SettingRepository');
 
-		$setting->save('headerTitleText', 'FusionInvoice');
+		$setting->save('headerTitleText', 'eInvoice');
 	}
 
 	/**
