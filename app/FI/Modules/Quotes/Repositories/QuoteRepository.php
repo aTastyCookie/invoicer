@@ -27,9 +27,10 @@ class QuoteRepository extends \FI\Libraries\BaseRepository {
 	 * Get a paged list of records
 	 * @param  string  $status
 	 * @param  string  $filter
+     * @param  integer $clientId
 	 * @return Quote
 	 */
-	public function getPagedByStatus($status = 'all', $filter = null)
+	public function getPagedByStatus($status = 'all', $filter = null, $clientId = null)
 	{
 		$quote = $this->model->has('amount')->with(array('amount', 'client'))->orderBy('created_at', 'DESC')->orderBy('number', 'DESC');
 
@@ -59,6 +60,11 @@ class QuoteRepository extends \FI\Libraries\BaseRepository {
 		{
 			$quote->keywords($filter);
 		}
+
+        if ($clientId)
+        {
+            $quote->where('client_id', $clientId);
+        }
 
 		return $quote->paginate(Config::get('fi.defaultNumPerPage'));
 	}

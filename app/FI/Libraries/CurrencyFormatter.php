@@ -15,24 +15,25 @@ use App;
 use Config;
 
 class CurrencyFormatter extends NumberFormatter {
-	
-	/**
-	 * Formats currency according to FI config
-	 * @param  float $amount
-	 * @param  string $currencyCode
-	 * @return string
-	 */
-	public static function format($amount, $currencyCode = null)
-	{
-		$amount = parent::format($amount, $currencyCode);
 
-		$currency = App::make('CurrencyRepository')->findByCode(($currencyCode) ?: Config::get('fi.baseCurrency'));
+    /**
+     * Formats currency according to FI config
+     * @param  float $amount
+     * @param  string $currencyCode
+     * @param  integer $decimalPlaces
+     * @return string
+     */
+    public static function format($amount, $currencyCode = null, $decimalPlaces = 2)
+    {
+        $amount = parent::format($amount, $currencyCode, $decimalPlaces);
 
-		if ($currency->placement == 'before')
-		{
-			return $currency->symbol . $amount;
-		}
+        $currency = App::make('CurrencyRepository')->findByCode(($currencyCode) ? : Config::get('fi.baseCurrency'));
 
-		return $amount . $currency->symbol;
-	}
+        if ($currency->placement == 'before')
+        {
+            return $currency->symbol . $amount;
+        }
+
+        return $amount . $currency->symbol;
+    }
 }

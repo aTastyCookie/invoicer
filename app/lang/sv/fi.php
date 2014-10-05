@@ -377,6 +377,10 @@ return array(
 	'cannot_delete_quote_currency'     => 'This currency is currently in use by one or more quotes and cannot be deleted. To delete this currency, you must first reassign all quotes using this currency to a different currency.',
 	'default_payment_receipt_body'     => 'Default Payment Receipt Body',
 	'email_payment_receipt'            => 'Email Payment Receipt',
-	'payment_receipt'                  => 'Payment Receipt'
+	'payment_receipt'                  => 'Payment Receipt',
+
+    // Added for 2.3.8
+    'view_all_invoices_for_client' => 'View all invoices for this client',
+    'view_all_quotes_for_client'   => 'View all quotes for this client'
 	
 );

@@ -35,6 +35,7 @@
 					@if ($mailConfigured)
 					<a href="javascript:void(0)" class="btn btn-sm btn-default email-quote" data-quote-id="{{ $quote->id }}" data-redirect-to="{{ Request::fullUrl() }}" title="{{ trans('fi.email') }}"><i class="fa fa-envelope"></i></a> 
 					@endif
+                    <a href="{{ route('clientCenter.quote.show', array($quote->url_key)) }}" target="_blank" id="btn-public-quote" class="btn btn-sm btn-default" title="{{ trans('fi.public') }}"><i class="fa fa-globe"></i></a>
 					<a href="{{ route('quotes.delete', array($quote->id)) }}" class="btn btn-sm btn-default" title="{{ trans('fi.delete') }}" onclick="return confirm('{{ trans('fi.delete_record_warning') }}');"><i class="fa fa-trash-o"></i></a> 
 				</div>
 

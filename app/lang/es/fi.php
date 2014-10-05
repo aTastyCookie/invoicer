@@ -377,6 +377,10 @@ return array(
 	'cannot_delete_quote_currency'     => 'Esta moneda está actualmente en uso por una o más cotizaciones y no se puede eliminar. Para eliminar esta moneda, primero debe reasignar todas las cotizaciones que utilizan esta moneda a una moneda diferente.',
 	'default_payment_receipt_body'     => 'Mensaje por defecto Recibo de Pago al cliente',
 	'email_payment_receipt'            => 'Email Recibo de Pago',
-	'payment_receipt'                  => 'Recibo de Pago'
+	'payment_receipt'                  => 'Recibo de Pago',
+
+    // Added for 2.3.8
+    'view_all_invoices_for_client' => 'View all invoices for this client',
+    'view_all_quotes_for_client'   => 'View all quotes for this client'
 	
 );

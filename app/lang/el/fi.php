@@ -377,6 +377,10 @@ return array(
 	'cannot_delete_quote_currency'     => 'Αυτό τό νόμισμα χρησιμοποιείτε από μία ή περισσότερες προσφορές και δεν μπορεί να διαγραφεί. Για να διαγράψετε αυτό το νόμισμα, πρέπει πρώτα να αλλάξετε νόμισμα σε όλες τις προσφορές που το χρησιμοποιούν.',
 	'default_payment_receipt_body'     => 'Προεπιλεγμένο κυρίως μέρος απόδειξης πληρωμής',
 	'email_payment_receipt'            => 'Αποστολή Απόδειξης Πληρωμής',
-	'payment_receipt'                  => 'Απόδειξη Πληρωμής'
+	'payment_receipt'                  => 'Απόδειξη Πληρωμής',
+
+    // Added for 2.3.8
+    'view_all_invoices_for_client' => 'View all invoices for this client',
+    'view_all_quotes_for_client'   => 'View all quotes for this client'
 
 );

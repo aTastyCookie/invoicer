@@ -22,7 +22,7 @@ class ClientRepository extends \FI\Libraries\BaseRepository {
 	{
 		$this->model = $model;
 	}
-	
+
 	/**
 	 * Get a paged list of records
 	 * @param  string  $status
@@ -98,7 +98,7 @@ class ClientRepository extends \FI\Libraries\BaseRepository {
 	{
 		return $this->model->firstOrCreate(array('name' => $name));
 	}
-	
+
 	/**
 	 * Update a record
 	 * @param  array $input
@@ -110,12 +110,12 @@ class ClientRepository extends \FI\Libraries\BaseRepository {
 		$client = $this->model->find($id);
 
 		$client->fill($input);
-		
+
 		$client->save();
 
 		return $client;
 	}
-	
+
 	/**
 	 * Delete a record
 	 * @param  int $id
@@ -147,5 +147,5 @@ class ClientRepository extends \FI\Libraries\BaseRepository {
 		// Delete the client.
 		$client->delete();
 	}
-	
+
 }

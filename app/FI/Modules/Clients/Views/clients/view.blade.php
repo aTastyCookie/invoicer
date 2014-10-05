@@ -97,11 +97,17 @@
 						</div>
 
 						<div id="tab-quotes" class="tab-pane">
-							@include('quotes._table')
+                            <div class="panel panel-default">
+                                @include('quotes._table')
+                                <div class="panel-footer"><p class="text-center"><strong><a href="{{ route('quotes.index') }}?client={{ $client->id }}">{{ trans('fi.view_all_quotes_for_client') }}</a></strong></p></div>
+                            </div>
 						</div>
 
 						<div id="tab-invoices" class="tab-pane">
-							@include('invoices._table')
+                            <div class="panel panel-default">
+                                @include('invoices._table')
+                                <div class="panel-footer"><p class="text-center"><strong><a href="{{ route('invoices.index') }}?client={{ $client->id }}">{{ trans('fi.view_all_invoices_for_client') }}</a></strong></p></div>
+                            </div>
 						</div>
 
 					</div>

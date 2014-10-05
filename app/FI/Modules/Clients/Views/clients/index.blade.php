@@ -25,9 +25,9 @@
 
 		<div class="pull-right" style="margin-right: 20px;">
 			<ul class="nav nav-pills">
-				<li @if ($status == 'all') class="active" @endif><a href="{{ route('clients.index') }}">{{ trans('fi.all') }}</a></li>
 				<li @if ($status == 'active') class="active" @endif><a href="{{ route('clients.index') }}?status=active">{{ trans('fi.active') }}</a></li>
 				<li @if ($status == 'inactive') class="active" @endif><a href="{{ route('clients.index') }}?status=inactive">{{ trans('fi.inactive') }}</a></li>
+                <li @if ($status == 'all') class="active" @endif><a href="{{ route('clients.index') }}">{{ trans('fi.all') }}</a></li>
 			</ul>
 		</div>
 

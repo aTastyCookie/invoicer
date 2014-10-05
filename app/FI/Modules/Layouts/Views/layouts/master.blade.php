@@ -32,6 +32,16 @@
             <div class="navbar-right">
                 <ul class="nav navbar-nav">
 
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{{ trans('fi.help') }}">
+                            <i class="fa fa-question-circle"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                        <li><a href="https://www.fusioninvoice.com/docs" target="_blank">{{ trans('fi.documentation') }}</a></li>
+                        <li><a href="https://www.fusioninvoice.com/support" target="_blank">{{ trans('fi.customer_support') }}</a></li>
+                        </ul>
+                    </li>
+
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{{ trans('fi.system') }}">
                             <i class="fa fa-cog"></i>
@@ -81,7 +91,7 @@
                         </a>
                         <ul class="treeview-menu">
                             <li><a href="{{ route('clients.create') }}"><i class="fa fa-angle-double-right"></i> {{ trans('fi.add_client') }}</a></li>
-                            <li><a href="{{ route('clients.index') }}"><i class="fa fa-angle-double-right"></i> {{ trans('fi.view_clients') }}</a></li>
+                            <li><a href="{{ route('clients.index') }}?status=active"><i class="fa fa-angle-double-right"></i> {{ trans('fi.view_clients') }}</a></li>
                         </ul>
                     </li>
                     <li class="treeview">

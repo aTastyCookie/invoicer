@@ -8,7 +8,7 @@
 		* {
 			margin:0px;
 		}
-		body { 
+		body {
 			font-family: sans-serif;
             padding-top: 10px;
             padding-bottom: 10px;
@@ -31,8 +31,8 @@
 			text-align: right;
 		}
 
-		.footer { 
-			position: fixed; 
+		.footer {
+			position: fixed;
 			bottom: 100px;
 			margin-left: 75px;
 			margin-right: 75px;
@@ -61,7 +61,7 @@
 	<table>
 		<tr>
 			<td class="border-bottom" style="width: 50%;">
-				{{ $logo(75) }}			
+				{{ $logo(75) }}
 			</td>
 			<td class="border-bottom" style="width: 50%; text-align: right;">
 				<h1 style="margin: 0;">{{ trans('fi.invoice') }}</h1>

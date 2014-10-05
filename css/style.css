@@ -96,3 +96,8 @@
 .small-box h3 {
     font-size: 32px;
 }
+
+@media (max-width: 767px) {
+    .navbar-nav .open .dropdown-menu {
+        background-color: #ffffff;
+    }

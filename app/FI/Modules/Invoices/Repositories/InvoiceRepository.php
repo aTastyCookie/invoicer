@@ -28,7 +28,7 @@ class InvoiceRepository extends \FI\Libraries\BaseRepository {
 	 * @param  string  $filter
 	 * @return Invoice
 	 */
-	public function getPagedByStatus($status = 'all', $filter = null)
+	public function getPagedByStatus($status = 'all', $filter = null, $clientId = null)
 	{
 		$invoice = $this->model->has('amount')->with(array('amount', 'client'))->orderBy('created_at', 'DESC')->orderBy('number', 'desc');
 
@@ -58,6 +58,11 @@ class InvoiceRepository extends \FI\Libraries\BaseRepository {
 		{
 			$invoice->keywords($filter);
 		}
+
+        if ($clientId)
+        {
+            $invoice->where('client_id', $clientId);
+        }
 
 		return $invoice->paginate(Config::get('fi.defaultNumPerPage'));
 	}

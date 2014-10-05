@@ -377,6 +377,10 @@ return array(
 	'cannot_delete_quote_currency'     => 'Vous ne pouvez pas supprimer cette devise car elle est actuellement utilisée par un ou plusieurs devis. Pour pouvoir supprimer cette devise, vous devez assigner une autre devise aux devis qui l\'utilisent.',
 	'default_payment_receipt_body'     => 'Default Payment Receipt Body',
 	'email_payment_receipt'            => 'Email Payment Receipt',
-	'payment_receipt'                  => 'Payment Receipt'
+	'payment_receipt'                  => 'Payment Receipt',
+
+    // Added for 2.3.8
+    'view_all_invoices_for_client' => 'View all invoices for this client',
+    'view_all_quotes_for_client'   => 'View all quotes for this client'
 
 );

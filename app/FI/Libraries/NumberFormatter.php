@@ -20,13 +20,14 @@ class NumberFormatter {
 	 * Formats a number accordingly
 	 * @param  float $number
 	 * @param  string $currencyCode
+     * @param  integer $decimalPlaces
 	 * @return float
 	 */
-	public static function format($number, $currencyCode = null)
+	public static function format($number, $currencyCode = null, $decimalPlaces = 2)
 	{
 		$currency = App::make('CurrencyRepository')->findByCode(($currencyCode) ?: Config::get('fi.baseCurrency'));
 
-		return number_format($number, 2, $currency->decimal, $currency->thousands);
+		return number_format($number, $decimalPlaces, $currency->decimal, $currency->thousands);
 	}
 
 	/**

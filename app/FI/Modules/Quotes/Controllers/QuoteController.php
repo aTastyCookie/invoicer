@@ -84,14 +84,13 @@ class QuoteController extends \BaseController {
 
 	/**
 	 * Display paginated list
-	 * @param  string $status
 	 * @return View
 	 */
 	public function index()
 	{
 		$status = (Input::get('status')) ?: 'all';
 
-		$quotes   = $this->quote->getPagedByStatus($status, Input::get('search'));
+		$quotes   = $this->quote->getPagedByStatus($status, Input::get('search'), Input::get('client'));
 		$statuses = QuoteStatuses::statuses();
 
 		return View::make('quotes.index')

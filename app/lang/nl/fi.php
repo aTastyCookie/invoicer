@@ -377,6 +377,10 @@ return array(
 	'cannot_delete_quote_currency'       => 'Deze valuta is in gebruik bij &eacute;&eacute;n of meerdere offertes en kan niet worden verwijderd. Om deze valuta te kunnen verwijderen, moet u eerst de valuta van deze offertes wijzigen in een andere valuta.',
 	'default_payment_receipt_body'       => 'Standaard e-mail berichttekst voor Betalingsbewijs',
 	'email_payment_receipt'              => 'E-mail betalingsbewijs',
-	'payment_receipt'                    => 'Betalingsbewijs'
+	'payment_receipt'                    => 'Betalingsbewijs',
+
+    // Added for 2.3.8
+    'view_all_invoices_for_client' => 'View all invoices for this client',
+    'view_all_quotes_for_client'   => 'View all quotes for this client'
 	
 );

@@ -84,14 +84,13 @@ class InvoiceController extends \BaseController {
 
 	/**
 	 * Display paginated list
-	 * @param  string $status
 	 * @return View
 	 */
 	public function index()
 	{
 		$status = (Input::get('status')) ?: 'all';
 		
-		$invoices = $this->invoice->getPagedByStatus($status, Input::get('search'));
+		$invoices = $this->invoice->getPagedByStatus($status, Input::get('search'), Input::get('client'));
 		$statuses = InvoiceStatuses::statuses();
 
 		return View::make('invoices.index')

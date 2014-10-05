@@ -21,201 +21,208 @@ use Session;
 use View;
 
 class ClientController extends \BaseController {
-	
-	/**
-	 * Client repository
-	 * @var ClientRepository
-	 */
-	protected $client;
 
-	/**
-	 * Client custom repository
-	 * @var ClientCustomRepository
-	 */
-	protected $clientCustom;
+    /**
+     * Client repository
+     * @var ClientRepository
+     */
+    protected $client;
 
-	/**
-	 * Custom field repository
-	 * @var CustomFieldRepository
-	 */
-	protected $customField;
+    /**
+     * Client custom repository
+     * @var ClientCustomRepository
+     */
+    protected $clientCustom;
 
-	/**
-	 * Client validator
-	 * @var ClientValidator
-	 */
-	protected $validator;
-	
-	/**
-	 * Dependency injection
-	 * @param ClientRepository $client
-	 * @param ClientCustomRepository $clientCustom
-	 * @param CustomFieldRepository $customField
-	 * @param ClientValidator $validator
-	 */
-	public function __construct($client, $clientCustom, $customField, $validator)
-	{
-		parent::__construct();
-		
-		$this->client              = $client;
-		$this->clientCustom        = $clientCustom;
-		$this->customField         = $customField;
-		$this->validator           = $validator;
-	}
+    /**
+     * Custom field repository
+     * @var CustomFieldRepository
+     */
+    protected $customField;
 
-	/**
-	 * Display paginated list
-	 * @return \Illuminate\View\View
-	 */
-	public function index()
-	{
-		$status = (Input::get('status')) ?: 'all';
+    /**
+     * Client validator
+     * @var ClientValidator
+     */
+    protected $validator;
 
-		$clients = $this->client->getPaged($status, Input::get('search'));
+    /**
+     * Dependency injection
+     * @param ClientRepository $client
+     * @param ClientCustomRepository $clientCustom
+     * @param CustomFieldRepository $customField
+     * @param ClientValidator $validator
+     */
+    public function __construct($client, $clientCustom, $customField, $validator)
+    {
+        parent::__construct();
 
-		return View::make('clients.index')
-		->with('clients', $clients)
-		->with('status', $status)
-		->with('filterRoute', route('clients.index', array($status)));
-	}
+        $this->client       = $client;
+        $this->clientCustom = $clientCustom;
+        $this->customField  = $customField;
+        $this->validator    = $validator;
+    }
 
-	/**
-	 * Display form for new record
-	 * @return \Illuminate\View\View
-	 */
-	public function create()
-	{
-		return View::make('clients.form')
-		->with('editMode', false)
-		->with('customFields', $this->customField->getByTable('clients'))
-		->with('currencies', App::make('CurrencyRepository')->lists());
-	}
+    /**
+     * Display paginated list
+     * @return \Illuminate\View\View
+     */
+    public function index()
+    {
+        $status = (Input::get('status')) ? : 'all';
 
-	/**
-	 * Validate and handle new record form submission
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	public function store()
-	{
-		$input = Input::all();
+        $clients = $this->client->getPaged($status, Input::get('search'));
 
-		if (Input::has('custom'))
-		{
-			$custom = $input['custom'];
-			unset($input['custom']);
-		}
+        return View::make('clients.index')
+            ->with('clients', $clients)
+            ->with('status', $status)
+            ->with('filterRoute', route('clients.index', array($status)));
+    }
 
-		$validator = $this->validator->getValidator($input);
+    /**
+     * Display form for new record
+     * @return \Illuminate\View\View
+     */
+    public function create()
+    {
+        return View::make('clients.form')
+            ->with('editMode', false)
+            ->with('customFields', $this->customField->getByTable('clients'))
+            ->with('currencies', App::make('CurrencyRepository')->lists());
+    }
 
-		if ($validator->fails($input))
-		{
-			return Redirect::route('clients.create')
-			->with('editMode', false)
-			->withErrors($validator)
-			->withInput();
-		}
+    /**
+     * Validate and handle new record form submission
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store()
+    {
+        $input = Input::all();
 
-		$clientId = $this->client->create($input)->id;
+        if (Input::has('custom'))
+        {
+            $custom = $input['custom'];
+            unset($input['custom']);
+        }
 
-		if (Input::has('custom'))
-		{
-			$this->clientCustom->save($custom, $clientId);
-		}
-		
-		return Redirect::to(BackPath::getBackPath('clients/index'))
-		->with('alertSuccess', trans('fi.record_successfully_created'));
-	}
+        $validator = $this->validator->getValidator($input);
 
-	/**
-	 * Display a single record
-	 * @param  int $clientId
-	 * @return \Illuminate\View\View
-	 */
-	public function show($clientId)
-	{
-		$client = $this->client->find($clientId);
+        if ($validator->fails($input))
+        {
+            return Redirect::route('clients.create')
+                ->with('editMode', false)
+                ->withErrors($validator)
+                ->withInput();
+        }
 
-		$invoices  = $client->invoices()->take(Config::get('fi.defaultNumPerPage'))->get();
-		$quotes    = $client->quotes()->take(Config::get('fi.defaultNumPerPage'))->get();
+        $clientId = $this->client->create($input)->id;
 
-		return View::make('clients.view')
-		->with('client', $client)
-		->with('invoices', $invoices)
-		->with('quotes', $quotes)
-		->with('customFields', $this->customField->getByTable('clients'));
-	}
+        if (Input::has('custom'))
+        {
+            $this->clientCustom->save($custom, $clientId);
+        }
 
-	/**
-	 * Display form for existing record
-	 * @param  int $clientId
-	 * @return \Illuminate\View\View
-	 */
-	public function edit($clientId)
-	{
-		$client = $this->client->find($clientId);
+        return Redirect::to(BackPath::getBackPath('clients/index'))
+            ->with('alertSuccess', trans('fi.record_successfully_created'));
+    }
 
-		return View::make('clients.form')
-		->with('editMode', true)
-		->with('client', $client)
-		->with('customFields', $this->customField->getByTable('clients'))
-		->with('currencies', App::make('CurrencyRepository')->lists());
-	}
+    /**
+     * Display a single record
+     * @param  int $clientId
+     * @return \Illuminate\View\View
+     */
+    public function show($clientId)
+    {
+        $client = $this->client->find($clientId);
 
-	/**
-	 * Validate and handle existing record form submission
-	 * @param  int $clientId
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	public function update($clientId)
-	{
-		$input = Input::all();
-		
-		if (Input::has('custom'))
-		{
-			$custom = $input['custom'];
-			unset($input['custom']);
-		}
+        $invoices = $client->invoices()
+            ->orderBy('created_at', 'DESC')
+            ->orderBy('id', 'DESC')
+            ->take(Config::get('fi.defaultNumPerPage'))->get();
 
-		$validator = $this->validator->getUpdateValidator($input, $clientId);
+        $quotes = $client->quotes()
+            ->orderBy('created_at', 'DESC')
+            ->orderBy('id', 'DESC')
+            ->take(Config::get('fi.defaultNumPerPage'))->get();
 
-		if ($validator->fails($input))
-		{	
-			return Redirect::route('clients.edit', array($clientId))
-			->with('editMode', true)
-			->withErrors($validator)
-			->withInput();
-		}
+        return View::make('clients.view')
+            ->with('client', $client)
+            ->with('invoices', $invoices)
+            ->with('quotes', $quotes)
+            ->with('customFields', $this->customField->getByTable('clients'));
+    }
 
-		$this->client->update($input, $clientId);
+    /**
+     * Display form for existing record
+     * @param  int $clientId
+     * @return \Illuminate\View\View
+     */
+    public function edit($clientId)
+    {
+        $client = $this->client->find($clientId);
 
-		if (Input::has('custom'))
-		{
-			$this->clientCustom->save($custom, $clientId);
-		}
+        return View::make('clients.form')
+            ->with('editMode', true)
+            ->with('client', $client)
+            ->with('customFields', $this->customField->getByTable('clients'))
+            ->with('currencies', App::make('CurrencyRepository')->lists());
+    }
 
-		return Redirect::to(BackPath::getBackPath('clients/index'))
-		->with('alertInfo', trans('fi.record_successfully_updated'));
-	}
+    /**
+     * Validate and handle existing record form submission
+     * @param  int $clientId
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update($clientId)
+    {
+        $input = Input::all();
 
-	/**
-	 * Delete a record
-	 * @param  int $clientId
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	public function delete($clientId)
-	{
-		$this->client->delete($clientId);
+        if (Input::has('custom'))
+        {
+            $custom = $input['custom'];
+            unset($input['custom']);
+        }
 
-		return Redirect::route('clients.index')
-		->with('alert', trans('fi.record_successfully_deleted'));
-	}
+        $validator = $this->validator->getUpdateValidator($input, $clientId);
 
-	/**
-	 * Return a json list of records matching the provided query
-	 * @return json
-	 */
-	public function ajaxNameLookup()
-	{
-		return $this->client->lookupByName(Input::get('query'));
-	}
+        if ($validator->fails($input))
+        {
+            return Redirect::route('clients.edit', array($clientId))
+                ->with('editMode', true)
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $this->client->update($input, $clientId);
+
+        if (Input::has('custom'))
+        {
+            $this->clientCustom->save($custom, $clientId);
+        }
+
+        return Redirect::to(BackPath::getBackPath('clients/index'))
+            ->with('alertInfo', trans('fi.record_successfully_updated'));
+    }
+
+    /**
+     * Delete a record
+     * @param  int $clientId
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete($clientId)
+    {
+        $this->client->delete($clientId);
+
+        return Redirect::route('clients.index')
+            ->with('alert', trans('fi.record_successfully_deleted'));
+    }
+
+    /**
+     * Return a json list of records matching the provided query
+     * @return json
+     */
+    public function ajaxNameLookup()
+    {
+        return $this->client->lookupByName(Input::get('query'));
+    }
 }
