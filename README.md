@@ -1,5 +1,5 @@
 invoicer
 ========
 
-Not fully Tested, but looks good.
+tested/ work so-so^)
 
