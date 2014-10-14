@@ -45,7 +45,7 @@ class QuoteTaxRate extends \Eloquent {
    
 	public function getFormattedTaxTotalAttribute()
 	{
-		return CurrencyFormatter::format($this->attributes['tax_total']);
+		return CurrencyFormatter::format($this->attributes['tax_total'], $this->quote->currency_code);
 	}
 
 }

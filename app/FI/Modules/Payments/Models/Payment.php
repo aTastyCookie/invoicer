@@ -58,7 +58,7 @@ class Payment extends \Eloquent {
 
     public function getFormattedAmountAttribute()
     {
-    	return CurrencyFormatter::format($this->attributes['amount']);
+    	return CurrencyFormatter::format($this->attributes['amount'], $this->invoice->currency_code);
     }
 
     public function getFormattedNumericAmountAttribute()

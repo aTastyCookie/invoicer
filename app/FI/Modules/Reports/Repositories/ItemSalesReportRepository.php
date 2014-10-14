@@ -35,20 +35,20 @@ class ItemSalesReportRepository {
 				'client_name'    => $item->invoice->client->name,
 				'invoice_number' => $item->invoice->number,
 				'date'           => $item->invoice->formatted_created_at,
-				'price'          => $item->formatted_price,
+				'price'          => CurrencyFormatter::format($item->price / $item->invoice->exchange_rate),
 				'quantity'       => $item->formatted_quantity,
-				'total'          => $item->amount->formatted_total
+				'total'          => CurrencyFormatter::format($item->amount->total / $item->invoice->exchange_rate)
 			);
 
 			if (isset($results[$item->name]['totals']))
 			{
 				$results[$item->name]['totals']['quantity'] += $item->quantity;
-				$results[$item->name]['totals']['total']    += $item->amount->total;
+				$results[$item->name]['totals']['total']    += $item->amount->total / $item->invoice->exchange_rate;
 			}
 			else
 			{
 				$results[$item->name]['totals']['quantity'] = $item->quantity;
-				$results[$item->name]['totals']['total']    = $item->amount->total;
+				$results[$item->name]['totals']['total']    = $item->amount->total / $item->invoice->exchange_rate;
 			}
 		}
 

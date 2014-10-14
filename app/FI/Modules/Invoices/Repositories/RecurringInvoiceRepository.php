@@ -30,7 +30,7 @@ class RecurringInvoiceRepository extends \FI\Libraries\BaseRepository {
 	 */
 	public function getPaged()
 	{
-		$recurringInvoice = $this->model->has('invoice')->with('invoice')->orderBy('generate_at', 'DESC');
+		$recurringInvoice = $this->model->has('invoice')->with('invoice')->orderBy('generate_at', 'DESC')->orderBy('id', 'DESC');
 
 		return $recurringInvoice->paginate(Config::get('fi.defaultNumPerPage'));
 	}

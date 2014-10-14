@@ -72,7 +72,7 @@ class MerchantController extends \BaseController {
 		// Define some default purchase parameters and get any additional from
 		// the merchant driver
 		$purchaseParams = $merchantLib::setPurchaseParameters(array(
-			'amount'      => $invoice->amount->balance * $invoice->exchange_rate,
+			'amount'      => $invoice->amount->balance,
 			'description' => trans('fi.invoice') . ' #' . $invoice->number,
 			'currency'    => $invoice->currency_code,
 		), array('urlKey' => $urlKey, 'post' => $_POST));
@@ -138,7 +138,7 @@ class MerchantController extends \BaseController {
 		// Define some default purchase parameters and get any additional from
 		// the merchant driver
 		$purchaseParams = $merchantLib::setPurchaseParameters(array(
-			'amount'      => $invoice->amount->balance * $invoice->exchange_rate,
+			'amount'      => $invoice->amount->balance,
 			'description' => trans('fi.invoice') . ' #' . $invoice->number,
 			'currency'    => $invoice->currency_code
 		), array('urlKey' => $urlKey, 'post' => $_POST));

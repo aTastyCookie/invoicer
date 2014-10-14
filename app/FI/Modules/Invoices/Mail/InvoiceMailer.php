@@ -21,7 +21,6 @@ class InvoiceMailer {
 
 	protected $errors;
 
-	// public function send($invoice, $to, $subject, $body, $cc = null, $attachment = null)
 	public function send($invoice, $to, $subject, $body, $cc = null, $includeAttachment = false)
 	{
 		$pdfPath = '';
@@ -45,13 +44,20 @@ class InvoiceMailer {
 			Mail::send('templates.emails.template', array('body' => $body), function($message) use ($invoice, $to, $subject, $cc, $pdfPath)
 			{
 				$message->from($invoice->user->email, $invoice->user->name)
-				->to($to, $invoice->client->name)
 				->subject($subject);
 
-				if ($cc)
-				{
-					$message->cc($cc);
-				}
+                foreach (explode(',', $to) as $recipient)
+                {
+                    $message->to(trim($recipient));
+                }
+
+                if ($cc)
+                {
+                    foreach (explode(',', $cc) as $recipient)
+                    {
+                        $message->cc($recipient);
+                    }
+                }
 
 				if ($pdfPath)
 				{
@@ -68,7 +74,7 @@ class InvoiceMailer {
 
 			return true;
 		}
-		catch (\Swift_TransportException $e)
+		catch (\Exception $e)
 		{
 			if ($pdfPath and file_exists($pdfPath))
 			{

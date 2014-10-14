@@ -36,10 +36,10 @@ class PaymentsCollectedReportRepository {
 				'payment_method' => isset($payment->payment_method->name) ? $payment->payment_method->name : '',
 				'note'           => $payment->note,
 				'date'           => $payment->formatted_paid_at,
-				'amount'         => $payment->formatted_amount
+				'amount'         => CurrencyFormatter::format($payment->amount / $payment->invoice->exchange_rate)
 			);
 
-			$results['total'] += $payment->amount;
+			$results['total'] += $payment->amount / $payment->invoice->exchange_rate;
 		}
 
 		$results['total'] = CurrencyFormatter::format($results['total']);

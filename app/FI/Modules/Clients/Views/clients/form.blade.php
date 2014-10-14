@@ -99,6 +99,18 @@
 									{{ Form::select('currency_code', $currencies, ((isset($client)) ? $client->currency_code : Config::get('fi.baseCurrency')), array('id' => 'currency_code', 'class' => 'form-control')) }}
 								</div>
 							</div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>{{ trans('fi.default_invoice_template') }}: </label>
+                                    {{ Form::select('invoice_template', $invoiceTemplates, ((isset($client)) ? $client->invoice_template : Config::get('fi.invoiceTemplate')), array('id' => 'invoice_template', 'class' => 'form-control')) }}
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>{{ trans('fi.default_quote_template') }}: </label>
+                                    {{ Form::select('quote_template', $quoteTemplates, ((isset($client)) ? $client->quote_template : Config::get('fi.quoteTemplate')), array('id' => 'quote_template', 'class' => 'form-control')) }}
+                                </div>
+                            </div>
 						</div>
 
 					</div>

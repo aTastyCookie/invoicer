@@ -26,13 +26,20 @@ class QuoteMailer {
 			Mail::send('templates.emails.template', array('body' => $body), function($message) use ($quote, $to, $subject, $cc, $attachment)
 			{
 				$message->from($quote->user->email, $quote->user->name)
-				->to($to, $quote->client->name)
 				->subject($subject);
 
-				if ($cc)
-				{
-					$message->cc($cc);
-				}
+                foreach (explode(',', $to) as $recipient)
+                {
+                    $message->to(trim($recipient));
+                }
+
+                if ($cc)
+                {
+                    foreach (explode(',', $cc) as $recipient)
+                    {
+                        $message->cc($recipient);
+                    }
+                }
 
 				if ($attachment)
 				{
@@ -44,7 +51,7 @@ class QuoteMailer {
 
 			return true;
 		}
-		catch (\Swift_TransportException $e)
+        catch (\Exception $e)
 		{
 			$this->errors = $e->getMessage();
 			return false;

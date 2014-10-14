@@ -33,7 +33,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">{{ trans('fi.pay_now') }} ({{ $invoice->amount->formatted_converted_balance }})</h4>
+                    <h4 class="modal-title">{{ trans('fi.pay_now') }} ({{ $invoice->amount->formatted_balance }})</h4>
                 </div>
                 <div class="modal-body">
 
@@ -66,7 +66,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('fi.cancel') }}</button>
-                    <input type="submit" id="invoice-pay-confirm" class="btn btn-primary" value="{{ trans('fi.pay_now') }} ({{ $invoice->amount->formatted_converted_balance }})">
+                    <input type="submit" id="invoice-pay-confirm" class="btn btn-primary" value="{{ trans('fi.pay_now') }} ({{ $invoice->amount->formatted_balance }})">
                 </div>
             </div>
         </div>

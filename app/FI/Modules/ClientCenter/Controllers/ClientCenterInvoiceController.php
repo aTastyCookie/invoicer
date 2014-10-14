@@ -14,7 +14,6 @@ namespace FI\Modules\ClientCenter\Controllers;
 use Config;
 use Event;
 use FI\Libraries\HTML;
-use FI\Libraries\Logo;
 use FI\Libraries\PDF;
 use FI\Statuses\InvoiceStatuses;
 use View;
@@ -29,9 +28,6 @@ class ClientCenterInvoiceController extends \BaseController {
 	public function show($urlKey)
 	{
 		$invoice = $this->invoice->findByUrlKey($urlKey);
-
-		// Render the template
-		$html = HTML::invoice($invoice);
 
 		$merchantIsRedirect = false;
 

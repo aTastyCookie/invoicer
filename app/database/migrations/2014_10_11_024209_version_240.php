@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TitleSetting extends Migration {
+class Version240 extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,7 @@ class TitleSetting extends Migration {
 	 */
 	public function up()
 	{
-		$setting = App::make('SettingRepository');
-
-		$setting->save('headerTitleText', 'FusionInvoice');
+        App::make('SettingRepository')->save('version', '2.4.0');
 	}
 
 	/**

@@ -21,6 +21,11 @@ class QuoteItemAmount extends \Eloquent {
 	 */
 	protected $guarded = array('id');
 
+    public function item()
+    {
+        return $this->belongsTo('FI\Modules\Quotes\Models\QuoteItem');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Accessors
@@ -29,17 +34,17 @@ class QuoteItemAmount extends \Eloquent {
    
 	public function getFormattedSubtotalAttribute()
 	{
-		return CurrencyFormatter::format($this->attributes['subtotal']);
+		return CurrencyFormatter::format($this->attributes['subtotal'], $this->item->quote->currency_code);
 	}
 
 	public function getFormattedTaxTotalAttribute()
 	{
-		return CurrencyFormatter::format($this->attributes['tax_total']);
+		return CurrencyFormatter::format($this->attributes['tax_total'], $this->item->quote->currency_code);
 	}
 
 	public function getFormattedTotalAttribute()
 	{
-		return CurrencyFormatter::format($this->attributes['total']);
+		return CurrencyFormatter::format($this->attributes['total'], $this->item->quote->currency_code);
 	}
 
 }

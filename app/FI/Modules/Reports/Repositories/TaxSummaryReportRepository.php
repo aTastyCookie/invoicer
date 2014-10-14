@@ -13,80 +13,69 @@ namespace FI\Modules\Reports\Repositories;
 
 use FI\Libraries\CurrencyFormatter;
 use FI\Libraries\NumberFormatter;
-use FI\Modules\Invoices\Models\InvoiceItem;
-use FI\Modules\Invoices\Models\InvoiceTaxRate;
+use FI\Modules\Invoices\Models\Invoice;
 
 class TaxSummaryReportRepository {
-	
-	/**
-	 * Get the report results
-	 * @param  string $fromDate
-	 * @param  string $toDate
-	 * @return array
-	 */
-	public function getResults($fromDate, $toDate)
-	{
-		$results = array();
 
-		$invoiceItems = InvoiceItem::byDateRange($fromDate, $toDate)->where('tax_rate_id', '<>', 0)->get();
+    /**
+     * Get the report results
+     * @param  string $fromDate
+     * @param  string $toDate
+     * @return array
+     */
+    public function getResults($fromDate, $toDate)
+    {
+        $results = array();
 
-		foreach ($invoiceItems as $invoiceItem)
-		{
-			$percent = NumberFormatter::format($invoiceItem->taxRate->percent);
+        $invoices = Invoice::where('created_at', '>=', $fromDate)->where('created_at', '<=', $toDate)->get();
 
-			if (isset($results[$invoiceItem->taxRate->name . ' (' . $percent . '%)']))
-			{
-				$results[$invoiceItem->taxRate->name . ' (' . $percent . '%)']['taxable_amount'] += $invoiceItem->amount->subtotal;
-				$results[$invoiceItem->taxRate->name . ' (' . $percent . '%)']['taxes'] += $invoiceItem->amount->tax_total;
-			}
-			else
-			{
-				$results[$invoiceItem->taxRate->name . ' (' . $percent . '%)']['taxable_amount'] = $invoiceItem->amount->subtotal;
-				$results[$invoiceItem->taxRate->name . ' (' . $percent . '%)']['taxes'] = $invoiceItem->amount->tax_total;
-			}
-		}
+        foreach ($invoices as $invoice)
+        {
+            foreach ($invoice->taxRates as $invoiceTaxRate)
+            {
+                $key = $invoiceTaxRate->taxRate->name . ' (' . NumberFormatter::format($invoiceTaxRate->taxRate->percent) . '%)';
 
-		$invoiceTaxRates = InvoiceTaxRate::byInvoiceDateRange($fromDate, $toDate)->get();
+                if (isset($results[$key]['taxable_amount']))
+                {
+                    $results[$key]['taxable_amount'] += $invoice->amount->item_subtotal / $invoice->exchange_rate;
+                    $results[$key]['taxes'] += $invoiceTaxRate->tax_total / $invoice->exchange_rate;
+                }
+                else
+                {
+                    $results[$key]['taxable_amount'] = $invoice->amount->item_subtotal / $invoice->exchange_rate;
+                    $results[$key]['taxes']          = $invoiceTaxRate->tax_total / $invoice->exchange_rate;
+                }
 
-		foreach ($invoiceTaxRates as $invoiceTaxRate)
-		{
-			$percent = NumberFormatter::format($invoiceTaxRate->taxRate->percent);
+            }
 
-			if (isset($results[$invoiceTaxRate->taxRate->name . ' (' . $percent . '%)']))
-			{
-				if ($invoiceTaxRate->include_item_tax)
-				{
-					$results[$invoiceTaxRate->taxRate->name . ' (' . $percent . '%)']['taxable_amount'] += $invoiceTaxRate->invoice->amount->total;
-				}
-				else
-				{
-					$results[$invoiceTaxRate->taxRate->name . ' (' . $percent . '%)']['taxable_amount'] += $invoiceTaxRate->invoice->amount->item_subtotal;
-				}
-				
-				$results[$invoiceTaxRate->taxRate->name . ' (' . $percent . '%)']['taxes'] += $invoiceTaxRate->tax_total;
-			}
-			else
-			{
-				if ($invoiceTaxRate->include_item_tax)
-				{
-					$results[$invoiceTaxRate->taxRate->name . ' (' . $percent . '%)']['taxable_amount'] = $invoiceTaxRate->invoice->amount->total;
-				}
-				else
-				{
-					$results[$invoiceTaxRate->taxRate->name . ' (' . $percent . '%)']['taxable_amount'] = $invoiceTaxRate->invoice->amount->item_subtotal;
-				}
+            foreach ($invoice->items as $invoiceItem)
+            {
+                if ($invoiceItem->tax_rate_id)
+                {
+                    $key = $invoiceItem->taxRate->name . ' (' . NumberFormatter::format($invoiceItem->taxRate->percent) . '%)';
+                }
 
-				$results[$invoiceTaxRate->taxRate->name . ' (' . $percent . '%)']['taxes'] = $invoiceTaxRate->tax_total;
-			}
-		}
+                if (isset($results[$key]['taxable_amount']))
+                {
+                    $results[$key]['taxable_amount'] += $invoiceItem->amount->subtotal / $invoice->exchange_rate;
+                    $results[$key]['taxes'] += $invoiceItem->amount->tax_total / $invoice->exchange_rate;
+                }
+                else
+                {
+                    $results[$key]['taxable_amount'] = $invoiceItem->amount->subtotal / $invoice->exchange_rate;
+                    $results[$key]['taxes']          = $invoiceItem->amount->tax_total / $invoice->exchange_rate;
+                }
+            }
 
-		foreach ($results as $key=>$result)
-		{
-			$results[$key]['taxable_amount'] = CurrencyFormatter::format($result['taxable_amount']);
-			$results[$key]['taxes'] = CurrencyFormatter::format($result['taxes']);
-		}
+        }
 
-		return $results;
-	}
+        foreach ($results as $key => $result)
+        {
+            $results[$key]['taxable_amount'] = CurrencyFormatter::format($result['taxable_amount']);
+            $results[$key]['taxes']          = CurrencyFormatter::format($result['taxes']);
+        }
+
+        return $results;
+    }
 
 }

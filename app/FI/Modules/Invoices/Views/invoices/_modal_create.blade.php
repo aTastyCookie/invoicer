@@ -24,27 +24,34 @@
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label">{{ trans('fi.client') }}</label>
+
                         <div class="col-sm-9">
-                            {{ Form::text('client_name', null, array('id' => 'create_client_name', 'class' => 'form-control client-lookup', 'autocomplete' => 'off')) }}
+                            {{ Form::text('client_name', null, array('id' => 'create_client_name', 'class' =>
+                            'form-control client-lookup', 'autocomplete' => 'off')) }}
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label">{{ trans('fi.invoice_date') }}</label>
+
                         <div class="col-sm-9">
-                            {{ Form::text('created_at', date(Config::get('fi.dateFormat')), array('id' => 'create_created_at', 'class' => 'form-control')) }}
+                            {{ Form::text('created_at', date(Config::get('fi.dateFormat')), array('id' =>
+                            'create_created_at', 'class' => 'form-control')) }}
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label">{{ trans('fi.group') }}</label>
+
                         <div class="col-sm-9">
-                            {{ Form::select('invoice_group_id', $invoiceGroups, Config::get('fi.invoiceGroup'), array('id' => 'create_invoice_group_id', 'class' => 'form-control')) }}
+                            {{ Form::select('invoice_group_id', $invoiceGroups, Config::get('fi.invoiceGroup'),
+                            array('id' => 'create_invoice_group_id', 'class' => 'form-control')) }}
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-3 control-label">{{ trans('fi.frequency') }}</label>
+
                         <div class="col-sm-9">
                             <label class="radio">
                                 {{ Form::radio('recurring', '0', true) }}
@@ -59,16 +66,19 @@
 
                     <div class="form-group" id="div-recurring-options" style="display: none;">
                         <label class="col-sm-3 control-label">{{ trans('fi.every') }}</label>
+
                         <div class="col-sm-9">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    {{ Form::text('recurring_frequency', '1', array('id' => 'recurring_frequency', 'class' => 'form-control')) }}
+                                    {{ Form::text('recurring_frequency', '1', array('id' => 'recurring_frequency',
+                                    'class' => 'form-control')) }}
                                 </div>
                                 <div class="col-sm-9">
-                                    {{ Form::select('recurring_period', $frequencies, 3, array('id' => 'recurring_period', 'class' => 'form-control')) }}
+                                    {{ Form::select('recurring_period', $frequencies, 3, array('id' =>
+                                    'recurring_period', 'class' => 'form-control')) }}
                                 </div>
                             </div>
-                                                        
+
                         </div>
                     </div>
 
@@ -77,7 +87,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('fi.cancel') }}</button>
-                <button type="button" id="invoice-create-confirm" class="btn btn-primary">{{ trans('fi.submit') }}</button>
+                <button type="button" id="invoice-create-confirm" class="btn btn-primary">{{ trans('fi.submit') }}
+                </button>
             </div>
         </div>
     </div>

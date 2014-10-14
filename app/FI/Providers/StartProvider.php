@@ -60,9 +60,6 @@ class StartProvider extends ServiceProvider {
         {
             $this->app->register('FI\Modules\Setup\Providers\ModuleProvider');
         }
-
-        // Register generic mail validator
-        $this->app->bind('MailValidator', 'FI\Validators\MailValidator');
     }
 
 }

@@ -135,6 +135,20 @@ class Quote extends \Eloquent {
         return ($this->attributes['currency_code']) ?: $this->client->currency_code;
     }
 
+    public function getTemplateAttribute()
+    {
+        if ($this->attributes['template'])
+        {
+            return $this->attributes['template'];
+        }
+        elseif ($this->client->quote_template)
+        {
+            return $this->client->quote_template;
+        }
+
+        return Config::get('fi.quoteTemplate');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Mutators
@@ -148,7 +162,7 @@ class Quote extends \Eloquent {
             $this->attributes['exchange_rate'] = 1;
         }
 
-        elseif (Config::get('fi.exchangeRateMode') == 'automatic')
+        elseif (Config::get('fi.exchangeRateMode') == 'automatic' and !$value)
         {
             $this->attributes['exchange_rate'] = App::make('CurrencyConverter')->convert(Config::get('fi.baseCurrency'), $this->attributes['currency_code']);
         }

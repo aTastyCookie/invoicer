@@ -2,6 +2,7 @@ $(function() {
 
 	$("#created_at").inputmask(datepickerFormat);
 	$("#due_at").inputmask(datepickerFormat);
+    $('textarea').autosize();
 
 	$('#btn-add-tax').click(function() {
 		$('#modal-placeholder').load(addTaxModalRoute, { invoice_id: invoiceId });
@@ -18,10 +19,26 @@ $(function() {
 		});
 	});
 
-	$('#btn-save-invoice').click(function() {
+    $('#btn-update-exchange-rate').click(function() {
+        updateExchangeRate();
+    });
+
+    $('#currency_code').change(function() {
+        updateExchangeRate();
+    });
+
+    function updateExchangeRate() {
+        $.post(getExchangeRateRoute, { currency_code: $('#currency_code').val() }, function(data) {
+            $('#exchange_rate').val(data);
+        });
+    }
+
+	$('.btn-save-invoice').click(function() {
 		var items = [];
 		var item_order = 1;
 		var custom_fields = {};
+        var apply_exchange_rate = $(this).data('apply-exchange-rate');
+
 		$('table tr.item').each(function() {
 			var row = {};
 			$(this).find('input,select,textarea').each(function() {
@@ -56,7 +73,9 @@ $(function() {
 			footer: $('#footer').val(),
 			currency_code: $('#currency_code').val(),
 			exchange_rate: $('#exchange_rate').val(),
-			custom: JSON.stringify(custom_fields)
+			custom: JSON.stringify(custom_fields),
+            apply_exchange_rate: apply_exchange_rate,
+            template: $('#template').val()
 		}).done(function(response) {
 			window.location = invoiceEditRoute;
 		}).fail(function(response) {

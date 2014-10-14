@@ -61,7 +61,7 @@
     <table>
         <tr>
             <td class="border-bottom" style="width: 50%;">
-                {{ $logo(75) }}         
+                {{ $logo }}
             </td>
             <td class="border-bottom" style="width: 50%; text-align: right;">
                 <h1 style="margin: 0;">{{ trans('fi.quote') }}</h1>
@@ -125,7 +125,7 @@
             </tr>
             <tr>
                 <td colspan="4" class="text-right">{{ trans('fi.total') }}</td>
-                <td class="text-right">{{ $quote->amount->formatted_total }} @if ($quote->is_foreign_currency) ({{ $quote->amount->formatted_converted_total }}) @endif</td>
+                <td class="text-right">{{ $quote->amount->formatted_total }}</td>
             </tr>
         </tbody>
 

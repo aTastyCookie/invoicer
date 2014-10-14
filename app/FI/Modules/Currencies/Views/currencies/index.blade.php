@@ -33,6 +33,8 @@
 									<th>{{ trans('fi.code') }}</th>
 									<th>{{ trans('fi.symbol') }}</th>
 									<th>{{ trans('fi.symbol_placement') }}</th>
+                                    <th>{{ trans('fi.decimal_point') }}</th>
+                                    <th>{{ trans('fi.thousands_separator') }}</th>
 									<th>{{ trans('fi.options') }}</th>
 								</tr>
 							</thead>
@@ -44,6 +46,8 @@
 									<td>{{ $currency->code }}</td>
 									<td>{{ $currency->symbol }}</td>
 									<td>{{ $currency->formatted_placement }}</td>
+                                    <td>{{ $currency->decimal }}</td>
+                                    <td>{{ $currency->thousands }}</td>
 									<td>
 										<div class="btn-group">
 											<a href="{{ route('currencies.edit', array($currency->id)) }}" class="btn btn-sm btn-default" title="{{ trans('fi.edit') }}"><i class="fa fa-edit"></i></a> 

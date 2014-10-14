@@ -14,7 +14,6 @@ namespace FI\Modules\ClientCenter\Controllers;
 use Config;
 use Event;
 use FI\Libraries\HTML;
-use FI\Libraries\Logo;
 use FI\Libraries\PDF;
 use FI\Statuses\QuoteStatuses;
 use Redirect;
@@ -30,9 +29,6 @@ class ClientCenterQuoteController extends \BaseController {
 	public function show($urlKey)
 	{
 		$quote = $this->quote->findByUrlKey($urlKey);
-
-		// Render the template
-		$html = HTML::quote($quote);
 
 		Event::fire('quote.public.viewed', $quote);
 

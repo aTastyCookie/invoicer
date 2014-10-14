@@ -15,6 +15,8 @@ use App;
 use Config;
 use FI\Libraries\BackPath;
 use FI\Libraries\CustomFields;
+use FI\Libraries\InvoiceTemplates;
+use FI\Libraries\QuoteTemplates;
 use Input;
 use Redirect;
 use Session;
@@ -88,7 +90,9 @@ class ClientController extends \BaseController {
         return View::make('clients.form')
             ->with('editMode', false)
             ->with('customFields', $this->customField->getByTable('clients'))
-            ->with('currencies', App::make('CurrencyRepository')->lists());
+            ->with('currencies', App::make('CurrencyRepository')->lists())
+            ->with('invoiceTemplates', InvoiceTemplates::lists())
+            ->with('quoteTemplates', QuoteTemplates::lists());
     }
 
     /**
@@ -165,7 +169,9 @@ class ClientController extends \BaseController {
             ->with('editMode', true)
             ->with('client', $client)
             ->with('customFields', $this->customField->getByTable('clients'))
-            ->with('currencies', App::make('CurrencyRepository')->lists());
+            ->with('currencies', App::make('CurrencyRepository')->lists())
+            ->with('invoiceTemplates', InvoiceTemplates::lists())
+            ->with('quoteTemplates', QuoteTemplates::lists());
     }
 
     /**

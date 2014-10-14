@@ -13,9 +13,11 @@ Route::group(array('before' => 'auth'), function()
 {
 	Route::get('currencies', array('uses' => 'CurrencyController@index', 'as' => 'currencies.index'));
 	Route::get('currencies/create', array('uses' => 'CurrencyController@create', 'as' => 'currencies.create'));
-	Route::get('currencies/{taxRate}/edit', array('uses' => 'CurrencyController@edit', 'as' => 'currencies.edit'));
-	Route::get('currencies/{taxRate}/delete', array('uses' => 'CurrencyController@delete', 'as' => 'currencies.delete'));
+	Route::get('currencies/{currency}/edit', array('uses' => 'CurrencyController@edit', 'as' => 'currencies.edit'));
+	Route::get('currencies/{currency}/delete', array('uses' => 'CurrencyController@delete', 'as' => 'currencies.delete'));
 
 	Route::post('currencies', array('uses' => 'CurrencyController@store', 'as' => 'currencies.store'));
-	Route::post('currencies/{taxRate}', array('uses' => 'CurrencyController@update', 'as' => 'currencies.update'));
+    Route::post('currencies/get-exchange-rate', array('uses' => 'CurrencyController@getExchangeRate', 'as' => 'currencies.getExchangeRate'));
+	Route::post('currencies/{currency}', array('uses' => 'CurrencyController@update', 'as' => 'currencies.update'));
+
 });

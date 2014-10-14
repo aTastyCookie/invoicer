@@ -95,9 +95,19 @@ class Client extends \Eloquent {
         return nl2br($this->attributes['address']);
     }
 
-    public function getCurrencyCodeAttribute()
+    public function getCurrencyCodeAttribute($value)
     {
-        return ($this->attributes['currency_code']) ?: Config::get('fi.baseCurrency');
+        return ($value) ?: Config::get('fi.baseCurrency');
+    }
+
+    public function getInvoiceTemplateAttribute($value)
+    {
+        return ($value) ?: Config::get('fi.invoiceTemplate');
+    }
+
+    public function getQuoteTemplateAttribute($value)
+    {
+        return ($value) ?: Config::get('fi.quoteTemplate');
     }
 
     /*

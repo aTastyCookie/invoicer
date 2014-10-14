@@ -41,7 +41,7 @@ class InvoiceAmount extends \Eloquent {
 
 	public function getFormattedItemSubtotalAttribute()
 	{
-		return CurrencyFormatter::format($this->attributes['item_subtotal']);
+		return CurrencyFormatter::format($this->attributes['item_subtotal'], $this->invoice->currency_code);
 	}
 
 	public function getFormattedItemTotalAttribute()
@@ -64,7 +64,7 @@ class InvoiceAmount extends \Eloquent {
 	// Returns the entire amount of tax for the invoice (formatted as currency)
 	public function getFormattedTotalTaxAttribute()
 	{
-		return CurrencyFormatter::format($this->attributes['item_tax_total'] + $this->attributes['tax_total']);
+		return CurrencyFormatter::format($this->attributes['item_tax_total'] + $this->attributes['tax_total'], $this->invoice->currency_code);
 	}
 
 	// Returns the entire amount of tax for the invoice
@@ -75,33 +75,33 @@ class InvoiceAmount extends \Eloquent {
 
 	public function getFormattedTotalAttribute()
 	{
-		return CurrencyFormatter::format($this->attributes['total']);
+		return CurrencyFormatter::format($this->attributes['total'], $this->invoice->currency_code);
 	}
 
-	public function getFormattedConvertedTotalAttribute()
-	{
-		return CurrencyFormatter::format($this->attributes['total'] * $this->invoice->exchange_rate, $this->invoice->currency_code);
-	}
+//	public function getFormattedConvertedTotalAttribute()
+//	{
+//		return CurrencyFormatter::format($this->attributes['total'] * $this->invoice->exchange_rate, $this->invoice->currency_code);
+//	}
 
 	public function getFormattedPaidAttribute()
 	{
-		return CurrencyFormatter::format($this->attributes['paid']);
+		return CurrencyFormatter::format($this->attributes['paid'], $this->invoice->currency_code);
 	}
 
-	public function getFormattedConvertedPaidAttribute()
-	{
-		return CurrencyFormatter::format($this->attributes['paid'] * $this->invoice->exchange_rate, $this->invoice->currency_code);
-	}
+//	public function getFormattedConvertedPaidAttribute()
+//	{
+//		return CurrencyFormatter::format($this->attributes['paid'] * $this->invoice->exchange_rate, $this->invoice->currency_code);
+//	}
 
 	public function getFormattedBalanceAttribute()
 	{
-		return CurrencyFormatter::format($this->attributes['balance']);
+		return CurrencyFormatter::format($this->attributes['balance'], $this->invoice->currency_code);
 	}
 
-	public function getFormattedConvertedBalanceAttribute()
-	{
-		return CurrencyFormatter::format($this->attributes['balance'] * $this->invoice->exchange_rate, $this->invoice->currency_code);
-	}
+//	public function getFormattedConvertedBalanceAttribute()
+//	{
+//		return CurrencyFormatter::format($this->attributes['balance'] * $this->invoice->exchange_rate, $this->invoice->currency_code);
+//	}
 
 	public function getFormattedNumericBalanceAttribute()
 	{

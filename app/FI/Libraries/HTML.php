@@ -12,23 +12,26 @@
 namespace FI\Libraries;
 
 use Config;
-use FI\Libraries\Logo;
 use View;
 
 class HTML {
 
 	public static function invoice($invoice)
 	{
-		return View::make('templates.invoices.' . str_replace('.blade.php', '', Config::get('fi.invoiceTemplate')))
+        Config::set('fi.baseCurrency', $invoice->currency_code);
+
+		return View::make('templates.invoices.' . str_replace('.blade.php', '', $invoice->template))
 		->with('invoice', $invoice)
-		->with('logo', function($width) { return Logo::getImg($width); });
+        ->with('logo', Logo::getImg())->render();
 	}
 
 	public static function quote($quote)
 	{
-		return View::make('templates.quotes.' . str_replace('.blade.php', '', Config::get('fi.quoteTemplate')))
+        Config::set('fi.baseCurrency', $quote->currency_code);
+
+		return View::make('templates.quotes.' . str_replace('.blade.php', '', $quote->template))
 		->with('quote', $quote)
-		->with('logo', function($width) { return Logo::getImg($width); });
+        ->with('logo', Logo::getImg())->render();
 	}
 
 }

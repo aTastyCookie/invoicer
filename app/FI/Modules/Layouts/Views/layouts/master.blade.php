@@ -5,6 +5,7 @@
     <title>{{ Config::get('fi.headerTitleText') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
+    <link href="{{ asset('favicon.png') }}" rel="icon" type="image/png">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/ionicons.min.css') }}" rel="stylesheet" type="text/css" />

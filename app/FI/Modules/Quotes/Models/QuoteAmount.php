@@ -40,7 +40,7 @@ class QuoteAmount extends \Eloquent {
 
 	public function getFormattedItemSubtotalAttribute()
 	{
-		return CurrencyFormatter::format($this->attributes['item_subtotal']);
+		return CurrencyFormatter::format($this->attributes['item_subtotal'], $this->quote->currency_code);
 	}
 
 	public function getFormattedItemTotalAttribute()
@@ -63,17 +63,12 @@ class QuoteAmount extends \Eloquent {
 	// Returns the entire amount of tax for the quote
 	public function getFormattedTotalTaxAttribute()
 	{
-		return CurrencyFormatter::format($this->attributes['item_tax_total'] + $this->attributes['tax_total']);
+		return CurrencyFormatter::format($this->attributes['item_tax_total'] + $this->attributes['tax_total'], $this->quote->currency_code);
 	}
 
 	public function getFormattedTotalAttribute()
 	{
-		return CurrencyFormatter::format($this->attributes['total']);
-	}
-
-	public function getFormattedConvertedTotalAttribute()
-	{
-		return CurrencyFormatter::format($this->attributes['total'] * $this->quote->exchange_rate, $this->quote->currency_code);
+		return CurrencyFormatter::format($this->attributes['total'], $this->quote->currency_code);
 	}
 
 }

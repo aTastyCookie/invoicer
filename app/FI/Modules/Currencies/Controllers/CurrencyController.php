@@ -11,6 +11,7 @@
 
 namespace FI\Modules\Currencies\Controllers;
 
+use App;
 use Config;
 use Input;
 use Redirect;
@@ -140,5 +141,10 @@ class CurrencyController extends \BaseController {
 		return Redirect::route('currencies.index')
 		->with('alert', $alert);
 	}
+
+    public function getExchangeRate()
+    {
+        return App::make('CurrencyConverter')->convert(Config::get('fi.baseCurrency'), Input::get('currency_code'));
+    }
 
 }
