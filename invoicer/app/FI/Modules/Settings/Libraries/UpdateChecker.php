@@ -19,7 +19,7 @@ class UpdateChecker {
 
 	public function __construct()
 	{
-		$this->currentVersion = file_get_contents('https://www.Deskmine.com/current-version');
+		$this->currentVersion = file_get_contents('https://www.deskmine.com/current-version');
 	}
 
 	/**
