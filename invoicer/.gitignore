@@ -1,0 +1,9 @@
+/app/config/development/
+.idea/.name
+.idea/encodings.xml
+.idea/Deskmine.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/scopes/scope_settings.xml

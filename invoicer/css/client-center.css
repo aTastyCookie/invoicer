@@ -1,0 +1,20 @@
+.sidebar .btn {
+    width: 90%;
+    margin-top: 10px;
+}
+
+.sidebar .buttons {
+    text-align: center;
+}
+
+.skin-blue .sidebar .btn-success {
+    color: #FFFFFF;
+}
+
+.skin-blue .sidebar .btn-primary {
+    color: #FFFFFF;
+}
+
+.skin-blue .sidebar .btn-danger {
+    color: #FFFFFF;
+}
