@@ -1,7 +1,7 @@
 Deskmine
 ==========
 
-**Demo:** [http://deskmine.ru](http://deskmine.ru) [http://hubpay.ru](hubpay.ru)
+**Demo:** [http://deskmine.ru](http://deskmine.ru) [http://hubpay.ru](http://hubpay.ru)
 
 Install:
 * Create an empty database for Deskmine on your web or database server.
