@@ -16,4 +16,4 @@ Install:
 
 
 Online payment:
-* Now only one payment can be used app/config/payments.php 
+* Now only one payment can be used `app/config/payments.php `
