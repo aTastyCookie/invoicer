@@ -12,3 +12,8 @@ Install:
 `/app/storage
 /uploads`
 * Run the FusionInvoice install/upgrade script in your browser by accessing `http://yourserver.com/setup` or `http://yourserver.com/thefolder/setup` and follow the rest of the installation process.
+
+
+
+Online payment:
+* Now only one payment can be used app/config/payments.php 
