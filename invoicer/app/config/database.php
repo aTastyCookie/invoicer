@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'Deskmine',
+			'database'  => 'HubPay',
 			'username'  => 'root',
 			'password'  => 'password',
 			'charset'   => 'utf8',

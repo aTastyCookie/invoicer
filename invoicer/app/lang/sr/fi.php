@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This file is part of Deskmine.
+ * This file is part of HubPay.
  *
- * (c) Deskmine
+ * (c) HubPay
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -296,7 +296,7 @@ return array(
 
 	// Added for 2.1.6
 	'update_available' => 'Verzija :verziju je sada moguće skinuti sa :url',
-	'update_current'   => 'Imate najnoviju verziju Deskmine instalacije',
+	'update_current'   => 'Imate najnoviju verziju HubPay instalacije',
 	'version'          => 'Verzije',
 
 	// Added for 2.2.0
@@ -334,7 +334,7 @@ return array(
 	'recent_client_activity'             => 'Skorašnja aktivnost klijenta',
 	'rejected_quotes'                    => 'Odbačene profakture',
 	'sent_quotes'                        => 'Poslate profakture',
-	'update_available'                   => 'Deskmine :verzija je dostupna za skidanje!',
+	'update_available'                   => 'HubPay :verzija je dostupna za skidanje!',
 	'update_not_available'               => 'Trenutno nema dostupnih stavki za ažuriranje.',
 	'view_approved_quotes'               => 'Pregledati odobrene profakture',
 	'view_draft_quotes'                  => 'Pregledati nacrte profaktura',

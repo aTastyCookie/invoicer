@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This file is part of Deskmine.
+ * This file is part of HubPay.
  *
- * (c) Deskmine
+ * (c) HubPay
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -296,7 +296,7 @@ return array(
 
 	// Added for 2.1.6
 	'update_available' => 'Version :version is now available to download from :url',
-	'update_current'   => 'Your Deskmine installation is currently up to date',
+	'update_current'   => 'Your HubPay installation is currently up to date',
 	'version'          => 'Version',
 
 	// Added for 2.2.0
@@ -334,7 +334,7 @@ return array(
 	'recent_client_activity'             => 'Recent Client Activity',
 	'rejected_quotes'                    => 'Rejected Quotes',
 	'sent_quotes'                        => 'Sent Quotes',
-	'update_available'                   => 'Deskmine :version is available to download!',
+	'update_available'                   => 'HubPay :version is available to download!',
 	'update_not_available'               => 'There are currently no updates available.',
 	'view_approved_quotes'               => 'View Approved Quotes',
 	'view_draft_quotes'                  => 'View Draft Quotes',

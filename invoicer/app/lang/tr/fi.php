@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This file is part of Deskmine.
+ * This file is part of HubPay.
  *
- * (c) Deskmine
+ * (c) HubPay
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -334,7 +334,7 @@ return array(
 	'recent_client_activity'             => 'Kullanıcı işlemleri',
 	'rejected_quotes'                    => 'Kabul edilmeyen Teklifler',
 	'sent_quotes'                        => 'Gönderilen Teklifler',
-	'update_available'                   => 'Deskmine :version Yeni versiyonu indirilebilir!',
+	'update_available'                   => 'HubPay :version Yeni versiyonu indirilebilir!',
 	'update_not_available'               => 'herhangi bir update bulunmamaktadır.',
 	'view_approved_quotes'               => 'Onaylanmış Teklifleri Görütüle',
 	'view_draft_quotes'                  => 'Konsept Teklifleri Görütüle',

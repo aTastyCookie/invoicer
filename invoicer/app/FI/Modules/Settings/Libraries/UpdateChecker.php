@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This file is part of Deskmine.
+ * This file is part of HubPay.
  *
- * (c) Deskmine
+ * (c) HubPay
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -19,7 +19,7 @@ class UpdateChecker {
 
 	public function __construct()
 	{
-		$this->currentVersion = file_get_contents('https://www.deskmine.com/current-version');
+		$this->currentVersion = file_get_contents('https://www.HubPay.com/current-version');
 	}
 
 	/**

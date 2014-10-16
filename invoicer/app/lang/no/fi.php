@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This file is part of Deskmine.
+ * This file is part of HubPay.
  *
- * (c) Deskmine
+ * (c) HubPay
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -296,7 +296,7 @@ return array(
 
 	// Added for 2.1.6
 	'update_available' => 'Versjon :version er nå tilgjengelig :url',
-	'update_current'   => 'Din Deskmine installasjon er for tiden oppdatert',
+	'update_current'   => 'Din HubPay installasjon er for tiden oppdatert',
 	'version'          => 'Versjon',
 
 	// Added for 2.2.0
@@ -334,7 +334,7 @@ return array(
 	'recent_client_activity'             => 'Nylig Kunde Aktivitet',
 	'rejected_quotes'                    => 'Avviste Anbud',
 	'sent_quotes'                        => 'Sendte Anbud',
-	'update_available'                   => 'Deskmine :version er tilgjengelig for nedlasting!',
+	'update_available'                   => 'HubPay :version er tilgjengelig for nedlasting!',
 	'update_not_available'               => 'Det er for tiden ingen oppdateringer tilgjengelig.',
 	'view_approved_quotes'               => 'Vis Godkjente Anbud',
 	'view_draft_quotes'                  => 'Vis Utkast til Anbud',

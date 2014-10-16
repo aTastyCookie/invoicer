@@ -1,9 +1,9 @@
 ﻿<?php
 
 /**
- * This file is part of Deskmine.
+ * This file is part of HubPay.
  *
- * (c) Deskmine
+ * (c) HubPay
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -296,7 +296,7 @@ return array(
 
 	// Added for 2.1.6
 	'update_available' => 'Η έκδοση :version είναι διαθέσιμη στην ιστοσελίδα :url',
-	'update_current'   => 'Η εγκατάσταση του Deskmine είναι ενημερωμένη',
+	'update_current'   => 'Η εγκατάσταση του HubPay είναι ενημερωμένη',
 	'version'          => 'Έκδοση',
 
 	// Added for 2.2.0
@@ -334,7 +334,7 @@ return array(
 	'recent_client_activity'             => 'Πρόσφατη Δραστηριότητα Πελάτη',
 	'rejected_quotes'                    => 'Προσφορές που έχουν απορριφθεί',
 	'sent_quotes'                        => 'Απεσταλμένες Προσφορές',
-	'update_available'                   => 'Η έκδοση :version του Deskmine είναι διαθέσιμη για λήψη!',
+	'update_available'                   => 'Η έκδοση :version του HubPay είναι διαθέσιμη για λήψη!',
 	'update_not_available'               => 'Δεν υπάρχουν διαθέσιμες ενημερώσεις.',
 	'view_approved_quotes'               => 'Προβολή Εγκεκριμένων Προσφορών',
 	'view_draft_quotes'                  => 'Προβολή Πρόχειρων Προσφορών',
