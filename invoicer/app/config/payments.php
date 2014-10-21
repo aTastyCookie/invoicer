@@ -4,7 +4,7 @@ return array(
 
 	// If you do not want to accept online payments, set 'enabled' to false.
 	// If you do want to accept online payments, set 'enabled' to true.
-	'enabled' => false,
+	'enabled' => true,
 
 	// The merchant account to use for your transactions. Choose from the
 	// list of merchants below.
@@ -12,7 +12,7 @@ return array(
 
 	// When testing your payment gateway integration, set this to true.
 	// When using your payment gateway in production, set this to false.
-	'testMode' => false,
+	'testMode' => true,
 
 	// This is the list of supported merchants and the required settings for
 	// each merchant.
