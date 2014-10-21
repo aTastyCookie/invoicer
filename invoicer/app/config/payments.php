@@ -8,7 +8,7 @@ return array(
 
 	// The merchant account to use for your transactions. Choose from the
 	// list of merchants below.
-	'default' => 'PayPalExpress',
+	'default' => 'YandexKassa',
 
 	// When testing your payment gateway integration, set this to true.
 	// When using your payment gateway in production, set this to false.
@@ -31,8 +31,15 @@ return array(
 			'apiKey'    => '', // Your Stripe publishable key
 			'secretKey' => ''  // Your Stripe secret key
 
-		)
+		),
 
+		'YandexKassa' => array(
+
+			'shopid' 	=> '', // Your YandexMoney shopid
+			'scid'		=> '', // Your Yandexmoney scid
+			'shoppw' 	=> ''  // Your YandexMoney shoppw
+
+		)
 	)
 
 );
