@@ -309,7 +309,7 @@ return array(
 	'activity_quote_rejected'            => 'Предложение <a href=":link">#:number</a> было отклоненно.',
 	'activity_quote_viewed'              => 'Предложение <a href=":link">#:number</a> Было просмотренно.',
 	'approved_quotes'                    => 'Принятые предложения',
-	'body'                               => 'Body',
+	'body'                               => 'Тело',
 	'check_for_update'                   => 'Проверить обновления',
 	'client_activity'                    => 'Активность клиента',
 	'confirm_approve_quote'              => 'Вы уверенны, что хотите принять это предложение?',
@@ -326,7 +326,7 @@ return array(
 	'letter'                             => 'Письменная',
 	'paper_orientation'                  => 'Ориентация бумаги',
 	'paper_size'                         => 'Размер бумаги',
-	'portrait'                           => 'Портретный',
+	'portrait'                           => 'Портретная',
 	'quote_approved'                     => 'Принятые предложения',
 	'quote_overview'                     => 'Обзор предложений',
 	'quote_rejected'                     => 'Отклоненные предложения',
@@ -347,7 +347,7 @@ return array(
 	'expiration'  => 'Срок окончания',
 
 	// Added for 2.3.0
-	'automatic'                      => 'Овтоматически',
+	'automatic'                      => 'Автоматически',
 	'base_currency'                  => 'Базовая валюта',
 	'code'                           => 'Код',
 	'currencies'                     => 'Валюты',
@@ -384,10 +384,10 @@ return array(
     'view_all_quotes_for_client'   => 'Показать все предложения для клиента',
 
     // Added for 2.4.0
-    'items'                        => 'Items',
-    'save_and_apply_exchange_rate' => 'Save and Apply Exchange Rate',
-    'template'                     => 'Template',
-    'update_exchange_rate'         => 'Update Exchange Rate',
-    'welcome'                      => 'Welcome'
+    'items'                        => 'Айтемы',
+    'save_and_apply_exchange_rate' => 'СОхранить и принять обменный курс',
+    'template'                     => 'Шаблон',
+    'update_exchange_rate'         => 'Обновить обменный курс',
+    'welcome'                      => 'Приветствую'
 
 );
