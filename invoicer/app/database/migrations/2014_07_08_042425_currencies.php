@@ -44,13 +44,14 @@ class Currencies extends Migration {
 			$table->decimal('exchange_rate', 10, 7)->default('1');
 		});
 
+		Currency::create(array('name' => 'Russian Ruble', 'code' => 'RUB', 'symbol' => 'RUB', 'placement' => 'before', 'decimal' => '.', 'thousands' => ','));
 		Currency::create(array('name' => 'Australian Dollar', 'code' => 'AUD', 'symbol' => '$', 'placement' => 'before', 'decimal' => '.', 'thousands' => ','));
 		Currency::create(array('name' => 'Canadian Dollar', 'code' => 'CAD', 'symbol' => '$', 'placement' => 'before', 'decimal' => '.', 'thousands' => ','));
 		Currency::create(array('name' => 'Euro', 'code' => 'EUR', 'symbol' => '€', 'placement' => 'before', 'decimal' => '.', 'thousands' => ','));
 		Currency::create(array('name' => 'Pound Sterling', 'code' => 'GBP', 'symbol' => '£', 'placement' => 'before', 'decimal' => '.', 'thousands' => ','));
 		Currency::create(array('name' => 'US Dollar', 'code' => 'USD', 'symbol' => '$', 'placement' => 'before', 'decimal' => '.', 'thousands' => ','));
 
-		App::make('SettingRepository')->save('baseCurrency', 'USD');
+		App::make('SettingRepository')->save('baseCurrency', 'RUB');
 		App::make('SettingRepository')->save('exchangeRateMode', 'automatic');
 	}
 

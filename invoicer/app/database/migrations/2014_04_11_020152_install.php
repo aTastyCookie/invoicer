@@ -430,7 +430,7 @@ class Install extends Migration {
 			),
 			array(
 				'setting_key'   => 'mailDriver',
-				'setting_value' => ''
+				'setting_value' => 'mail'
 			),
 			array(
 				'setting_key'   => 'mailHost',
@@ -458,7 +458,7 @@ class Install extends Migration {
 			),
 			array(
 				'setting_key'   => 'timezone',
-				'setting_value' => 'America/Phoenix'
+				'setting_value' => 'Europe/Moscow'
 			),
 			array(
 				'setting_key'   => 'attachPdf',
