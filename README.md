@@ -1,7 +1,7 @@
 HubPay
 ==========
 
-**Demo:** [http://deskmine.ru](http://deskmine.ru) [http://hubpay.ru](http://hubpay.ru)
+**Demo:** [http://hubpay.ru](http://hubpay.ru)
 
 Install:
 * Create an empty database for HubPay on your web or database server.
