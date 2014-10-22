@@ -170,7 +170,7 @@ return array(
 	'phone'                              => 'Телефон',
 	'phone_number'                       => 'Телефонный номер',
 	'php_version_error'                  => 'PHP does not meet the version requirement (%s)',
-	'prefix'                             => 'Prefix',
+	'prefix'                             => 'Проефикс',
 	'prerequisites'                      => 'Prerequisites',
 	'price'                              => 'Стоимость',
 	'product'                            => 'Продукт',
