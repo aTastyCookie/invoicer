@@ -19,4 +19,3 @@ Recurring Invoices:
 
 ToDo:
 - integrate YandexMoney `in pregress`
-- create normal for crete new password if fogot
