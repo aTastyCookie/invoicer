@@ -24,10 +24,10 @@
 				<span class="label label-default">{{ trans('fi.not_viewed') }}</span>
 				@endif
 			</td>
-			<td><a href="{{ route('invoices.edit', array($invoice->id)) }}" title="{{ trans('fi.edit') }}">{{ $invoice->number }}</a></td>
+			<td><a href="{{ route('invoices.edit', array($invoice->id)) }}" title="{{ trans('fi.edit') }}">{{{ $invoice->number }}}</a></td>
             <td>{{ $invoice->formatted_created_at }}</td>
 			<td @if ($invoice->isOverdue) style="color: red; font-weight: bold;" @endif>{{ $invoice->formatted_due_at }}</td>
-			<td><a href="{{ route('clients.show', array($invoice->client->id)) }}" title="{{ trans('fi.view_client') }}">{{ $invoice->client->name }}</a></td>
+			<td><a href="{{ route('clients.show', array($invoice->client->id)) }}" title="{{ trans('fi.view_client') }}">{{{ $invoice->client->name }}}</a></td>
 			<td style="text-align: right; padding-right: 25px;">{{ $invoice->amount->formatted_total }}</td>
 			<td style="text-align: right; padding-right: 25px;">{{ $invoice->amount->formatted_balance }}</td>
 			<td>

@@ -26,7 +26,7 @@
 			<td><a href="{{ route('quotes.edit', array($quote->id)) }}" title="{{ trans('fi.edit') }}">{{ $quote->number }}</a></td>
 			<td>{{ $quote->formatted_created_at }}</td>
 			<td>{{ $quote->formatted_expires_at }}</td>
-			<td><a href="{{ route('clients.show', array($quote->client->id)) }}" title="{{ trans('fi.view_client') }}">{{ $quote->client->name }}</a></td>
+			<td><a href="{{ route('clients.show', array($quote->client->id)) }}" title="{{ trans('fi.view_client') }}">{{{ $quote->client->name }}}</a></td>
 			<td style="text-align: right; padding-right: 25px;">{{ $quote->amount->formatted_total }}</td>
 			<td>
 				<div class="btn-group">

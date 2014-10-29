@@ -23,7 +23,7 @@
 <aside class="right-side">                
 
 	<section class="content-header">
-		<h1 class="pull-left">{{ trans('fi.quote') }} #{{ $quote->number }}</h1>
+		<h1 class="pull-left">{{ trans('fi.quote') }} #{{{ $quote->number }}}</h1>
 
 		@if ($quote->status_text == 'approved')
 		<span style="margin-left: 10px;" class="label label-success">{{ trans('fi.approved') }}</span>

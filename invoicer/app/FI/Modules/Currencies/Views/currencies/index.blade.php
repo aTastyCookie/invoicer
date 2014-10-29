@@ -42,12 +42,12 @@
 							<tbody>
 								@foreach ($currencies as $currency)
 								<tr>
-									<td>{{ $currency->name }}</td>
-									<td>{{ $currency->code }}</td>
-									<td>{{ $currency->symbol }}</td>
-									<td>{{ $currency->formatted_placement }}</td>
-                                    <td>{{ $currency->decimal }}</td>
-                                    <td>{{ $currency->thousands }}</td>
+									<td>{{{ $currency->name }}}</td>
+									<td>{{{ $currency->code }}}</td>
+									<td>{{{ $currency->symbol }}}</td>
+									<td>{{{ $currency->formatted_placement }}}</td>
+                                    <td>{{{ $currency->decimal }}}</td>
+                                    <td>{{{ $currency->thousands }}}</td>
 									<td>
 										<div class="btn-group">
 											<a href="{{ route('currencies.edit', array($currency->id)) }}" class="btn btn-sm btn-default" title="{{ trans('fi.edit') }}"><i class="fa fa-edit"></i></a> 

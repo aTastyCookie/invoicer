@@ -385,9 +385,9 @@ return array(
 
     // Added for 2.4.0
     'items'                        => 'Items',
-    'save_and_apply_exchange_rate' => 'Save and Apply Exchange Rate',
+    'save_and_apply_exchange_rate' => 'Bewaar en activeer wisselkoers',
     'template'                     => 'Template',
-    'update_exchange_rate'         => 'Update Exchange Rate',
-    'welcome'                      => 'Welcome'
+    'update_exchange_rate'         => 'Werk wisselkoers bij',
+    'welcome'                      => 'Welkom'
 	
 );

@@ -5,7 +5,7 @@
 
 			<div class="box-body">
 				@foreach ($results as $key=>$items)
-				<h4>{{ $key }}</h4>
+				<h4>{{{ $key }}}</h4>
 				<table class="table table-hover">
 
 					<thead>
@@ -22,8 +22,8 @@
 					<tbody>
 						@foreach ($items['items'] as $item)
 						<tr>
-							<td>{{ $item['client_name'] }}</td>
-							<td>{{ $item['invoice_number'] }}</td>
+							<td>{{{ $item['client_name'] }}}</td>
+							<td>{{{ $item['invoice_number'] }}}</td>
 							<td>{{ $item['date'] }}</td>
 							<td style="text-align: right;">{{ $item['price'] }}</td>
 							<td style="text-align: right;">{{ $item['quantity'] }}</td>

@@ -53,18 +53,19 @@ class TaxSummaryReportRepository {
                 if ($invoiceItem->tax_rate_id)
                 {
                     $key = $invoiceItem->taxRate->name . ' (' . NumberFormatter::format($invoiceItem->taxRate->percent) . '%)';
+
+                    if (isset($results[$key]['taxable_amount']))
+                    {
+                        $results[$key]['taxable_amount'] += $invoiceItem->amount->subtotal / $invoice->exchange_rate;
+                        $results[$key]['taxes'] += $invoiceItem->amount->tax_total / $invoice->exchange_rate;
+                    }
+                    else
+                    {
+                        $results[$key]['taxable_amount'] = $invoiceItem->amount->subtotal / $invoice->exchange_rate;
+                        $results[$key]['taxes']          = $invoiceItem->amount->tax_total / $invoice->exchange_rate;
+                    }
                 }
 
-                if (isset($results[$key]['taxable_amount']))
-                {
-                    $results[$key]['taxable_amount'] += $invoiceItem->amount->subtotal / $invoice->exchange_rate;
-                    $results[$key]['taxes'] += $invoiceItem->amount->tax_total / $invoice->exchange_rate;
-                }
-                else
-                {
-                    $results[$key]['taxable_amount'] = $invoiceItem->amount->subtotal / $invoice->exchange_rate;
-                    $results[$key]['taxes']          = $invoiceItem->amount->tax_total / $invoice->exchange_rate;
-                }
             }
 
         }

@@ -31,6 +31,11 @@ class Client extends \Eloquent {
         {
             $client->url_key = str_random(32);
         });
+
+        static::saving(function($client)
+        {
+            $client->name = strip_tags($client->name);
+        });
     }
 	
     /*

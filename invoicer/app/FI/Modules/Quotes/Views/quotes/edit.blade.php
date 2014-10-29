@@ -31,7 +31,7 @@
 <aside class="right-side">
 
     <section class="content-header">
-        <h1 class="pull-left">{{ trans('fi.quote') }} #{{ $quote->number }}</h1>
+        <h1 class="pull-left">{{ trans('fi.quote') }} #{{{ $quote->number }}}</h1>
     
         @if ($quote->viewed)
         <span style="margin-left: 10px;" class="label label-success">{{ trans('fi.viewed') }}</span>
@@ -116,12 +116,12 @@
                         <div class="box-body">
                             <strong>
                                 <a href="{{ route('clients.show', array($quote->client_id)) }}">
-                                    {{ $quote->client->name }}
+                                    {{{ $quote->client->name }}}
                                 </a>
                             </strong><br>
-                            {{ $quote->client->formatted_address }}<br>
-                            {{ trans('fi.phone') }}: {{ $quote->client->phone }}<br>
-                            {{ trans('fi.email') }}: {{ $quote->client->email }}
+                            {{{ $quote->client->formatted_address }}}<br>
+                            {{ trans('fi.phone') }}: {{{ $quote->client->phone }}}<br>
+                            {{ trans('fi.email') }}: {{{ $quote->client->email }}}
                         </div>
                     </div>
         
@@ -291,7 +291,7 @@
                         'created_at', 'class' => 'form-control input-sm')) }}
                     </div>
                     <div class="form-group">
-                        <label>{{ trans('fi.expires_at') }}</label>
+                        <label>{{ trans('fi.expires') }}</label>
                         {{ Form::text('expires_at', $quote->formatted_expires_at, array('id' => 'expires_at', 'class'
                         => 'form-control input-sm')) }}
                     </div>

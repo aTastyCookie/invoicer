@@ -41,7 +41,7 @@ $(function()
 <aside class="right-side">                
 
 	<section class="content-header">
-		<h1>{{ trans('fi.invoice') }} #{{ $invoice->number }}</h1>
+		<h1>{{ trans('fi.invoice') }} #{{{ $invoice->number }}}</h1>
 	</section>
 
 	<div class="row" style="height: 100%; background-color: #cccccc; padding: 25px;">
