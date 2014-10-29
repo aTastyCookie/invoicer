@@ -15,8 +15,8 @@
 		@foreach ($clients as $client)
 		<tr>
 			<td>{{ link_to_route('clients.show', $client->name, array($client->id)) }}</td>
-			<td>{{ $client->email }}</td>
-			<td>{{ (($client->phone ? $client->phone : ($client->mobile ? $client->mobile : ''))) }}</td>
+			<td>{{{ $client->email }}}</td>
+			<td>{{{ (($client->phone ? $client->phone : ($client->mobile ? $client->mobile : ''))) }}}</td>
 			<td style="text-align: right;">{{ $client->formatted_balance }}</td>
 			<td>{{ ($client->active) ? trans('fi.yes') : trans('fi.no') }}</td>
 			<td>

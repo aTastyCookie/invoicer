@@ -38,7 +38,7 @@
 								<div class="col-md-12">
 
 									<div class="pull-left">
-										<h2>{{ $client->name }}</h2>
+										<h2>{{{ $client->name }}}</h2>
 									</div>
 
 									<div class="pull-right" style="text-align: right;">
@@ -60,32 +60,32 @@
 									<table class="table table-striped">
 										<tr>
 											<td class="col-md-2">{{ trans('fi.address') }}</td>
-											<td class="col-md-10">{{ $client->formatted_address }}</td>
+											<td class="col-md-10">{{{ $client->formatted_address }}}</td>
 										</tr>
 										<tr>
 											<td class="col-md-2">{{ trans('fi.email') }}</td>
-											<td class="col-md-10"><a href="mailto:{{ $client->email }}">{{ $client->email }}</a></td>
+											<td class="col-md-10"><a href="mailto:{{{ $client->email }}}">{{{ $client->email }}}</a></td>
 										</tr>
 										<tr>
 											<td class="col-md-2">{{ trans('fi.phone') }}</td>
-											<td class="col-md-10">{{ $client->phone }}</td>
+											<td class="col-md-10">{{{ $client->phone }}}</td>
 										</tr>
 										<tr>
 											<td class="col-md-2">{{ trans('fi.mobile') }}</td>
-											<td class="col-md-10">{{ $client->mobile }}</td>
+											<td class="col-md-10">{{{ $client->mobile }}}</td>
 										</tr>
 										<tr>
 											<td class="col-md-2">{{ trans('fi.fax') }}</td>
-											<td class="col-md-10">{{ $client->fax }}</td>
+											<td class="col-md-10">{{{ $client->fax }}}</td>
 										</tr>
 										<tr>
 											<td class="col-md-2">{{ trans('fi.web') }}</td>
-											<td class="col-md-10"><a href="{{ $client->web }}" target="_blank">{{ $client->web }}</a></td>
+											<td class="col-md-10"><a href="{{{ $client->web }}}" target="_blank">{{{ $client->web }}}</a></td>
 										</tr>
 										@foreach ($customFields as $customField)
 										<tr>
 											<td class="col-md-2">{{ $customField->field_label }}</td>
-											<td class="col-md-10">{{ $client->custom->{$customField->column_name} or '' }}</td>
+											<td class="col-md-10">{{{ $client->custom->{$customField->column_name} or '' }}}</td>
 										</tr>
 										@endforeach
 									</table>

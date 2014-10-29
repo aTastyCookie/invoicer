@@ -42,7 +42,7 @@
 								<tr>
 									<td>{{ $tableNames[$customField->table_name] }}</td>
 									<td>{{ $customField->column_name }}</td>
-									<td>{{ $customField->field_label }}</td>
+									<td>{{{ $customField->field_label }}}</td>
 									<td>{{ $customField->field_type }}</td>
 									<td>
 										<div class="btn-group">

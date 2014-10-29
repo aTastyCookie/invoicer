@@ -30,7 +30,7 @@
 <aside class="right-side">
 
 	<section class="content-header">
-		<h1 class="pull-left">{{ trans('fi.invoice') }} #{{ $invoice->number }}</h1>
+		<h1 class="pull-left">{{ trans('fi.invoice') }} #{{{ $invoice->number }}}</h1>
 
 		@if ($invoice->viewed)
 		<span style="margin-left: 10px;" class="label label-success">{{ trans('fi.viewed') }}</span>
@@ -96,11 +96,11 @@
                                 <h3 class="box-title">{{ trans('fi.from') }}</h3>
                             </div>
                             <div class="box-body">
-                                @if ($invoice->user->company) <strong>{{ $invoice->user->company }}</strong><br> @endif
-                                {{ $invoice->user->name }}<br>
-                                {{ $invoice->user->formatted_address }}<br>
-                                {{ trans('fi.phone') }}: {{ $invoice->user->phone }}<br>
-                                {{ trans('fi.email') }}: {{ $invoice->user->email }}
+                                @if ($invoice->user->company) <strong>{{{ $invoice->user->company }}}</strong><br> @endif
+                                {{{ $invoice->user->name }}}<br>
+                                {{{ $invoice->user->formatted_address }}}<br>
+                                {{ trans('fi.phone') }}: {{{ $invoice->user->phone }}}<br>
+                                {{ trans('fi.email') }}: {{{ $invoice->user->email }}}
                             </div>
                         </div>
 
@@ -118,9 +118,9 @@
                                         {{ $invoice->client->name }}
                                     </a>
                                 </strong><br>
-                                {{ $invoice->client->formatted_address }}<br>
-                                {{ trans('fi.phone') }}: {{ $invoice->client->phone }}<br>
-                                {{ trans('fi.email') }}: {{ $invoice->client->email }}
+                                {{{ $invoice->client->formatted_address }}}<br>
+                                {{ trans('fi.phone') }}: {{{ $invoice->client->phone }}}<br>
+                                {{ trans('fi.email') }}: {{{ $invoice->client->email }}}
                             </div>
                         </div>
 

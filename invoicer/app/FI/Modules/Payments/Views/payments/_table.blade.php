@@ -18,11 +18,11 @@
 		<tr>
 			<td>{{ $payment->formatted_paid_at }}</td>
             <td>{{ $payment->invoice->formatted_created_at }}</td>
-			<td>{{ $payment->invoice->number }}</td>
-            <td>{{ $payment->invoice->client->name }}</td>
+			<td>{{{ $payment->invoice->number }}}</td>
+            <td>{{{ $payment->invoice->client->name }}}</td>
 			<td>{{ $payment->formatted_amount }}</td>
-			<td>@if ($payment->paymentMethod) {{ $payment->paymentMethod->name }} @endif</td>
-			<td>{{ $payment->note }}</td>
+			<td>@if ($payment->paymentMethod) {{{ $payment->paymentMethod->name }}} @endif</td>
+			<td>{{{ $payment->note }}}</td>
 			<td>
 				<div class="btn-group">
 					<a href="{{ route('payments.edit', array($payment->id, $payment->invoice_id)) }}" class="btn btn-sm btn-default" title="{{ trans('fi.edit') }}"><i class="fa fa-edit"></i></a> 

@@ -19,10 +19,10 @@
 					<tbody>
 						@foreach ($results['payments'] as $payment)
 						<tr>
-							<td>{{ $payment['client_name'] }}</td>
-							<td>{{ $payment['invoice_number'] }}</td>
-							<td>{{ $payment['payment_method'] }}</td>
-							<td>{{ $payment['note'] }}</td>
+							<td>{{{ $payment['client_name'] }}}</td>
+							<td>{{{ $payment['invoice_number'] }}}</td>
+							<td>{{{ $payment['payment_method'] }}}</td>
+							<td>{{{ $payment['note'] }}}</td>
 							<td>{{ $payment['date'] }}</td>
 							<td style="text-align: right;">{{ $payment['amount'] }}</td>
 						</tr>

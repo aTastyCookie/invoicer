@@ -60,11 +60,17 @@ class QuoteAmount extends \Eloquent {
 		return CurrencyFormatter::format($this->attributes['tax_total']);
 	}
 
-	// Returns the entire amount of tax for the quote
+	// Returns the entire amount of tax for the quote (formatted as currency)
 	public function getFormattedTotalTaxAttribute()
 	{
 		return CurrencyFormatter::format($this->attributes['item_tax_total'] + $this->attributes['tax_total'], $this->quote->currency_code);
 	}
+
+    // Returns the entire amount of tax for the quote
+    public function getTotalTaxAttribute()
+    {
+        return NumberFormatter::format($this->attributes['item_tax_total'] + $this->attributes['tax_total']);
+    }
 
 	public function getFormattedTotalAttribute()
 	{

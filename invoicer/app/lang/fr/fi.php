@@ -384,10 +384,10 @@ return array(
     'view_all_quotes_for_client'   => 'Voir tous les devis de ce client',
 
     // Added for 2.4.0
-    'items'                        => 'Items',
-    'save_and_apply_exchange_rate' => 'Save and Apply Exchange Rate',
+    'items'                        => 'Articles',
+    'save_and_apply_exchange_rate' => 'Enregistrer et Appliquer le taux de change',
     'template'                     => 'Template',
-    'update_exchange_rate'         => 'Update Exchange Rate',
-    'welcome'                      => 'Welcome'
+    'update_exchange_rate'         => 'Mettre à jour le taux de change',
+    'welcome'                      => 'Bienvenue'
 
 );

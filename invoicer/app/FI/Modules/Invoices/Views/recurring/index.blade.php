@@ -38,8 +38,8 @@
 							<tbody>
 								@foreach ($recurringInvoices as $recurringInvoice)
 								<tr>
-									<td><a href="{{ route('invoices.edit', array($recurringInvoice->invoice_id)) }}">{{ $recurringInvoice->invoice->number }}</a></td>
-									<td><a href="{{ route('clients.show', array($recurringInvoice->invoice->client_id)) }}">{{ $recurringInvoice->invoice->client->name }}</a></td>
+									<td><a href="{{ route('invoices.edit', array($recurringInvoice->invoice_id)) }}">{{{ $recurringInvoice->invoice->number }}}</a></td>
+									<td><a href="{{ route('clients.show', array($recurringInvoice->invoice->client_id)) }}">{{{ $recurringInvoice->invoice->client->name }}}</a></td>
 									<td>{{ $recurringInvoice->invoice->formattedCreatedAt }}</td>
 									<td></td>
 									<td>{{ $recurringInvoice->recurring_frequency . ' ' . $frequencies[$recurringInvoice->recurring_period] }}</td>
