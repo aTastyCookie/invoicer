@@ -462,7 +462,7 @@ class Install extends Migration {
 			),
 			array(
 				'setting_key'   => 'attachPdf',
-				'setting_value' => 1
+				'setting_value' => 0
 			),
 			array(
 				'setting_key'   => 'automaticEmailOnRecur',
