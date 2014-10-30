@@ -90,7 +90,7 @@ return array(
 	'email_send_method_smtp'             => 'SMTP',
 	'end_date'                           => 'Дата окончания',
 	'enter_payment'                      => 'Добавить платеж',
-	'every'                              => 'Кадрые',
+	'every'                              => 'Каждые',
 	'expires'                            => 'Истекает',
 	'fax'                                => 'Факс',
 	'fax_number'                         => 'Номар факса',
