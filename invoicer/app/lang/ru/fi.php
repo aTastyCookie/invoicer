@@ -333,7 +333,7 @@ return array(
 	'quote_summary'                      => 'Список предложений',
 	'recent_client_activity'             => 'Посление активности клиентов',
 	'rejected_quotes'                    => 'Отклоненные предложения',
-	'sent_quotes'                        => 'Отправить предложение',
+	'sent_quotes'                        => 'Отправленные предложения',
 	'update_available'                   => 'HubPay: Новая версия готова для загрузки!',
 	'update_not_available'               => 'Нет обновлений.',
 	'view_approved_quotes'               => 'Просмотреть принятые предложения',
