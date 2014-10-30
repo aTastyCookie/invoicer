@@ -13,13 +13,13 @@ return array(
 	|
 	*/
 
-	"accepted"         => "The :attribute must be accepted.",
-	"active_url"       => "The :attribute is not a valid URL.",
+	"accepted"         => ":attribute должен быть принят.",
+	"active_url"       => ":attribute не выглядит как настоящая ссылка :).",
 	"after"            => "The :attribute must be a date after :date.",
-	"alpha"            => "The :attribute may only contain letters.",
+	"alpha"            => ":attribute должен содержать в себе только буквы.",
 	"alpha_dash"       => "The :attribute may only contain letters, numbers, and dashes.",
-	"alpha_num"        => "The :attribute may only contain letters and numbers.",
-	"array"            => "The :attribute must be an array.",
+	"alpha_num"        => ":attribute должен содержать в себе только цифры и буквы.",
+	"array"            => ":attribute должен быть массивом.",
 	"before"           => "The :attribute must be a date before :date.",
 	"between"          => array(
 		"numeric" => "The :attribute must be between :min - :max.",
