@@ -250,7 +250,7 @@ return array(
 	'total_billed'                       => 'Total Billed',
 	'total_paid'                         => 'Всего оплаченно',
 	'try_again'                          => 'Попробовать снова',
-	'unknown_error'                      => 'Ой! Что-то пошло не так :(',
+	'unknown_error'                      => 'ОЙ! Произошла исключительная ситуация :(',
 	'user_accounts'                      => 'Пользовательские аккаунты',
 	'user_form'                          => 'Форма пользователя',
 	'users'                              => 'Пользователи',
