@@ -282,7 +282,7 @@ return array(
 	'issued'             => 'Выдано',
 	'not_viewed'         => 'Не просмотренно',
 	'other'              => 'Другие',
-	'public'             => 'Открытая',
+	'public'             => 'Публичная ссылка',
 	'viewed'             => 'Просмотренный',
 	'you_may_now_log_in' => 'Сейчас вы можете авторизоваться',
 
@@ -384,8 +384,8 @@ return array(
     'view_all_quotes_for_client'   => 'Показать все предложения для клиента',
 
     // Added for 2.4.0
-    'items'                        => 'Айтемы',
-    'save_and_apply_exchange_rate' => 'СОхранить и принять обменный курс',
+    'items'                        => 'Товары / Услуги',
+    'save_and_apply_exchange_rate' => 'Сохранить и принять обменный курс',
     'template'                     => 'Шаблон',
     'update_exchange_rate'         => 'Обновить обменный курс',
     'welcome'                      => 'Приветствую'
