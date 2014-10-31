@@ -50,11 +50,10 @@
         <p>Всю интеграцию мы сделаем за вас и дадим готовый продукт для приема денег. Вам нужно только связаться с нами и приобрести продукт :)
 
  </p>
-        <a class="btn btn-default btn-outline-light" href="http://hubpay.ru/invoicer/invoicer/">DEMO</a> <a style="background-color:#fff" class="btn btn-default btn-outline-light" href="#" data-toggle="modal" data-target="#myModal">КУПИТЬ</a> </div>
+        <a class="btn btn-default btn-outline-light" href="#" data-toggle="modal" data-target="#demomodal">DEMO</a> <a style="background-color:#fff" class="btn btn-default btn-outline-light" href="#" data-toggle="modal" data-target="#myModal">КУПИТЬ</a> </div>
      
     </div>
     <div class="row">
-      
       <div class="col-md-10 col-md-offset-1"> <img src="http://i.imgur.com/A0Ye55x.jpg" alt="" class="img-responsive hero-section-laptop"> </div>
     </div>
   </div>
@@ -142,14 +141,8 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" >
   <div class="modal-dialog">
     <div class="modal-content"> 
-      <!--<div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Sign up</h4>
-      </div>-->
       <div class="modal-body">
         <h1>Понравился наш продукт? :)</h1>
-        <p>.</p>
-        <hr>
         <div class="form-horizontal">
           <div class="form-group">
             <label class="col-sm-2 control-label">Как вас зовут?</label>
@@ -177,8 +170,31 @@
                 <div id="mail_msg2" class="mail_valid_msg"></div>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default btn-close" data-dismiss="modal">Закрыть</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="demomodal" tabindex="-1" role="dialog" >
+  <div class="modal-dialog">
+    <div class="modal-content"> 
+      <div class="modal-body">
+        <h1>Демо-доступ для тестирования системы :)</h1>
+		<p>Введите данные, что ниже на странице авторизации</p>
+        <div class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Логин</label>
+            <div class="col-sm-10">
+             <input type="text" class="form-control input-lg" disabled value="demo@hubpay.ru"> 
+            </div>
+          </div>
+          <div class="form-group">
+            <label  class="col-sm-2 control-label">Пароль</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control input-lg" disabled value="demo">
+            </div>
+          </div>          
+              <center><a class="btn btn-default btn-outline-light" href="http://hubpay.ru/invoicer/invoicer/">Перейти на страницу авторизации</a></center>
+        </div>
       </div>
     </div>
   </div>
