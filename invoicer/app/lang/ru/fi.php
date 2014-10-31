@@ -194,7 +194,7 @@ return array(
 	'rejected'                           => 'Отклоненный',
 	'remove_logo'                        => 'Удалить логотип',
 	'reports'                            => 'Отчеты',
-	'revenue_by_client'                  => 'Revenue by Client',
+	'revenue_by_client'                  => 'Выручка с клиентов',
 	'run_report'                         => 'Сформировать отчет',
 	'save'                               => 'Сохранить',
 	'save_item_as_lookup'                => 'Сохранить для будущего поиска при добавлении',
