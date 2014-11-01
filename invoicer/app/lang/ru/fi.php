@@ -38,7 +38,7 @@ return array(
 	'client_form'                        => 'Форма клиента',
 	'client_name'                        => 'Обращение к клиенту',
 	'clients'                            => 'Клиенты',
-	'column_name'                        => 'Нпзвание столбца',
+	'column_name'                        => 'Название столбца',
 	'company'                            => 'Компания',
 	'contact_information'                => 'Контакстная информация',
 	'continue'                           => 'Продолжить',
