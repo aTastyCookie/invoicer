@@ -46,6 +46,16 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 		return $this->getKey();
 	}
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saving(function($user)
+        {
+            $user->address = strip_tags($user->address);
+        });
+    }
+
 	/**
 	 * Get the password for the user.
 	 *

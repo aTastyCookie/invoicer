@@ -98,7 +98,7 @@
                             <div class="box-body">
                                 @if ($invoice->user->company) <strong>{{{ $invoice->user->company }}}</strong><br> @endif
                                 {{{ $invoice->user->name }}}<br>
-                                {{{ $invoice->user->formatted_address }}}<br>
+                                {{ $invoice->user->formatted_address }}<br>
                                 {{ trans('fi.phone') }}: {{{ $invoice->user->phone }}}<br>
                                 {{ trans('fi.email') }}: {{{ $invoice->user->email }}}
                             </div>
@@ -118,7 +118,7 @@
                                         {{ $invoice->client->name }}
                                     </a>
                                 </strong><br>
-                                {{{ $invoice->client->formatted_address }}}<br>
+                                {{ $invoice->client->formatted_address }}<br>
                                 {{ trans('fi.phone') }}: {{{ $invoice->client->phone }}}<br>
                                 {{ trans('fi.email') }}: {{{ $invoice->client->email }}}
                             </div>

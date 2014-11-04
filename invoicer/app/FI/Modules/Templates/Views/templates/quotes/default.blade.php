@@ -61,7 +61,7 @@
     <table>
         <tr>
             <td class="border-bottom" style="width: 50%;">
-                {{{ $logo }}}
+                {{ $logo }}
             </td>
             <td class="border-bottom" style="width: 50%; text-align: right;">
                 <h1 style="margin: 0;">{{{ trans('fi.quote') }}}</h1>
@@ -78,14 +78,14 @@
                 <strong>{{{ trans('fi.from') }}}:</strong><br>
                 @if ($quote->user->company) {{{ $quote->user->company }}}<br> @endif
                 {{{ $quote->user->name }}}<br>
-                {{{ $quote->user->formatted_address }}}<br>
+                {{ $quote->user->formatted_address }}<br>
                 {{{ $quote->user->email }}}<br>
                 {{{ $quote->user->phone }}}
             </td>
             <td style="width: 50%;">
                 <strong>{{{ trans('fi.to') }}}:</strong><br>
                 {{{ $quote->client->name }}}<br>
-                {{{ $quote->client->formatted_address }}}<br>
+                {{ $quote->client->formatted_address }}<br>
                 {{{ $quote->client->email }}}<br>
                 {{{ $quote->client->phone }}}
             </td>
@@ -133,10 +133,10 @@
 
     @if ($quote->terms)
     <strong>{{{ trans('fi.terms_and_conditions') }}}</strong>
-    <p>{{{ $quote->formatted_terms }}}</p>
+    <p>{{ $quote->formatted_terms }}</p>
     @endif
 
-    <div class="footer">{{{ $quote->formatted_footer }}}</div>
+    <div class="footer">{{ $quote->formatted_footer }}</div>
 
 </body>
 </html>

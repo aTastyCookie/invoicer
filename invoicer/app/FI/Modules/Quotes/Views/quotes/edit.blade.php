@@ -97,11 +97,11 @@
                             <h3 class="box-title">{{ trans('fi.from') }}</h3>
                         </div>
                         <div class="box-body">
-                            @if ($quote->user->company) <strong>{{ $quote->user->company }}</strong><br> @endif
-                            {{ $quote->user->name }}<br>
+                            @if ($quote->user->company) <strong>{{{ $quote->user->company }}}</strong><br> @endif
+                            {{{ $quote->user->name }}}<br>
                             {{ $quote->user->formatted_address }}<br>
-                            {{ trans('fi.phone') }}: {{ $quote->user->phone }}<br>
-                            {{ trans('fi.email') }}: {{ $quote->user->email }}
+                            {{ trans('fi.phone') }}: {{{ $quote->user->phone }}}<br>
+                            {{ trans('fi.email') }}: {{{ $quote->user->email }}}
                         </div>
                     </div>
         
@@ -119,7 +119,7 @@
                                     {{{ $quote->client->name }}}
                                 </a>
                             </strong><br>
-                            {{{ $quote->client->formatted_address }}}<br>
+                            {{ $quote->client->formatted_address }}<br>
                             {{ trans('fi.phone') }}: {{{ $quote->client->phone }}}<br>
                             {{ trans('fi.email') }}: {{{ $quote->client->email }}}
                         </div>

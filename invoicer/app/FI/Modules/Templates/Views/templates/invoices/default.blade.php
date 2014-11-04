@@ -61,7 +61,7 @@
 	<table>
 		<tr>
 			<td class="border-bottom" style="width: 50%;">
-				{{{ $logo }}}
+				{{ $logo }}
 			</td>
 			<td class="border-bottom" style="width: 50%; text-align: right;">
 				<h1 style="margin: 0;">{{{ trans('fi.invoice') }}}</h1>
@@ -78,14 +78,14 @@
 				<strong>{{{ trans('fi.from') }}}:</strong><br>
 				@if ($invoice->user->company) {{{ $invoice->user->company }}}<br> @endif
 				{{{ $invoice->user->name }}}<br>
-				{{{ $invoice->user->formatted_address }}}<br>
+				{{ $invoice->user->formatted_address }}<br>
 				{{{ $invoice->user->email }}}<br>
 				{{{ $invoice->user->phone }}}
 			</td>
 			<td style="width: 50%;">
 				<strong>{{{ trans('fi.to') }}}:</strong><br>
 				{{{ $invoice->client->name }}}<br>
-				{{{ $invoice->client->formatted_address }}}<br>
+				{{ $invoice->client->formatted_address }}<br>
 				{{{ $invoice->client->email }}}<br>
 				{{{ $invoice->client->phone }}}
 			</td>
@@ -141,10 +141,10 @@
 
 	@if ($invoice->terms)
 	<strong>{{{ trans('fi.terms_and_conditions') }}}</strong>
-	<p>{{{ $invoice->formatted_terms }}}</p>
+	<p>{{ $invoice->formatted_terms }}</p>
 	@endif
 
-	<div class="footer">{{{ $invoice->formatted_footer }}}</div>
+	<div class="footer">{{ $invoice->formatted_footer }}</div>
 
 </body>
 </html>

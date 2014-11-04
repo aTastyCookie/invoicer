@@ -35,6 +35,7 @@ class Client extends \Eloquent {
         static::saving(function($client)
         {
             $client->name = strip_tags($client->name);
+            $client->address = strip_tags($client->address);
         });
     }
 	
