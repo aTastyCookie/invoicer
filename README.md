@@ -19,4 +19,3 @@ Recurring Invoices:
 
 ToDo:
 - integrate YandexMoney `in progress`
-- security test
