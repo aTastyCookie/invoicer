@@ -263,7 +263,7 @@ return array(
 	'view_paid_invoices'                 => 'Просмотр оплаченных счетов ',
 	'view_payments'                      => 'Просмотр платежей',
 	'view_quotes'                        => 'Просмотр предложений',
-	'view_recurring_invoices'            => 'Просмотр рекуррентрых счетов',
+	'view_recurring_invoices'            => 'Просмотр рекуррентных счетов',
 	'view_sent_invoices'                 => 'Просмтотреть выставленные счета',
 	'web'                                => 'Веб',
 	'web_address'                        => 'Веб адресс',
