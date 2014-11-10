@@ -12,6 +12,7 @@
 namespace FI\Modules\Quotes\Models;
 
 use FI\Libraries\CurrencyFormatter;
+use FI\Libraries\NumberFormatter;
 
 class QuoteAmount extends \Eloquent {
 

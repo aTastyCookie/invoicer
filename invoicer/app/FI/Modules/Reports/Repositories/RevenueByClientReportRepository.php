@@ -44,7 +44,7 @@ class RevenueByClientReportRepository {
 	{
 		$results = array();
 
-		$payments = Payment::byYear($year)->get();
+		$payments = Payment::byYear($year)->join('invoices', 'invoices.id', '=', 'payments.invoice_id')->join('clients', 'clients.id', '=', 'invoices.client_id')->orderBy('clients.name')->get();
 
 		foreach ($payments as $payment)
 		{

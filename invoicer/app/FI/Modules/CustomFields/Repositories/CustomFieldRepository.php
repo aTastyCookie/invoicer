@@ -131,11 +131,11 @@ class CustomFieldRepository {
 		{
 			if ($fieldType == 'textarea')
 			{
-				$table->text($columnName);
+				$table->text($columnName)->nullable();
 			}
 			else
 			{
-				$table->string($columnName);
+				$table->string($columnName)->nullable();
 			}
 			
 		});

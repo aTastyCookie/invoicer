@@ -14,18 +14,18 @@ class Templates extends Migration {
 	{
         Schema::table('clients', function($table)
         {
-            $table->string('invoice_template');
-            $table->string('quote_template');
+            $table->string('invoice_template')->nullable();
+            $table->string('quote_template')->nullable();
         });
 
 		Schema::table('invoices', function($table)
         {
-            $table->string('template');
+            $table->string('template')->nullable();
         });
 
         Schema::table('quotes', function($table)
         {
-            $table->string('template');
+            $table->string('template')->nullable();
         });
 	}
 

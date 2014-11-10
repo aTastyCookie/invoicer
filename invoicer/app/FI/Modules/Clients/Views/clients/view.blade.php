@@ -60,7 +60,7 @@
 									<table class="table table-striped">
 										<tr>
 											<td class="col-md-2">{{ trans('fi.address') }}</td>
-											<td class="col-md-10">{{{ $client->formatted_address }}}</td>
+											<td class="col-md-10">{{ $client->formatted_address }}</td>
 										</tr>
 										<tr>
 											<td class="col-md-2">{{ trans('fi.email') }}</td>
@@ -84,7 +84,7 @@
 										</tr>
 										@foreach ($customFields as $customField)
 										<tr>
-											<td class="col-md-2">{{ $customField->field_label }}</td>
+											<td class="col-md-2">{{{ $customField->field_label }}}</td>
 											<td class="col-md-10">{{{ $client->custom->{$customField->column_name} or '' }}}</td>
 										</tr>
 										@endforeach

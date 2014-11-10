@@ -106,7 +106,7 @@
             @foreach ($quote->items as $item)
             <tr>
                 <td>{{{ $item->name }}}</td>
-                <td>{{{ $item->formatted_description }}}</td>
+                <td>{{ $item->formatted_description }}</td>
                 <td class="text-right">{{{ $item->formatted_quantity }}}</td>
                 <td class="text-right">{{{ $item->formatted_price }}}</td>
                 <td class="text-right">{{{ $item->amount->formatted_subtotal }}}</td>

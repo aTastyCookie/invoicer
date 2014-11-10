@@ -2340,6 +2340,7 @@ return array(
     'Version242' => $baseDir . '/app/database/migrations/2014_10_23_032107_version_242.php',
     'Version243' => $baseDir . '/app/database/migrations/2014_10_29_034609_version_243.php',
     'Version244' => $baseDir . '/app/database/migrations/2014_10_31_024511_version_244.php',
+    'Version245' => $baseDir . '/app/database/migrations/2014_11_10_050307_version_245.php',
     'Whoops\\Exception\\ErrorException' => $vendorDir . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
     'Whoops\\Exception\\Frame' => $vendorDir . '/filp/whoops/src/Whoops/Exception/Frame.php',
     'Whoops\\Exception\\FrameCollection' => $vendorDir . '/filp/whoops/src/Whoops/Exception/FrameCollection.php',

@@ -15,6 +15,10 @@ class FixTemplateFields extends Migration {
         Schema::table('clients', function($table)
         {
             $table->renameColumn('invoice_template', 'old_invoice_template');
+        });
+
+        Schema::table('clients', function($table)
+        {
             $table->renameColumn('quote_template', 'old_quote_template');
         });
 
@@ -52,6 +56,10 @@ class FixTemplateFields extends Migration {
         Schema::table('clients', function($table)
         {
             $table->dropColumn('old_invoice_template');
+        });
+
+        Schema::table('clients', function($table)
+        {
             $table->dropColumn('old_quote_template');
         });
 
