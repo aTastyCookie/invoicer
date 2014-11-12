@@ -495,6 +495,7 @@ return array(
     'FI\\Modules\\Merchant\\Controllers\\MerchantController' => $baseDir . '/app/FI/Modules/Merchant/Controllers/MerchantController.php',
     'FI\\Modules\\Merchant\\Libraries\\PayPalExpress' => $baseDir . '/app/FI/Modules/Merchant/Libraries/PayPalExpress.php',
     'FI\\Modules\\Merchant\\Libraries\\Stripe' => $baseDir . '/app/FI/Modules/Merchant/Libraries/Stripe.php',
+    'FI\\Modules\\Merchant\\Libraries\\YandexMoney' => $baseDir . '/app/FI/Modules/Merchant/Libraries/YandexMoney.php',
     'FI\\Modules\\Merchant\\Models\\InvoiceTransaction' => $baseDir . '/app/FI/Modules/Merchant/Models/InvoiceTransaction.php',
     'FI\\Modules\\Merchant\\Providers\\ModuleProvider' => $baseDir . '/app/FI/Modules/Merchant/Providers/ModuleProvider.php',
     'FI\\Modules\\Merchant\\Repositories\\InvoiceTransactionRepository' => $baseDir . '/app/FI/Modules/Merchant/Repositories/InvoiceTransactionRepository.php',
@@ -570,7 +571,6 @@ return array(
     'File_ASN1' => $vendorDir . '/phpseclib/phpseclib/phpseclib/File/ASN1.php',
     'File_ASN1_Element' => $vendorDir . '/phpseclib/phpseclib/phpseclib/File/ASN1.php',
     'File_X509' => $vendorDir . '/phpseclib/phpseclib/phpseclib/File/X509.php',
-    'FixTemplateFields' => $baseDir . '/app/database/migrations/2014_10_29_021905_fix_template_fields.php',
     'Fixed_Positioner' => $vendorDir . '/dompdf/dompdf/include/fixed_positioner.cls.php',
     'Font' => $vendorDir . '/phenx/php-font-lib/classes/Font.php',
     'Font_Binary_Stream' => $vendorDir . '/phenx/php-font-lib/classes/Font_Binary_Stream.php',
@@ -1147,6 +1147,7 @@ return array(
     'Null_Frame_Decorator' => $vendorDir . '/dompdf/dompdf/include/null_frame_decorator.cls.php',
     'Null_Frame_Reflower' => $vendorDir . '/dompdf/dompdf/include/null_frame_reflower.cls.php',
     'Null_Positioner' => $vendorDir . '/dompdf/dompdf/include/null_positioner.cls.php',
+
     'Omnipay\\Coinbase\\Gateway' => $vendorDir . '/omnipay/coinbase/src/Gateway.php',
     'Omnipay\\Coinbase\\Message\\AbstractRequest' => $vendorDir . '/omnipay/coinbase/src/Message/AbstractRequest.php',
     'Omnipay\\Coinbase\\Message\\CompletePurchaseRequest' => $vendorDir . '/omnipay/coinbase/src/Message/CompletePurchaseRequest.php',
@@ -1221,6 +1222,25 @@ return array(
     'Omnipay\\SagePay\\Message\\ServerPurchaseRequest' => $vendorDir . '/omnipay/sagepay/src/Message/ServerPurchaseRequest.php',
     'Omnipay\\SagePay\\ServerGateway' => $vendorDir . '/omnipay/sagepay/src/ServerGateway.php',
     'Omnipay\\Stripe\\Gateway' => $vendorDir . '/omnipay/stripe/src/Gateway.php',
+
+    'Omnipay\\YandexMoney\\Gateway' => $vendorDir . '/omnipay/yandexmoney/src/Gateway.php',
+    'Omnipay\\YandexMoneyIndividual\\Gateway' => $vendorDir . '/omnipay/yandexmoney/src/GatewayIndividual.php',
+
+    'Omnipay\\YandexMoney\\Message\\PurchaseRequest' => $vendorDir . '/omnipay/yandexmoney/src/Message/PurchaseRequest.php',
+    'Omnipay\\YandexMoney\\Message\\IndividualPurchaseRequest' => $vendorDir . '/omnipay/yandexmoney/src/Message/IndividualPurchaseRequest.php',
+
+    'Omnipay\\YandexMoney\\Message\\AuthorizeRequest' => $vendorDir . '/omnipay/yandexmoney/src/Message/AuthorizeRequest.php',
+    'Omnipay\\YandexMoney\\Message\\IndividualAuthorizeRequest' => $vendorDir . '/omnipay/yandexmoney/src/Message/IndividualAuthorizeRequest.php',
+
+    'Omnipay\\YandexMoney\\Message\\AuthorizeResponse' => $vendorDir . '/omnipay/yandexmoney/src/Message/AuthorizeResponse.php',
+    'Omnipay\\YandexMoney\\Message\\IndividualAuthorizeResponse' => $vendorDir . '/omnipay/yandexmoney/src/Message/IndividualAuthorizeResponse.php',
+
+    'Omnipay\\YandexMoney\\Message\\PurchaseResponse' => $vendorDir . '/omnipay/yandexmoney/src/Message/PurchaseResponse.php',
+    'Omnipay\\YandexMoney\\Message\\IndividualPurchaseResponse' => $vendorDir . '/omnipay/yandexmoney/src/Message/IndividualPurchaseResponse.php',
+
+    'Omnipay\\YandexMoney\\Message\\CompletePurchaseRequest' => $vendorDir . '/omnipay/yandexmoney/src/Message/CompletePurchaseRequest.php',
+    'Omnipay\\YandexMoney\\Message\\CompletePurchaseResponse' => $vendorDir . '/omnipay/yandexmoney/src/Message/CompletePurchaseResponse.php',
+
     'Omnipay\\Stripe\\Message\\AbstractRequest' => $vendorDir . '/omnipay/stripe/src/Message/AbstractRequest.php',
     'Omnipay\\Stripe\\Message\\AuthorizeRequest' => $vendorDir . '/omnipay/stripe/src/Message/AuthorizeRequest.php',
     'Omnipay\\Stripe\\Message\\CaptureRequest' => $vendorDir . '/omnipay/stripe/src/Message/CaptureRequest.php',
@@ -1254,6 +1274,7 @@ return array(
     'Omnipay\\TwoCheckout\\Message\\CompletePurchaseResponse' => $vendorDir . '/omnipay/2checkout/src/Message/CompletePurchaseResponse.php',
     'Omnipay\\TwoCheckout\\Message\\PurchaseRequest' => $vendorDir . '/omnipay/2checkout/src/Message/PurchaseRequest.php',
     'Omnipay\\TwoCheckout\\Message\\PurchaseResponse' => $vendorDir . '/omnipay/2checkout/src/Message/PurchaseResponse.php',
+
     'PDFLib_Adapter' => $vendorDir . '/dompdf/dompdf/include/pdflib_adapter.cls.php',
     'PHPParser_Autoloader' => $vendorDir . '/nikic/php-parser/lib/PHPParser/Autoloader.php',
     'PHPParser_Builder' => $vendorDir . '/nikic/php-parser/lib/PHPParser/Builder.php',
@@ -2337,10 +2358,6 @@ return array(
     'Version238' => $baseDir . '/app/database/migrations/2014_09_14_013243_version_238.php',
     'Version240' => $baseDir . '/app/database/migrations/2014_10_11_024209_version_240.php',
     'Version241' => $baseDir . '/app/database/migrations/2014_10_14_040427_version_241.php',
-    'Version242' => $baseDir . '/app/database/migrations/2014_10_23_032107_version_242.php',
-    'Version243' => $baseDir . '/app/database/migrations/2014_10_29_034609_version_243.php',
-    'Version244' => $baseDir . '/app/database/migrations/2014_10_31_024511_version_244.php',
-    'Version245' => $baseDir . '/app/database/migrations/2014_11_10_050307_version_245.php',
     'Whoops\\Exception\\ErrorException' => $vendorDir . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
     'Whoops\\Exception\\Frame' => $vendorDir . '/filp/whoops/src/Whoops/Exception/Frame.php',
     'Whoops\\Exception\\FrameCollection' => $vendorDir . '/filp/whoops/src/Whoops/Exception/FrameCollection.php',
