@@ -16,6 +16,3 @@ Online payment:
 
 Recurring Invoices:
 *  `curl http://youserver.com/recurring/run >/dev/null 2>&1`
-
-ToDo:
-- integrate YandexMoney `in progress`
