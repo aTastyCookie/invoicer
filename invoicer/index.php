@@ -6,6 +6,8 @@
  * @author   Taylor Otwell <taylorotwell@gmail.com>
  */
 
+include_once('compressor.php');
+
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
