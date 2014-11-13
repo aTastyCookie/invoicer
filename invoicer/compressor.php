@@ -624,7 +624,7 @@ function minifyJS($js)
     global $cacheDir;
 
     if (!is_dir($cacheDir . '/inlineJs')) {
-        mkdir($cacheDir . '/inlineJs', 0777) or die('Unable to create css cache folder');
+        mkdir($cacheDir . '/inlineJs', 0777) or die('Unable to create inlineJs cache folder');
     }
 
     $cache = new DwcCache($cacheDir . '/inlineJs');
