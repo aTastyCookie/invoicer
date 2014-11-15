@@ -28,7 +28,7 @@ $headers = array(
 
 
 if ($setting['cache-folder'] == 'AUTO') {
-    $cacheDir = dirname(__FILE__) . '/dwccache';
+    $cacheDir = dirname(__FILE__) . '/cache';
 } else {
     $cacheDir = $setting['cache-folder'];
 }
