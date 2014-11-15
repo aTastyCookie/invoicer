@@ -302,7 +302,7 @@ return array(
 	// Added for 2.2.0
 	'a4'                                 => 'A4',
 	'action_required'                    => 'Необходимые действия',
-	'activity'                           => 'Аетивности',
+	'activity'                           => 'Активности',
 	'activity_invoice_paid'              => 'Счет <a href=":link">#:number</a> был оплачен.',
 	'activity_invoice_viewed'            => 'Счет <a href=":link">#:number</a> был просмотренн.',
 	'activity_quote_approved'            => 'Предложение <a href=":link">#:number</a> было принято.',
