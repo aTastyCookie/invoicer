@@ -259,7 +259,7 @@ return array(
 	'view_clients'                       => 'Просмотр клиентов',
 	'view_draft_invoices'                => 'Просмотр черновиков счетов',
 	'view_invoices'                      => 'Просмотр счетов',
-	'view_overdue_invoices'              => 'Просмотр просточенный счетов',
+	'view_overdue_invoices'              => 'Просмотр просроченных счетов',
 	'view_paid_invoices'                 => 'Просмотр оплаченных счетов ',
 	'view_payments'                      => 'Просмотр платежей',
 	'view_quotes'                        => 'Просмотр предложений',
