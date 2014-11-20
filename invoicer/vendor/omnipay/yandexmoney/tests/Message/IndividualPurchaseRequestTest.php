@@ -41,7 +41,7 @@ class IndividualPurchaseRequestTest extends TestCase
         );
 
         $data = $this->request->getData();
-        $this->assertSame('AC', $data['payment-type']);
+        $this->assertSame('AC', $data['paymentType']);
         $this->assertSame('1', $data['label']);
     }
 

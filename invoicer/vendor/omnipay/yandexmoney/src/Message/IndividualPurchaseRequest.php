@@ -136,7 +136,7 @@ class IndividualPurchaseRequest extends IndividualAuthorizeRequest
 		$data['need-phone'] = 'false';
 		$data['need-address'] = 'false';
 		
-		$data['payment-type'] = $this->getMethod();	
+		$data['paymentType'] = $this->getMethod();	
 
 		$data['shopSuccessURL'] = $this->getReturnUrl();
 		$data['shopFailURL'] = $this->getCancelUrl();
