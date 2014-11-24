@@ -1,226 +1,225 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="CRM-система для профессионального выставления счетов и работы с клиентами">
-<meta name="keywords" content="CRM, invoice, quote, paybylink, счет, предложение">
-<meta name="author" content="ant1freezeca@gmail.com">
-<title>HubPay - сервис профессионального выставления счетов </title>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>HubPay.RU - сервис для профессионального выставления счетов и работы с клиентами</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CRM-система для профессионального выставления счетов и работы с клиентами">
+    <meta name="author" content="Roman Ananyev">
+    <meta name="keywords" content="CRM, invoice, счета, yandex, paypal, stripe">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/animate.min.css" rel="stylesheet" media="screen">
+    <link href="css/font-awesome.min.css" rel="stylesheet" media="screen">
+    <link href="style.css" rel="stylesheet" media="screen">
+    <link href="css/options.css" rel="stylesheet" media="screen">
+    <link href="css/responsive.css" rel="stylesheet" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:900,300,400,200,800' rel='stylesheet' type='text/css'>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  	<div id="loader">
+  		<div id="loading-logo"></div>
+  	</div>
+  	<div id="page">
+	  	<header id="header" class="big with-separation-bottom">
+	  		<canvas id="header-canvas"></canvas>
 
-<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	  		<nav id="navigation-mobile"></nav>
+	  	
+	  		<nav id="navigation">
+	  			<a href="#" id="show-mobile-menu"><i class="fa fa-bars"></i></a>
+		  		<a href="#" id="close-navigation-mobile"><i class="fa fa-long-arrow-left"></i></a>
+	  			
+		  		<ul id="left-navigation" class="animate-me fadeInLeftBig">
+			  		<li class="menu-item current-menu-item menu-item-has-children">
+			  			<a href="http://hubpay.ru/" data-description="All starts here">Главная странца</a>
+			  		</li>
+			  		<li class="menu-item"><a href="http://hubpay.ru/skills.html" data-description="We're the best">Наши возможности</a></li>
+		  		</ul>
+		  		<div  class="animate-me flipInX" data-wow-duration="3s">
+		  			<a href="index.html" id="logo-navigation">
+		  				<span>We're the future !</span>
+		  			</a>
+		  		</div>
+		  		<ul id="right-navigation" class="animate-me fadeInRightBig">
+			  		<li class="menu-item"><a href="about.html" data-description="We are a team">О нас</a></li>
+			  		<li class="menu-item"><a href="contact.html" data-description="Let's get in touch">Связаться с нами</a></li>
+		  		</ul>
+	  		</nav>
+	  		
+			<div id="ticker" class="animate-me zoomIn">
+				<h4 class="with-breaker">Что мы умеем ? Наши преимущества ?</h4>
+				<div id="ticker-text">
+					<ul>
+						<li>Простое выставление счетов</li>
+						<li>Не хотите счета? Предложения!</li>
+						<li>Online / Offline платежи</li>
+						<li>Множество платежных систем</li>
+						<li>Удобный личный кабинет</li>
+						<li>Импорт данных, отчеты</li>
+					</ul>
+				</div>
+			</div>  		
+	  		
+	  		<div id="scroll-bottom" class="animate-me fadeInUpBig">
+		  		<a href="#"><i class="fa fa-angle-double-down"></i></a>
+	  		</div>
+	  		
+	  		<div id="shade"></div>
 
-<link href="css/style.css" rel="stylesheet" type="text/css">
-<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href="css/font-awesome.min.css" type="text/css" rel="stylesheet">
-<link href="css/owl.carousel.css" type="text/css" rel="stylesheet">
-<link href="css/owl.theme.css" type="text/css" rel="stylesheet">
-</head>
+		  	<div class="flexslider" id="header-slider">
+		  		<ul class="slides">
+		  			<li><img src="images/bg1.jpg" alt="SLider Image"></li>
+		  		</ul>	
+		  	</div>
+	  		
+	  	</header>
+	  	
+	  	<div class="main-container">
+	  		<div class="container">
+	  			<h2 class="with-breaker animate-me fadeInUp">
+		  			Что же мы умеем <span>Выделим основные наши преимущества !</span>
+	  			</h2>
+	  			<table id="skills-container" class="skills">
+		  			<tr class="skills-row">
+			  			<td class="skill animate-me zoomIn">
+				  			<h4><i class="fa fa-star-o"></i>Высокое качество</h4>
+				  			<p>Мы предоставляем вам сервис высокого качества, который постоянно улучшается и проходит тестирование.</p>
+			  			</td>
+			  			<td class="skill animate-me zoomIn">
+				  			<h4><i class="fa fa-envelope-o"></i>Счета</h4>
+				  			<p>Выставляйте счета на почту клиентам! Это упростит Вам работу и жизнь клиентам. <br>Скоро будут доступны счета в CMC</p>
+			  			</td>
+			  			<td class="skill animate-me zoomIn">
+				  			<h4><i class="fa fa-line-chart"></i>E-commerce</h4>
+				  			<p>У вас есть онлайн магазин с оплатой? Расширьте ваши возможности. Предлагайте клиентам новые товары в виде "Предложений"</p>
+			  			</td>
+		  			</tr>
+		  			<tr class="skills-row animate-me zoomIn">
+			  			<td class="skill">
+				  			<h4><i class="fa fa-thumbs-up"></i>Expertise</h4>
+				  			<p>Во время разработки мы консультировались со специалистами и пользователями из многих стран мира, что помогло нас избежаит множество ошибок. И да, мы переведены на многие языки</p>
+			  			</td>
+			  			<td class="skill animate-me zoomIn">
+				  			<h4><i class="fa fa-mobile"></i>Платежные системы</h4>
+				  			<p>У нас интегрированно большое кооличество платежных систем для приема платежей online. Подробнее в разделе "Наши возможности"
+							</p>
+			  			</td>
+			  			<td class="skill animate-me zoomIn">
+				  			<h4><i class="fa fa-cubes"></i>Обслуживание и поддержка</h4>
+				  			<p>Мы импользуем качественные сервера, постоянно проводим тестирование и улучшаем наш сервис.</p>
+			  			</td>
+		  			</tr>
+	  			</table>
+	  			<div class="skill-button center animate-me fadeInUp">
+	  				<a href="skills.html" class="btn btn-default"><i class="fa fa-trophy"></i> Наши возможности подробнее</a>
+	  			</div>
+	  			
+	  			<h2 class="with-breaker animate-me fadeInUp">
+		  			Заинтересовали ? <span>Ознакомьтесь с нашим продуктом подробнее и приобретите его !</span>
+	  			</h2>
+	  		</div>
+	  		<section class="custom-section-container with-separation-bottom with-separation-top">
+		  		<div class="container">
+			  		<div class="custom-section-text">
+				  		<h2 class="animate-me fadeInLeft">Демо</h2>
+				  		<p class="animate-me fadeInLeft">Посмотрите на наш продукт, пощупайте его, почувствуйте его мощь :)
+						</p>
+				  		
+			  		</div>
+			  		<div class="custom-section-buttons">
+				  		<a href="page.html" class="btn btn-default animate-me fadeInRight"><i class="fa fa-book"></i> Demo</a>
+				  		<a href="contact.html" class="btn btn-default animate-me fadeInRight"><i class="fa fa-paper-plane"></i> Остались вопросы?</a>
+			  		</div>
+		  		</div>
+	  		</section>
+	  		<div class="container">
+	  			<h2 class="with-breaker animate-me fadeInUp">
+		  			Оставайтесь на связи <span>Остались вопросы или хотите что-то предложить ?</span>
+	  			</h2>
+	  		</div>
+	  		<section class="contact-container with-separation-bottom with-separation-top">
+		  		<div class="contact-boxes">
+		  			<div class="contact-box contact-box-email animate-me zoomIn">
+		  				<h2>Email</h2>
+		  				<p>Write us a few lines about your ideas, your projects and let's advance together.</p>
+		  				<a href="contact.html" class="btn btn-default"><i class="fa fa-envelope"></i> Email Us</a>
+		  			</div>
+		  			<div class="contact-box contact-box-twitter animate-me zoomIn">
+		  				<h2>Twitter</h2>
+		  				<p>Follow us to interact, chat and share our ideas on Twitter.</p>
+		  				<a href="https://twitter.com/HubPay" class="btn btn-default"><i class="fa fa-twitter"></i> Follow us</a>
+		  			</div>
+		  			<div class="contact-box contact-box-facebook animate-me zoomIn">
+		  				<h2>Facebook</h2>
+		  				<p>Like our page and send us message directly from our brand new Facebook page.</p>
+		  				<a href="https://www.facebook.com/hubpayinc" class="btn btn-default"><i class="fa fa-facebook"></i> Like Our Page</a>
+		  			</div>
+		  			<div class="contact-box contact-box-skype animate-me zoomIn">
+		  				<h2>Skype</h2>
+		  				<p>Call us or chat with us on Skype whenever you like, do not hesitate.</p>
+		  				<a href="#" class="btn btn-default"><i class="fa fa-skype"></i> Call Us</a>
+		  			</div>
+		  		</div>
+	  		</section>
+	  	</div>
+	  	
+	  	<footer id="footer" class="with-separation-top">
+		  	<aside id="widgets" class="container">
+		  		<div class="row">
+			  		<div class="col-md-4 widget animate-me fadeInLeft">
+			  			<img src="images/logo-footer.png" id="footer-logo" alt="Logo footer">
+			  			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ullamcorper felis pulvinar neque pharetra auctor. Donec vel erat pretium, interdum justo sed, mollis tortor.</p>
+			  			<a href="about.html" class="btn btn-default"><i class="fa fa-users"></i> Read more</a>
+			  		</div>
+			  		<div class="col-md-4 widget animate-me fadeInUp">
+				  		<h4>Меню</h4>
+				  		<ul>
+					  		<li><a href="index.html">Главная страница</a></li>
+					  		<li><a href="about.html">О нас</a></li>
+				  		</ul>
+			  		</div>
+			  		<div class="col-md-4 widget animate-me fadeInRight">
+			  			<h4>Contact</h4>
+			  			<ul class="contact-informations">
+				  			<li class="contact-address">Тут</li>
+				  			<li class="contact-phone">Такой</li>
+			  			</ul>
+			  			<ul class="widget-social">
+				  			<li><a href="https://www.facebook.com/hubpayinc"><i class="fa fa-facebook"></i></a></li>
+				  			<li><a href="https://twitter.com/HubPay"><i class="fa fa-twitter"></i></a></li>
+			  			</ul>
+			  			<a href="contact.html" class="btn btn-default"><i class="fa fa-envelope-o"></i> Contact Form</a>
+			  		</div>
+		  		</div>
+		  	</aside>
+		  	<div id="copyright" class="animate-me fadeInUp">
+		  		<div class="container">
+			  		<p>&#169; 2014 All Rights Reserved. Powered by <a href="index.html">HubPay</a>.</p>
+			  		<ul id="footer-navigation">
+				  		<li><a href="page.html">Terms of Use</a></li>
+				  		<li><a href="page.html">Privacy Policy</a></li>
+				  		<li><a href="contact.html">Contact Us</a></li>
+			  		</ul>
+		  		</div>
+		  	</div>
+	  	</footer>
+	  	
+	  	<a href="#" id="scroll-top" class="fadeInRight animate-me"><i class="fa fa-angle-double-up"></i></a>
+  	</div>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header page-scroll">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-      <a class="navbar-brand" href="#page-top">HubPay</a> </div>
-    
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
-      <ul class="nav navbar-nav">
-        <li class="hidden"> <a href="#page-top"><i class="fa fa-arrow-up"></i></a> </li>
-        <li class="page-scroll"> <a href="#sectionone">О продукте</a> </li>
-      </ul>
-    </div>
-  </div>
-  
-</nav>
-
-<section id="intro" class="intro-section">
-  <div class="container">
-  <div class="row">
-      <div class="col-md-12 hero-section">
-        <h1>CRM-система для профессионального выставления счетов и работы с клиентами</h1>
-        <p>Всю интеграцию мы сделаем за вас и дадим готовый продукт для приема денег. Вам нужно только связаться с нами и приобрести продукт :)
-
- </p>
-        <a class="btn btn-default btn-outline-light" href="#" data-toggle="modal" data-target="#demomodal">DEMO</a> <a style="background-color:#fff" class="btn btn-default btn-outline-light" href="#" data-toggle="modal" data-target="#myModal">ПОДКЛЮЧИТЬСЯ</a> </div>
-     
-    </div>
-    <div class="row">
-      <div class="col-md-10 col-md-offset-1"> <img src="http://i.imgur.com/qngusiR.jpg" alt="" class="img-responsive hero-section-laptop"> </div>
-    </div>
-  </div>
-</section>
-<section id="sectionone" class="features-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 text-center section-head">
-        <h1>Немного о продукте и тех, кто его делал</h1>
-        <p>Оооочень крутая штука, которая поможет заработать вашему бизнесу кучу денег как online, так и offline. </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3">
-        <div class="row">
-          <div class="col-md-12">
-            <h3>Выставить счет? Легко!</h3>
-            <p>Выставите счет и смотрите за его статусом. </p>
-          </div>
-          <div class="col-md-12">
-            <h3>CRM</h3>
-            <p>Работайте с клиентом так, как вам удобно. </p>
-          </div>
-          <div class="col-md-12">
-            <h3>Импорт</h3>
-            <p>У вас уже есть данные о товарах, клиентах? Импортируйте их в систему и пользуйтесь :)</p>
-          </div>
-          <div class="col-md-12">
-            <h3>Личный кабинет</h3>
-            <p>Мы создали прекрасный инструмент для того, чтобы вы могли зарабатывать. А еще он на нескольких языках.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 text-center"> <img src="images/full_screen.png" alt="" class="img-responsive pic_space"> <a href="#" class="btn btn-default btn-outline" data-toggle="modal" data-target="#myModal">Купить</a> </div>
-      <div class="col-md-3">
-        <div class="row">
-          <div class="col-md-12">
-            <h3>Работаем для вас</h3>
-            <p>Мы команда профессионалов, масштабирующих бизнес.</p>
-          </div>
-          <div class="col-md-12">
-            <h3>Полная кастомизация</h3>
-            <p>Полная кастомизация счетов, писем и всего, что хочется :)</p>
-          </div>
-          <div class="col-md-12">
-            <h3>Платежные сервисы</h3>
-            <p>На данный момент интегрированны Paypal, Stripe, Яндекс.Касса, Яндекс.Деньги. </p>
-          </div>
-          <div class="col-md-12">
-            <h3>Стабильность</h3>
-            <p>Аптайм наших серверов 99,8%, пинг минимален благодаря хорошему каналу и прекрасной архитектуре системы :) </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="getintouch" class="get-touch-section section-colored">
-  <div class="footer">
-  <div class="container">
- <div class="row text-center">
-      <div class="col-md-4"> <i class="fa fa-sitemap fa-3x"></i>
-        <p><a> Zmij</a></p>
-        <p><a> aTastyCookie</a></p>
-      </div>
-      <div class="col-md-4 text-center"><i class="fa fa-map-marker fa-3x"></i>
-        <p><a href="https://www.facebook.com/hubpayinc"> Facebook</a></p>
-      </div>
-      <div class="col-md-4"> <i class="fa fa-cog  fa-3x"></i>
-        <p><a href="http://paybylink.com"> PayByLink</a></p>
-      </div>
-      <div class="col-md-12 footer-text">HubPay © 2014</div>
-    </div>
-    </div>
-    </div>
-</section>
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" >
-  <div class="modal-dialog">
-    <div class="modal-content"> 
-      <div class="modal-body">
-        <h1>Понравился наш продукт? :)</h1>
-        <div class="form-horizontal">
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Как вас зовут?</label>
-            <div class="col-sm-10">
-              <input type="email" class="form-control input-lg" id="txt_name2" placeholder="ФИО">
-            </div>
-          </div>
-          <div class="form-group">
-            <label  class="col-sm-2 control-label">Название компании</label>
-            <div class="col-sm-10">
-              <input type="email" class="form-control input-lg" id="txt_company2" placeholder="Название компании">
-            </div>
-          </div>
-          <div class="form-group">
-            <label  class="col-sm-2 control-label">Email</label>
-            <div class="col-sm-10">
-              <input type="email" class="form-control input-lg" id="txt_email2" placeholder="Email">
-            </div>
-          </div>          
-		  <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <center><button type="submit" class="btn btn-default btn-orange" onClick="mail_send('modal-dialog','2')">Оставить заявку</button></center>
-            </div>
-          </div>
-                <div id="mail_msg2" class="mail_valid_msg"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="demomodal" tabindex="-1" role="dialog" >
-  <div class="modal-dialog">
-    <div class="modal-content"> 
-      <div class="modal-body">
-        <h1>Демо-доступ для тестирования системы :)</h1>
-		<p>Введите данные, что ниже на странице авторизации</p>
-        <div class="form-horizontal">
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Логин</label>
-            <div class="col-sm-10">
-             <input type="text" class="form-control input-lg" disabled value="demo@hubpay.ru"> 
-            </div>
-          </div>
-          <div class="form-group">
-            <label  class="col-sm-2 control-label">Пароль</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control input-lg" disabled value="demo">
-            </div>
-          </div>          
-              <center><a class="btn btn-default btn-outline-light" href="http://hubpay.ru/invoicer/invoicer/">Перейти на страницу авторизации</a></center>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal --> 
-
-<!-- Core JavaScript Files --> 
-<script src="js/jquery-1.10.2.js"></script> 
-<script src="js/bootstrap.min.js"></script> 
-<script src="js/owl.carousel.min.js"></script> 
-<script src="js/jquery.easing.min.js"></script> 
-
-<!-- Custom Theme JavaScript --> 
-<script src="js/scrolling-nav.js"></script>
-<script src="js/mail.js"></script> 
-<script type="text/javascript">
-$(document).ready(function() {
- 
-  $("#owl-demo").owlCarousel({
- 
-      autoPlay: 3000, //Set AutoPlay to 3 seconds
- 
-      items : 4,
-      itemsDesktop : [1199,3],
-      itemsDesktopSmall : [979,3]
- 
-  });
- 
-});</script>
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-56549423-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-</body>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/plugins.js"></script>
+	<script type="text/javascript">
+		$('#ticker-text').vTicker('init', {
+			speed: 300, 
+		    pause: 2000
+	    });
+	</script>
+    <script src="js/custom.js"></script>
+  </body>
 </html>
