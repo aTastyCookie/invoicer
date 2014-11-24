@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- PAGE TITLE -->
+    <title>Home - Starry - HTML Template</title>
+    <!-- MAKE IT RESPONSIVE -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <!-- FAVICON -->	
+	<!--<link rel="shortcut icon" href="images/favicon.png" />-->
+    <!-- STYLESHEETS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/animate.min.css" rel="stylesheet" media="screen">
+    <link href="css/font-awesome.min.css" rel="stylesheet" media="screen">
+    <link href="style.css" rel="stylesheet" media="screen">
+    <link href="css/options.css" rel="stylesheet" media="screen">
+    <link href="css/responsive.css" rel="stylesheet" media="screen">
+    <!-- FONTS -->
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:900,300,400,200,800' rel='stylesheet' type='text/css'>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <!-- START BODY -->
+  <body>
+  	<!-- LOADER DIV - ONLY HOME -->
+  	<div id="loader">
+  		<div id="loading-logo"></div>
+  	</div>
+  	<div id="page">
+	  	<!-- START HEADER -->
+	  	<header id="header" class="big with-separation-bottom">
+	  		<!-- POINTER ANIMATED -->
+	  		<canvas id="header-canvas"></canvas>
+	  		
+	  		<!-- TOP NAVIGATION -->
+	  		<div id="top-navigation">
+		  		<ul class="animate-me fadeInDown" data-wow-duration="1.2s">
+			  		<li class="menu-item"><i class="fa fa-phone"></i> 00 11 22 33 44</li>
+			  		<li class="menu-item"><a href="faq.html"><i class="fa fa-question"></i> FAQ</a></li>
+			  		<li class="menu-item"><a href="page.html"><i class="fa fa-link"></i> Just a link</a></li>
+			  		<li class="menu-item"><span class="navigation-social">We're social !</span> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-youtube"></i></a></li>
+			  		<li class="menu-item">
+			  			<!-- SEARCHFORM -->
+			  			<div id="search-container" class="animate-me fadeInDown">
+					  		<form role="search" method="get" action="#" >
+								<input type="text" value="" name="s" id="s" placeholder="Search..."/>
+								<input type="hidden" name="searchsubmit" id="searchsubmit" value="true" />
+								<button type="submit" name="searchsubmit"><i class="fa fa-search"></i></button>
+					        </form>
+				  		</div>
+			  			<a href="#" id="search-toggle"><i class="fa"></i></a>
+			  		</li>
+			  		<li class="menu-item menu-item-has-children language-switcher">
+			  			<!-- LANGUAGES -->
+			  			<a href="#"><i class="fa fa-flag"></i> English <i class="fa fa-angle-down"></i></a>
+				  		<ul class="sub-menu bounceInDown">
+				  			<li class="menu-item"><a href="#">French</a></li>
+				  			<li class="menu-item"><a href="#">Chinese</a></li>
+				  			<li class="menu-item"><a href="#">German</a></li>
+			  			</ul>
+			  		</li>
+		  		</ul>
+	  		</div>
+	  	
+	  		<!-- MOBILE NAVIGATION -->
+	  		<nav id="navigation-mobile"></nav>
+	  	
+	  		<!-- MAIN MENU -->
+	  		<nav id="navigation">
+	  			<!-- DISPLAY MOBILE MENU -->
+	  			<a href="#" id="show-mobile-menu"><i class="fa fa-bars"></i></a>
+	  			<!-- CLOSE MOBILE MENU -->
+		  		<a href="#" id="close-navigation-mobile"><i class="fa fa-long-arrow-left"></i></a>
+	  			
+		  		<ul id="left-navigation" class="animate-me fadeInLeftBig">
+			  		<li class="menu-item current-menu-item menu-item-has-children">
+			  			<a href="index.html" data-description="All starts here">Home</a>
+			  			<ul class="sub-menu bounceInDown">
+			  				<li class="menu-item"><a href="index.html">Slider fullscreen</a></li>
+				  			<li class="menu-item"><a href="index2.html">Video fullscreen</a></li>
+				  			<li class="menu-item"><a href="index3.html">Single Image</a></li>
+			  			</ul>
+			  		</li>
+			  		<li class="menu-item menu-item-has-children">
+			  			<a href="portfolio.html" data-description="What we do">Portfolio</a>
+			  			<ul class="sub-menu bounceInDown">
+			  				<li class="menu-item"><a href="portfolio.html">All Projects</a></li>
+				  			<li class="menu-item"><a href="portfolio-single.html">Single Project</a></li>
+				  			<li class="menu-item"><a href="faq.html">FAQ</a></li>
+			  			</ul>
+			  		</li>
+			  		<li class="menu-item"><a href="skills.html" data-description="We're the best">Skills</a></li>
+		  		</ul>
+		  		<div  class="animate-me flipInX" data-wow-duration="3s">
+		  			<a href="index.html" id="logo-navigation">
+		  				<span>We're the future !</span>
+		  			</a>
+		  		</div>
+		  		<ul id="right-navigation" class="animate-me fadeInRightBig">
+			  		<li class="menu-item"><a href="about.html" data-description="We are a team">About</a></li>
+			  		<li class="menu-item menu-item-has-children">
+			  			<a href="blog.html" data-description="We share">Blog</a>
+			  			<ul class="sub-menu bounceInDown">
+				  			<li class="menu-item"><a href="blog.html">All Posts</a></li>
+				  			<li class="menu-item"><a href="blog-single.html">Single Post</a></li>
+			  			</ul>
+			  		</li>
+			  		<li class="menu-item"><a href="contact.html" data-description="Let's get in touch">Contact</a></li>
+		  		</ul>
+	  		</nav>
+	  		
+	  		<!-- TEXT SLIDER -->
+			<div id="ticker" class="animate-me zoomIn">
+				<h4 class="with-breaker">Why choose us ?</h4>
+				<div id="ticker-text">
+					<ul>
+						<li>Our work is our passion</li>
+						<li>We're ready to hear you</li>
+						<li>Our work is all about quality</li>
+						<li>We're always at the top</li>
+						<li>We care about you</li>
+						<li>We're French & proud !</li>
+						<li>We're dynamic !</li>
+					</ul>
+				</div>
+			</div>  		
+	  		
+	  		<!-- SCROLL BOTTOM -->
+	  		<div id="scroll-bottom" class="animate-me fadeInUpBig">
+		  		<a href="#"><i class="fa fa-angle-double-down"></i></a>
+	  		</div>
+	  		
+	  		<!-- SHADOW -->
+	  		<div id="shade"></div>
+
+	  		<!-- SLIDER NAVIGATION (DELETE IF YOU DON'T USE THE SLIDER) -->
+            <div class="navigation-slider-container">
+            	<a href="#" id="sliderPrev"><i class="fa fa-arrow-left"></i></a>
+            	<a href="#" id="sliderNext"><i class="fa fa-arrow-right"></i></a>
+            </div>
+
+	  		<!-- HEADER SLIDER -->
+		  	<div class="flexslider" id="header-slider">
+		  		<ul class="slides">
+		  			<li><img src="images/bg1.jpg" alt="SLider Image"></li>
+		  			<li><img src="images/bg2.jpg" alt="SLider Image"></li>
+		  			<li><img src="images/bg3.jpg" alt="SLider Image"></li>
+		  		</ul>	
+		  	</div>
+		  	<!-- OR VIDEO -> https://github.com/VodkaBears/Vide -->
+		  	<!--<div id="header-video"
+			    data-vide-bg="ogv: images/video/video, webm: images/video/video, poster: images/video/poster" data-vide-options="posterType: jpg, loop: true, muted: true, position: 50% 50%">
+			</div>-->
+	  		
+	  	</header>
+	  	<!-- END HEADER -->
+	  	
+	  	<!-- START MAIN CONTAINER -->
+	  	<div class="main-container">
+	  		<div class="container">
+	  			<!-- SKILLS -->
+	  			<h2 class="with-breaker animate-me fadeInUp">
+		  			What do we do <span>Built for any kind of activity !</span>
+	  			</h2>
+	  			<table id="skills-container" class="skills">
+		  			<tr class="skills-row">
+			  			<td class="skill animate-me zoomIn">
+				  			<h4><i class="fa fa-star-o"></i>Premium Website</h4>
+				  			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat justo nisl. 
+				  			Phasellus ac nibh ut dui fringilla aliquam</p>
+			  			</td>
+			  			<td class="skill animate-me zoomIn">
+				  			<h4><i class="fa fa-envelope-o"></i>E-mailing</h4>
+				  			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat justo nisl. 
+				  			Phasellus ac nibh ut dui fringilla aliquam</p>
+			  			</td>
+			  			<td class="skill animate-me zoomIn">
+				  			<h4><i class="fa fa-line-chart"></i>E-commerce</h4>
+				  			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat justo nisl. 
+				  			Phasellus ac nibh ut dui fringilla aliquam</p>
+			  			</td>
+		  			</tr>
+		  			<tr class="skills-row animate-me zoomIn">
+			  			<td class="skill">
+				  			<h4><i class="fa fa-thumbs-up"></i>Expertise</h4>
+				  			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat justo nisl. 
+				  			Phasellus ac nibh ut dui fringilla aliquam</p>
+			  			</td>
+			  			<td class="skill animate-me zoomIn">
+				  			<h4><i class="fa fa-mobile"></i>Applications</h4>
+				  			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat justo nisl.</p>
+			  			</td>
+			  			<td class="skill animate-me zoomIn">
+				  			<h4><i class="fa fa-cubes"></i>3D Printing</h4>
+				  			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat justo nisl. 
+				  			Phasellus ac nibh ut dui fringilla aliquam</p>
+			  			</td>
+		  			</tr>
+	  			</table>
+	  			<div class="skill-button center animate-me fadeInUp">
+	  				<a href="skills.html" class="btn btn-default"><i class="fa fa-trophy"></i> Check Out our skills</a>
+	  			</div>
+	  			
+	  			<!--PORTFOLIO -->
+	  			<h2 class="with-breaker animate-me fadeInUp">
+		  			Our Latest Work <span>Yep, and we're proud !</span>
+	  			</h2>
+	  		</div>
+	  		<div id="portfolio-container" class="with-separation-bottom with-separation-top">
+	  			<!--PORTFOLIO ITEM -->
+	  			<figure class="portfolio-item effect-sadie">
+			        <img src="images/portfolio/01.jpg" alt="Image portfolio"/>
+			        <figcaption>
+			            <h4>Project Name</h4>
+			            <p>Short description</p>
+			            <a href="portfolio-single.html">View more</a>
+			        </figcaption>         
+			    </figure>
+			    <!--PORTFOLIO ITEM -->
+	  			<figure class="portfolio-item effect-sadie">
+			        <img src="images/portfolio/02.jpg" alt="Image portfolio"/>
+			        <figcaption>
+			            <h4>Project Name</h4>
+			            <p>Short description</p>
+			            <a href="portfolio-single.html">View more</a>
+			        </figcaption>         
+			    </figure>
+			    <!--PORTFOLIO ITEM -->
+	  			<figure class="portfolio-item effect-sadie">
+			        <img src="images/portfolio/03.jpg" alt="Image portfolio"/>
+			        <figcaption>
+			            <h4>Project Name</h4>
+			            <p>Short description</p>
+			            <a href="portfolio-single.html">View more</a>
+			        </figcaption>         
+			    </figure>
+			    <!--PORTFOLIO ITEM -->
+	  			<figure class="portfolio-item effect-sadie">
+			        <img src="images/portfolio/04.jpg" alt="Image portfolio"/>
+			        <figcaption>
+			            <h4>Project Name</h4>
+			            <p>Short description</p>
+			            <a href="portfolio-single.html">View more</a>
+			        </figcaption>         
+			    </figure>
+			    <!--PORTFOLIO ITEM -->
+	  			<figure class="portfolio-item effect-sadie">
+			        <img src="images/portfolio/05.jpg" alt="Image portfolio"/>
+			        <figcaption>
+			            <h4>Project Name</h4>
+			            <p>Short description</p>
+			            <a href="portfolio-single.html">View more</a>
+			        </figcaption>         
+			    </figure>
+			    <!--PORTFOLIO ITEM -->
+	  			<figure class="portfolio-item effect-sadie">
+			        <img src="images/portfolio/06.jpg" alt="Image portfolio"/>
+			        <figcaption>
+			            <h4>Project Name</h4>
+			            <p>Short description</p>
+			            <a href="portfolio-single.html">View more</a>
+			        </figcaption>         
+			    </figure>
+	  		</div>
+	  		<div class="portfolio-button center animate-me zoomIn">
+		  		<a href="portfolio.html" class="btn btn-default"><i class="fa fa-suitcase"></i> More Stuff on our Portfolio</a>
+	  		</div>
+	  		<!-- CUSTOM CONTAINER -->
+	  		<section class="custom-section-container with-separation-bottom with-separation-top">
+		  		<div class="container">
+			  		<div class="custom-section-text">
+				  		<h2 class="animate-me fadeInLeft">Become an Affiliate</h2>
+				  		<p class="animate-me fadeInLeft">Just a custom box, relax ;) You can add any kind of content and change the icons, buttons, title, background etc...</p>
+				  		
+			  		</div>
+			  		<div class="custom-section-buttons">
+				  		<a href="page.html" class="btn btn-default animate-me fadeInRight"><i class="fa fa-book"></i> Learn More</a>
+				  		<a href="contact.html" class="btn btn-default animate-me fadeInRight"><i class="fa fa-paper-plane"></i> Ask your question</a>
+			  		</div>
+		  		</div>
+	  		</section>
+	  		<div class="container">
+	  			<!-- COMMENTS SHORTCODEs -->
+	  			<h2 class="with-breaker animate-me fadeInUp">
+		  			Latest Posts From our blog<span>All about our passion.</span>
+	  			</h2>
+	  		</div>
+	  		<div id="blog-container" class="with-separation-bottom with-separation-top animate-me fadeIn">
+	  			<div class="flexslider">
+		  			<ul class="slides">
+			  			<!-- POST -->
+			  			<li class="blog-post">
+			  				<!-- THUMBNAIL IMAGE -->
+			  				<div class="blog-thumbnail">
+				  				<a href="blog-single.html">
+					  				<img src="images/blog/01.png" alt="Blog Header Image">
+				  				</a>
+				  			</div>
+				  			<!-- POST CONTENT -->
+	  						<div class="blog-content">
+				  				<a href="blog-single.html" class="blog-post-title"><h2>Post Name 1</h2></a>
+				  				<ul class="post-metadatas list-inline">
+					  				<li><i class="fa fa-clock-o"></i> November 25, 2015</li>
+					  				<li><i class="fa fa-comments-o"></i> <a href="blog-single.html">4 comments</a></li>
+					  			</ul>
+				  				<p class="blog-sum-up">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi venenatis vulputate elit eu malesuada. Nullam magna quam, maximus...</p>
+				  				<div class="blog-button">
+					  				<a href="blog-single.html" class="btn btn-default"><i class="fa fa-arrow-right"></i> Read More</a>
+					  			</div>
+				  			</div>
+			  			</li>
+			  			<!-- POST -->
+			  			<li class="blog-post">
+			  				<!-- THUMBNAIL IMAGE -->
+			  				<div class="blog-thumbnail">
+				  				<a href="blog-single.html">
+					  				<img src="images/blog/02.png" alt="Blog Header Image">
+				  				</a>
+				  			</div>
+				  			<!-- POST CONTENT -->
+	  						<div class="blog-content">
+				  				<a href="blog-single.html" class="blog-post-title"><h2>Post Name 2</h2></a>
+				  				<ul class="post-metadatas list-inline">
+					  				<li><i class="fa fa-clock-o"></i> November 20, 2015</li>
+					  				<li><i class="fa fa-comments-o"></i> <a href="blog-single.html">32 comments</a></li>
+					  			</ul>
+				  				<p class="blog-sum-up">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi venenatis vulputate elit eu malesuada. Nullam magna quam, maximus...</p>
+				  				<div class="blog-button">
+					  				<a href="blog-single.html" class="btn btn-default"><i class="fa fa-arrow-right"></i> Read More</a>
+					  			</div>
+				  			</div>
+			  			</li>
+			  			<!-- POST -->
+			  			<li class="blog-post">
+			  				<!-- THUMBNAIL IMAGE -->
+			  				<div class="blog-thumbnail">
+				  				<a href="blog-single.html">
+					  				<img src="images/blog/03.png" alt="Blog Header Image">
+				  				</a>
+				  			</div>
+				  			<!-- POST CONTENT -->
+	  						<div class="blog-content">
+				  				<a href="blog-single.html" class="blog-post-title"><h2>Post Name 3</h2></a>
+				  				<ul class="post-metadatas list-inline">
+					  				<li><i class="fa fa-clock-o"></i> November 12, 2015</li>
+					  				<li><i class="fa fa-comments-o"></i> <a href="blog-single.html">3 comments</a></li>
+					  			</ul>
+				  				<p class="blog-sum-up">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi venenatis vulputate elit eu malesuada. Nullam magna quam, maximus...</p>
+				  				<div class="blog-button">
+					  				<a href="blog-single.html" class="btn btn-default"><i class="fa fa-arrow-right"></i> Read More</a>
+					  			</div>
+				  			</div>
+			  			</li>
+			  			<!-- POST -->
+			  			<li class="blog-post">
+			  				<!-- THUMBNAIL IMAGE -->
+			  				<div class="blog-thumbnail">
+				  				<a href="blog-single.html">
+					  				<img src="images/blog/04.png" alt="Blog Header Image">
+				  				</a>
+				  			</div>
+				  			<!-- POST CONTENT -->
+	  						<div class="blog-content">
+				  				<a href="blog-single.html" class="blog-post-title"><h2>Post Name 4</h2></a>
+				  				<ul class="post-metadatas list-inline">
+					  				<li><i class="fa fa-clock-o"></i> October 19, 2015</li>
+					  				<li><i class="fa fa-comments-o"></i> <a href="blog-single.html">1 comment</a></li>
+					  			</ul>
+				  				<p class="blog-sum-up">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi venenatis vulputate elit eu malesuada. Nullam magna quam, maximus...</p>
+				  				<div class="blog-button">
+					  				<a href="blog-single.html" class="btn btn-default"><i class="fa fa-arrow-right"></i> Read More</a>
+					  			</div>
+				  			</div>
+			  			</li>
+			  			<!-- POST -->
+			  			<li class="blog-post">
+			  				<!-- THUMBNAIL IMAGE -->
+			  				<div class="blog-thumbnail">
+				  				<a href="blog-single.html">
+					  				<i class="fa fa-newspaper-o"></i>
+				  				</a>
+				  			</div>
+				  			<!-- POST CONTENT -->
+	  						<div class="blog-content">
+				  				<a href="blog-single.html" class="blog-post-title"><h2>Post Name 5</h2></a>
+				  				<ul class="post-metadatas list-inline">
+					  				<li><i class="fa fa-clock-o"></i> October 8, 2015</li>
+					  				<li><i class="fa fa-comments-o"></i> <a href="blog-single.html">32 comments</a></li>
+					  			</ul>
+				  				<p class="blog-sum-up">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi venenatis vulputate elit eu malesuada. Nullam magna quam, maximus...</p>
+				  				<div class="blog-button">
+					  				<a href="blog-single.html" class="btn btn-default"><i class="fa fa-arrow-right"></i> Read More</a>
+					  			</div>
+				  			</div>
+			  			</li>
+		  			</ul>
+	  			</div>
+	  		</div>
+	  		<div class="blog-button center animate-me zoomIn">
+		  		<a href="blog.html" class="btn btn-default"><i class="fa fa-comments-o"></i> Our Blog</a>
+	  		</div>
+
+	  		<div class="container">
+	  			<!-- PARTNERS -->
+	  			<h2 class="with-breaker animate-me fadeInUp">
+		  			Our partners<span>Thanks to all</span>
+	  			</h2>
+	  			<div id="partners-slider" class="flexslider">
+		  			<ul class="slides">
+		  				<li class="partners-slide">
+		  					<a href="#"><img src="images/partners/01.jpg" alt="Partner Logo"></a>
+		  					<a href="#"><img src="images/partners/02.jpg" alt="Partner Logo"></a>
+		  				</li>
+		  				<li class="partners-slide">
+		  					<a href="#"><img src="images/partners/03.jpg" alt="Partner Logo"></a>
+		  					<a href="#"><img src="images/partners/04.jpg" alt="Partner Logo"></a>
+		  				</li>
+		  				<li class="partners-slide">
+		  					<a href="#"><img src="images/partners/05.jpg" alt="Partner Logo"></a>
+		  					<a href="#"><img src="images/partners/06.jpg" alt="Partner Logo"></a>
+		  				</li>
+		  				<li class="partners-slide">
+		  					<a href="#"><img src="images/partners/07.jpg" alt="Partner Logo"></a>
+		  					<a href="#"><img src="images/partners/08.jpg" alt="Partner Logo"></a>
+		  				</li>
+		  				<li class="partners-slide">
+		  					<a href="#"><img src="images/partners/09.jpg" alt="Partner Logo"></a>
+		  					<a href="#"><img src="images/partners/10.jpg" alt="Partner Logo"></a>
+		  				</li>
+		  			</ul>
+			  	</div>
+	  			<!-- GET IN TOUCH  -->
+	  			<h2 class="with-breaker animate-me fadeInUp">
+		  			Get In Touch<span>What are you waiting for ?</span>
+	  			</h2>
+	  		</div>
+	  		<!-- CUSTOM CONTAINER -->
+	  		<section class="contact-container with-separation-bottom with-separation-top">
+		  		<div class="contact-boxes">
+		  			<div class="contact-box contact-box-email animate-me zoomIn">
+		  				<h2>Email</h2>
+		  				<p>Write us a few lines about your ideas, your projects and let's advance together.</p>
+		  				<a href="contact.html" class="btn btn-default"><i class="fa fa-envelope"></i> Email Us</a>
+		  			</div>
+		  			<div class="contact-box contact-box-twitter animate-me zoomIn">
+		  				<h2>Twitter</h2>
+		  				<p>Follow us to interact, chat and share our ideas on Twitter.</p>
+		  				<a href="#" class="btn btn-default"><i class="fa fa-twitter"></i> Follow us</a>
+		  			</div>
+		  			<div class="contact-box contact-box-facebook animate-me zoomIn">
+		  				<h2>Facebook</h2>
+		  				<p>Like our page and send us message directly from our brand new Facebook page.</p>
+		  				<a href="#" class="btn btn-default"><i class="fa fa-facebook"></i> Like Our Page</a>
+		  			</div>
+		  			<div class="contact-box contact-box-skype animate-me zoomIn">
+		  				<h2>Skype</h2>
+		  				<p>Call us or chat with us on Skype whenever you like, do not hesitate.</p>
+		  				<!-- GET THE LINL -> http://www.skype.com/en/features/skype-buttons/create-skype-buttons/--> 
+		  				<a href="#" class="btn btn-default"><i class="fa fa-skype"></i> Call Us</a>
+		  			</div>
+		  		</div>
+	  		</section>
+	  	</div>
+	  	<!-- END MAIN CONTAINER -->
+	  	
+	  	<!-- START FOOTER -->
+	  	<footer id="footer" class="with-separation-top">
+		  	<aside id="widgets" class="container">
+		  		<div class="row">
+		  			<!-- WIDGET -->
+			  		<div class="col-md-4 widget animate-me fadeInLeft">
+			  			<img src="images/logo-footer.png" id="footer-logo" alt="Logo footer">
+			  			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ullamcorper felis pulvinar neque pharetra auctor. Donec vel erat pretium, interdum justo sed, mollis tortor.</p>
+			  			<a href="about.html" class="btn btn-default"><i class="fa fa-users"></i> Read more</a>
+			  		</div>
+		  			<!-- WIDGET -->
+			  		<div class="col-md-4 widget animate-me fadeInUp">
+				  		<h4>Navigation</h4>
+				  		<ul>
+					  		<li><a href="index.html">Home</a></li>
+					  		<li><a href="portfolio.html">Portfolio</a></li>
+					  		<li><a href="blog.html">Blog</a></li>
+					  		<li><a href="about.html">About Us</a></li>
+				  		</ul>
+			  		</div>
+		  			<!-- WIDGET -->
+			  		<div class="col-md-4 widget animate-me fadeInRight">
+			  			<h4>Contact</h4>
+			  			<ul class="contact-informations">
+				  			<li class="contact-address">666 Avenue des Champs-Élysées. 75000 Paris</li>
+				  			<li class="contact-phone">(+33)0 11 22 33 44</li>
+			  			</ul>
+			  			<ul class="widget-social">
+			  				<!-- ALL ICONS AVAILABLE ->http://fortawesome.github.io/Font-Awesome/icons/#brand-->
+				  			<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+				  			<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+				  			<li><a href="#"><i class="fa fa-skype"></i></a></li>
+				  			<li><a href="#"><i class="fa fa-rss"></i></a></li>
+			  			</ul>
+			  			<a href="contact.html" class="btn btn-default"><i class="fa fa-envelope-o"></i> Contact Form</a>
+			  		</div>
+		  		</div>
+		  	</aside>
+		  	<div id="copyright" class="animate-me fadeInUp">
+		  		<div class="container">
+			  		<p>&#169; 2014 All Rights Reserved. Powered by <a href="index.html">Starry</a>.</p>
+			  		<ul id="footer-navigation">
+				  		<li><a href="page.html">Terms of Use</a></li>
+				  		<li><a href="page.html">Privacy Policy</a></li>
+				  		<li><a href="contact.html">Contact Us</a></li>
+			  		</ul>
+		  		</div>
+		  	</div>
+	  	</footer>
+	  	<!-- END FOOTER -->
+	  	
+	  	<!-- SCROLL TOP -->
+	  	<a href="#" id="scroll-top" class="fadeInRight animate-me"><i class="fa fa-angle-double-up"></i></a>
+  	</div>
+
+    <!-- SCRIPTS -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/plugins.js"></script>
+	<script type="text/javascript">
+		/*TEXT TICKER (ONLY FOR HOME PAGE)*/
+		$('#ticker-text').vTicker('init', {
+			speed: 300, 
+		    pause: 2000
+	    });
+	</script>	
+    <script src="js/custom.js"></script>
+  </body>
+  <!-- END BODY -->
+</html>
