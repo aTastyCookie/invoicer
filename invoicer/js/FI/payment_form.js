@@ -1,1 +1,5 @@
-$(function(){$("#paid_at").inputmask(datepickerFormat)});
+$(function() {
+
+	$("#paid_at").inputmask(datepickerFormat);
+
+});

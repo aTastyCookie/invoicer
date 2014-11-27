@@ -1,1 +1,54 @@
-$(function(){var b=new Bloodhound({datumTokenizer:function(e){return Bloodhound.tokenizers.whitespace(e.num)},queryTokenizer:Bloodhound.tokenizers.whitespace,remote:itemLookupRoute+"?query=%QUERY"});b.initialize();var a={displayKey:"item_name",minLength:3,source:b.ttAdapter()};$(".item-lookup").typeahead(null,a);c();function d(){var e=$("#new-item").clone().appendTo("#item-table");e.removeAttr("id").addClass("item").show();e.find('input[name="item_name"]').addClass("item-lookup").typeahead(null,a);c();iCheck()}function c(){$(".item-lookup").on("typeahead:selected typeahead:autocompleted",function(g,f,e){var h=$(this).closest("tr");h.find('textarea[name="item_description"]').val(f.item_description);h.find('input[name="item_quantity"]').val("1");h.find('input[name="item_price"]').val(f.item_price)})}$("#btn-add-item").click(function(){d()});if(!itemCount){d()}});
+$(function() {
+
+    // Set up the item lookups data source
+    var itemLookups = new Bloodhound({
+        datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.num); },
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        remote: itemLookupRoute + '?query=%QUERY'
+    });
+
+    // Initialize the item lookups data source
+    itemLookups.initialize();
+
+    // Define the typeahead settings
+    var settings = {
+        displayKey: 'item_name',
+        minLength: 3,
+        source: itemLookups.ttAdapter()
+    };
+
+    // Make all existing items typeaheads
+    $('.item-lookup').typeahead(null, settings);
+
+    // All existing items should populate proper fields
+    typeaheadTrigger();
+
+    // Clones a new item row
+    function cloneItemRow() {
+        var row = $('#new-item').clone().appendTo('#item-table');
+        row.removeAttr('id').addClass('item').show();
+        row.find('input[name="item_name"]').addClass('item-lookup').typeahead(null, settings);
+        typeaheadTrigger();
+        iCheck();           
+    }
+
+    // Sets up .item-lookup to populate proper fields when item is selected
+    function typeaheadTrigger() {
+        $('.item-lookup').on('typeahead:selected typeahead:autocompleted', function(obj, item, name) {
+            var row = $(this).closest('tr');
+            row.find('textarea[name="item_description"]').val(item.item_description);
+            row.find('input[name="item_quantity"]').val('1');
+            row.find('input[name="item_price"]').val(item.item_price);
+        });
+    }
+
+    $('#btn-add-item').click(function() {
+        cloneItemRow();
+    });
+
+    // Add a new item row if no items currently exist
+    if (!itemCount) {
+        cloneItemRow();
+    }
+
+});

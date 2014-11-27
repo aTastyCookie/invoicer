@@ -6,4 +6,501 @@
  * (c) 2013 Damir Sultanov, http://fronteed.com
  * MIT Licensed
  */
-(function(c){var g="iCheck",e=g+"-helper",q="checkbox",a="radio",s="checked",x="un"+s,i="disabled",h="determinate",b="in"+h,r="update",t="type",d="click",w="touchbegin.i touchend.i",p="addClass",f="removeClass",l="trigger",z="label",o="cursor",n=/ipad|iphone|ipod|android|blackberry|windows phone|opera mini|silk/i.test(navigator.userAgent);c.fn[g]=function(N,E){var J='input[type="'+q+'"], input[type="'+a+'"]',L=c(),B=function(O){O.each(function(){var P=c(this);if(P.is(J)){L=L.add(P)}else{L=L.add(P.find(J))}})};if(/^(check|uncheck|toggle|indeterminate|determinate|disable|enable|update|destroy)$/i.test(N)){N=N.toLowerCase();B(this);return L.each(function(){var O=c(this);if(N=="destroy"){u(O,"ifDestroyed")}else{v(O,true,N)}if(c.isFunction(E)){E()}})}else{if(typeof N=="object"||!N){var F=c.extend({checkedClass:s,disabledClass:i,indeterminateClass:b,labelHover:true,aria:false},N),G=F.handle,I=F.hoverClass||"hover",M=F.focusClass||"focus",K=F.activeClass||"active",C=!!F.labelHover,H=F.labelHoverClass||"hover",D=(""+F.increaseArea).replace("%","")|0;if(G==q||G==a){J='input[type="'+G+'"]'}if(D<-50){D=-50}B(this);return L.each(function(){var Z=c(this);u(Z);var R=this,O=R.id,S=-D+"%",aa=100+(D*2)+"%",T={position:"absolute",top:S,left:S,display:"block",width:aa,height:aa,margin:0,padding:0,background:"#fff",border:0,opacity:0},U=n?{position:"absolute",visibility:"hidden"}:D?T:{position:"absolute",opacity:0},V=R[t]==q?F.checkboxClass||"i"+q:F.radioClass||"i"+a,X=c(z+'[for="'+O+'"]').add(Z.closest(z)),W=!!F.aria,Q=g+"-"+Math.random().toString(36).replace("0.",""),Y='<div class="'+V+'" '+(W?'role="'+R[t]+'" ':""),P;if(X.length&&W){X.each(function(){Y+='aria-labelledby="';if(this.id){Y+=this.id}else{this.id=Q;Y+=Q}Y+='"'})}Y=Z.wrap(Y+"/>")[l]("ifCreated").parent().append(F.insert);P=c('<ins class="'+e+'"/>').css(T).appendTo(Y);Z.data(g,{o:F,s:Z.attr("style")}).css(U);!!F.inheritClass&&Y[p](R.className||"");!!F.inheritID&&O&&Y.attr("id",g+"-"+O);Y.css("position")=="static"&&Y.css("position","relative");v(Z,true,r);if(X.length){X.on(d+".i mouseover.i mouseout.i "+w,function(ad){var ab=ad[t],ac=c(this);if(!R[i]){if(ab==d){if(c(ad.target).is("a")){return}v(Z,false,true)}else{if(C){if(/ut|nd/.test(ab)){Y[f](I);ac[f](H)}else{Y[p](I);ac[p](H)}}}if(n){ad.stopPropagation()}else{return false}}})}Z.on(d+".i focus.i blur.i keyup.i keydown.i keypress.i",function(ad){var ac=ad[t],ab=ad.keyCode;if(ac==d){return false}else{if(ac=="keydown"&&ab==32){if(!(R[t]==a&&R[s])){if(R[s]){y(Z,s)}else{k(Z,s)}}return false}else{if(ac=="keyup"&&R[t]==a){!R[s]&&k(Z,s)}else{if(/us|ur/.test(ac)){Y[ac=="blur"?f:p](M)}}}}});P.on(d+" mousedown mouseup mouseover mouseout "+w,function(ad){var ac=ad[t],ab=/wn|up/.test(ac)?K:I;if(!R[i]){if(ac==d){v(Z,false,true)}else{if(/wn|er|in/.test(ac)){Y[p](ab)}else{Y[f](ab+" "+K)}if(X.length&&C&&ab==I){X[/ut|nd/.test(ac)?f:p](H)}}if(n){ad.stopPropagation()}else{return false}}})})}else{return this}}};function v(B,G,F){var C=B[0],D=/er/.test(F)?b:/bl/.test(F)?i:s,E=F==r?{checked:C[s],disabled:C[i],indeterminate:B.attr(b)=="true"||B.attr(h)=="false"}:C[D];if(/^(ch|di|in)/.test(F)&&!E){k(B,D)}else{if(/^(un|en|de)/.test(F)&&E){y(B,D)}else{if(F==r){for(var D in E){if(E[D]){k(B,D,true)}else{y(B,D,true)}}}else{if(!G||F=="toggle"){if(!G){B[l]("ifClicked")}if(E){if(C[t]!==a){y(B,D)}}else{k(B,D)}}}}}}function k(K,D,B){var G=K[0],M=K.parent(),L=D==s,C=D==b,H=D==i,N=C?h:L?x:"enabled",F=m(K,N+j(G[t])),J=m(K,D+j(G[t]));if(G[D]!==true){if(!B&&D==s&&G[t]==a&&G.name){var E=K.closest("form"),I='input[name="'+G.name+'"]';I=E.length?E.find(I):c(I);I.each(function(){if(this!==G&&c(this).data(g)){y(c(this),D)}})}if(C){G[D]=true;if(G[s]){y(K,s,"force")}}else{if(!B){G[D]=true}if(L&&G[b]){y(K,b,false)}}A(K,L,D,B)}if(G[i]&&!!m(K,o,true)){M.find("."+e).css(o,"default")}M[p](J||m(K,D)||"");H?M.attr("aria-disabled","true"):M.attr("aria-checked",C?"mixed":"true");M[f](F||m(K,N)||"")}function y(I,D,B){var F=I[0],K=I.parent(),J=D==s,C=D==b,G=D==i,L=C?h:J?x:"enabled",E=m(I,L+j(F[t])),H=m(I,D+j(F[t]));if(F[D]!==false){if(C||!B||B=="force"){F[D]=false}A(I,J,L,B)}if(!F[i]&&!!m(I,o,true)){K.find("."+e).css(o,"pointer")}K[f](H||m(I,D)||"");G?K.attr("aria-disabled","false"):K.attr("aria-checked","false");K[p](E||m(I,L)||"")}function u(B,C){if(B.data(g)){B.parent().html(B.attr("style",B.data(g).s||""));if(C){B[l](C)}B.off(".i").unwrap();c(z+'[for="'+B[0].id+'"]').add(B.closest(z)).off(".i")}}function m(B,D,C){if(B.data(g)){return B.data(g).o[D+(C?"":"Class")]}}function j(B){return B.charAt(0).toUpperCase()+B.slice(1)}function A(C,D,E,B){if(!B){if(D){C[l]("ifToggled")}C[l]("ifChanged")[l]("if"+j(E))}}})(window.jQuery||window.Zepto);
+
+(function($) {
+
+  // Cached vars
+  var _iCheck = 'iCheck',
+    _iCheckHelper = _iCheck + '-helper',
+    _checkbox = 'checkbox',
+    _radio = 'radio',
+    _checked = 'checked',
+    _unchecked = 'un' + _checked,
+    _disabled = 'disabled',
+    _determinate = 'determinate',
+    _indeterminate = 'in' + _determinate,
+    _update = 'update',
+    _type = 'type',
+    _click = 'click',
+    _touch = 'touchbegin.i touchend.i',
+    _add = 'addClass',
+    _remove = 'removeClass',
+    _callback = 'trigger',
+    _label = 'label',
+    _cursor = 'cursor',
+    _mobile = /ipad|iphone|ipod|android|blackberry|windows phone|opera mini|silk/i.test(navigator.userAgent);
+
+  // Plugin init
+  $.fn[_iCheck] = function(options, fire) {
+
+    // Walker
+    var handle = 'input[type="' + _checkbox + '"], input[type="' + _radio + '"]',
+      stack = $(),
+      walker = function(object) {
+        object.each(function() {
+          var self = $(this);
+
+          if (self.is(handle)) {
+            stack = stack.add(self);
+          } else {
+            stack = stack.add(self.find(handle));
+          };
+        });
+      };
+
+    // Check if we should operate with some method
+    if (/^(check|uncheck|toggle|indeterminate|determinate|disable|enable|update|destroy)$/i.test(options)) {
+
+      // Normalize method's name
+      options = options.toLowerCase();
+
+      // Find checkboxes and radio buttons
+      walker(this);
+
+      return stack.each(function() {
+        var self = $(this);
+
+        if (options == 'destroy') {
+          tidy(self, 'ifDestroyed');
+        } else {
+          operate(self, true, options);
+        };
+
+        // Fire method's callback
+        if ($.isFunction(fire)) {
+          fire();
+        };
+      });
+
+    // Customization
+    } else if (typeof options == 'object' || !options) {
+
+      // Check if any options were passed
+      var settings = $.extend({
+          checkedClass: _checked,
+          disabledClass: _disabled,
+          indeterminateClass: _indeterminate,
+          labelHover: true,
+          aria: false
+        }, options),
+
+        selector = settings.handle,
+        hoverClass = settings.hoverClass || 'hover',
+        focusClass = settings.focusClass || 'focus',
+        activeClass = settings.activeClass || 'active',
+        labelHover = !!settings.labelHover,
+        labelHoverClass = settings.labelHoverClass || 'hover',
+
+        // Setup clickable area
+        area = ('' + settings.increaseArea).replace('%', '') | 0;
+
+      // Selector limit
+      if (selector == _checkbox || selector == _radio) {
+        handle = 'input[type="' + selector + '"]';
+      };
+
+      // Clickable area limit
+      if (area < -50) {
+        area = -50;
+      };
+
+      // Walk around the selector
+      walker(this);
+
+      return stack.each(function() {
+        var self = $(this);
+
+        // If already customized
+        tidy(self);
+
+        var node = this,
+          id = node.id,
+
+          // Layer styles
+          offset = -area + '%',
+          size = 100 + (area * 2) + '%',
+          layer = {
+            position: 'absolute',
+            top: offset,
+            left: offset,
+            display: 'block',
+            width: size,
+            height: size,
+            margin: 0,
+            padding: 0,
+            background: '#fff',
+            border: 0,
+            opacity: 0
+          },
+
+          // Choose how to hide input
+          hide = _mobile ? {
+            position: 'absolute',
+            visibility: 'hidden'
+          } : area ? layer : {
+            position: 'absolute',
+            opacity: 0
+          },
+
+          // Get proper class
+          className = node[_type] == _checkbox ? settings.checkboxClass || 'i' + _checkbox : settings.radioClass || 'i' + _radio,
+
+          // Find assigned labels
+          label = $(_label + '[for="' + id + '"]').add(self.closest(_label)),
+
+          // Check ARIA option
+          aria = !!settings.aria,
+
+          // Set ARIA placeholder
+          ariaID = _iCheck + '-' + Math.random().toString(36).replace('0.', ''),
+
+          // Parent & helper
+          parent = '<div class="' + className + '" ' + (aria ? 'role="' + node[_type] + '" ' : ''),
+          helper;
+
+        // Set ARIA "labelledby"
+        if (label.length && aria) {
+          label.each(function() {
+            parent += 'aria-labelledby="';
+
+            if (this.id) {
+              parent += this.id;
+            } else {
+              this.id = ariaID;
+              parent += ariaID;
+            }
+
+            parent += '"';
+          });
+        };
+
+        // Wrap input
+        parent = self.wrap(parent + '/>')[_callback]('ifCreated').parent().append(settings.insert);
+
+        // Layer addition
+        helper = $('<ins class="' + _iCheckHelper + '"/>').css(layer).appendTo(parent);
+
+        // Finalize customization
+        self.data(_iCheck, {o: settings, s: self.attr('style')}).css(hide);
+        !!settings.inheritClass && parent[_add](node.className || '');
+        !!settings.inheritID && id && parent.attr('id', _iCheck + '-' + id);
+        parent.css('position') == 'static' && parent.css('position', 'relative');
+        operate(self, true, _update);
+
+        // Label events
+        if (label.length) {
+          label.on(_click + '.i mouseover.i mouseout.i ' + _touch, function(event) {
+            var type = event[_type],
+              item = $(this);
+
+            // Do nothing if input is disabled
+            if (!node[_disabled]) {
+
+              // Click
+              if (type == _click) {
+                if ($(event.target).is('a')) {
+                  return;
+                }
+                operate(self, false, true);
+
+              // Hover state
+              } else if (labelHover) {
+
+                // mouseout|touchend
+                if (/ut|nd/.test(type)) {
+                  parent[_remove](hoverClass);
+                  item[_remove](labelHoverClass);
+                } else {
+                  parent[_add](hoverClass);
+                  item[_add](labelHoverClass);
+                };
+              };
+
+              if (_mobile) {
+                event.stopPropagation();
+              } else {
+                return false;
+              };
+            };
+          });
+        };
+
+        // Input events
+        self.on(_click + '.i focus.i blur.i keyup.i keydown.i keypress.i', function(event) {
+          var type = event[_type],
+            key = event.keyCode;
+
+          // Click
+          if (type == _click) {
+            return false;
+
+          // Keydown
+          } else if (type == 'keydown' && key == 32) {
+            if (!(node[_type] == _radio && node[_checked])) {
+              if (node[_checked]) {
+                off(self, _checked);
+              } else {
+                on(self, _checked);
+              };
+            };
+
+            return false;
+
+          // Keyup
+          } else if (type == 'keyup' && node[_type] == _radio) {
+            !node[_checked] && on(self, _checked);
+
+          // Focus/blur
+          } else if (/us|ur/.test(type)) {
+            parent[type == 'blur' ? _remove : _add](focusClass);
+          };
+        });
+
+        // Helper events
+        helper.on(_click + ' mousedown mouseup mouseover mouseout ' + _touch, function(event) {
+          var type = event[_type],
+
+            // mousedown|mouseup
+            toggle = /wn|up/.test(type) ? activeClass : hoverClass;
+
+          // Do nothing if input is disabled
+          if (!node[_disabled]) {
+
+            // Click
+            if (type == _click) {
+              operate(self, false, true);
+
+            // Active and hover states
+            } else {
+
+              // State is on
+              if (/wn|er|in/.test(type)) {
+
+                // mousedown|mouseover|touchbegin
+                parent[_add](toggle);
+
+              // State is off
+              } else {
+                parent[_remove](toggle + ' ' + activeClass);
+              };
+
+              // Label hover
+              if (label.length && labelHover && toggle == hoverClass) {
+
+                // mouseout|touchend
+                label[/ut|nd/.test(type) ? _remove : _add](labelHoverClass);
+              };
+            };
+
+            if (_mobile) {
+              event.stopPropagation();
+            } else {
+              return false;
+            };
+          };
+        });
+      });
+    } else {
+      return this;
+    };
+  };
+
+  // Do something with inputs
+  function operate(input, direct, method) {
+    var node = input[0],
+      state = /er/.test(method) ? _indeterminate : /bl/.test(method) ? _disabled : _checked,
+      active = method == _update ? {
+        checked: node[_checked],
+        disabled: node[_disabled],
+        indeterminate: input.attr(_indeterminate) == 'true' || input.attr(_determinate) == 'false'
+      } : node[state];
+
+    // Check, disable or indeterminate
+    if (/^(ch|di|in)/.test(method) && !active) {
+      on(input, state);
+
+    // Uncheck, enable or determinate
+    } else if (/^(un|en|de)/.test(method) && active) {
+      off(input, state);
+
+    // Update
+    } else if (method == _update) {
+
+      // Handle states
+      for (var state in active) {
+        if (active[state]) {
+          on(input, state, true);
+        } else {
+          off(input, state, true);
+        };
+      };
+
+    } else if (!direct || method == 'toggle') {
+
+      // Helper or label was clicked
+      if (!direct) {
+        input[_callback]('ifClicked');
+      };
+
+      // Toggle checked state
+      if (active) {
+        if (node[_type] !== _radio) {
+          off(input, state);
+        };
+      } else {
+        on(input, state);
+      };
+    };
+  };
+
+  // Add checked, disabled or indeterminate state
+  function on(input, state, keep) {
+    var node = input[0],
+      parent = input.parent(),
+      checked = state == _checked,
+      indeterminate = state == _indeterminate,
+      disabled = state == _disabled,
+      callback = indeterminate ? _determinate : checked ? _unchecked : 'enabled',
+      regular = option(input, callback + capitalize(node[_type])),
+      specific = option(input, state + capitalize(node[_type]));
+
+    // Prevent unnecessary actions
+    if (node[state] !== true) {
+
+      // Toggle assigned radio buttons
+      if (!keep && state == _checked && node[_type] == _radio && node.name) {
+        var form = input.closest('form'),
+          inputs = 'input[name="' + node.name + '"]';
+
+        inputs = form.length ? form.find(inputs) : $(inputs);
+
+        inputs.each(function() {
+          if (this !== node && $(this).data(_iCheck)) {
+            off($(this), state);
+          };
+        });
+      };
+
+      // Indeterminate state
+      if (indeterminate) {
+
+        // Add indeterminate state
+        node[state] = true;
+
+        // Remove checked state
+        if (node[_checked]) {
+          off(input, _checked, 'force');
+        };
+
+      // Checked or disabled state
+      } else {
+
+        // Add checked or disabled state
+        if (!keep) {
+          node[state] = true;
+        };
+
+        // Remove indeterminate state
+        if (checked && node[_indeterminate]) {
+          off(input, _indeterminate, false);
+        };
+      };
+
+      // Trigger callbacks
+      callbacks(input, checked, state, keep);
+    };
+
+    // Add proper cursor
+    if (node[_disabled] && !!option(input, _cursor, true)) {
+      parent.find('.' + _iCheckHelper).css(_cursor, 'default');
+    };
+
+    // Add state class
+    parent[_add](specific || option(input, state) || '');
+
+    // Set ARIA attribute
+    disabled ? parent.attr('aria-disabled', 'true') : parent.attr('aria-checked', indeterminate ? 'mixed' : 'true');
+
+    // Remove regular state class
+    parent[_remove](regular || option(input, callback) || '');
+  };
+
+  // Remove checked, disabled or indeterminate state
+  function off(input, state, keep) {
+    var node = input[0],
+      parent = input.parent(),
+      checked = state == _checked,
+      indeterminate = state == _indeterminate,
+      disabled = state == _disabled,
+      callback = indeterminate ? _determinate : checked ? _unchecked : 'enabled',
+      regular = option(input, callback + capitalize(node[_type])),
+      specific = option(input, state + capitalize(node[_type]));
+
+    // Prevent unnecessary actions
+    if (node[state] !== false) {
+
+      // Toggle state
+      if (indeterminate || !keep || keep == 'force') {
+        node[state] = false;
+      };
+
+      // Trigger callbacks
+      callbacks(input, checked, callback, keep);
+    };
+
+    // Add proper cursor
+    if (!node[_disabled] && !!option(input, _cursor, true)) {
+      parent.find('.' + _iCheckHelper).css(_cursor, 'pointer');
+    };
+
+    // Remove state class
+    parent[_remove](specific || option(input, state) || '');
+
+    // Set ARIA attribute
+    disabled ? parent.attr('aria-disabled', 'false') : parent.attr('aria-checked', 'false');
+
+    // Add regular state class
+    parent[_add](regular || option(input, callback) || '');
+  };
+
+  // Remove all traces
+  function tidy(input, callback) {
+    if (input.data(_iCheck)) {
+
+      // Remove everything except input
+      input.parent().html(input.attr('style', input.data(_iCheck).s || ''));
+
+      // Callback
+      if (callback) {
+        input[_callback](callback);
+      };
+
+      // Unbind events
+      input.off('.i').unwrap();
+      $(_label + '[for="' + input[0].id + '"]').add(input.closest(_label)).off('.i');
+    };
+  };
+
+  // Get some option
+  function option(input, state, regular) {
+    if (input.data(_iCheck)) {
+      return input.data(_iCheck).o[state + (regular ? '' : 'Class')];
+    };
+  };
+
+  // Capitalize some string
+  function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
+  // Executable handlers
+  function callbacks(input, checked, callback, keep) {
+    if (!keep) {
+      if (checked) {
+        input[_callback]('ifToggled');
+      };
+
+      input[_callback]('ifChanged')[_callback]('if' + capitalize(callback));
+    };
+  };
+})(window.jQuery || window.Zepto);

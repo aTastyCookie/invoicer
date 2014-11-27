@@ -1,1 +1,177 @@
-(function(a){a.extend(a.inputmask.defaults.aliases,{decimal:{mask:"~",placeholder:"",repeat:"*",greedy:false,numericInput:false,isNumeric:true,digits:"*",groupSeparator:"",radixPoint:".",groupSize:3,autoGroup:false,allowPlus:true,allowMinus:true,integerDigits:"*",defaultValue:"",prefix:"",suffix:"",getMaskLength:function(h,e,c,i,b){var l=h.length;if(!e){if(c=="*"){l=i.length+1}else{if(c>1){l+=(h.length*(c-1))}}}var f=a.inputmask.escapeRegex.call(this,b.groupSeparator);var g=a.inputmask.escapeRegex.call(this,b.radixPoint);var j=i.join(""),k=j.replace(new RegExp(f,"g"),"").replace(new RegExp(g),""),d=j.length-k.length;return l+d},postFormat:function(k,p,f,b){if(b.groupSeparator==""){return p}var h=k.slice(),c=a.inArray(b.radixPoint,k);if(!f){h.splice(p,0,"?")}var n=h.join("");if(b.autoGroup||(f&&n.indexOf(b.groupSeparator)!=-1)){var j=a.inputmask.escapeRegex.call(this,b.groupSeparator);n=n.replace(new RegExp(j,"g"),"");var e=n.split(b.radixPoint);n=e[0];var d=new RegExp("([-+]?[\\d?]+)([\\d?]{"+b.groupSize+"})");while(d.test(n)){n=n.replace(d,"$1"+b.groupSeparator+"$2");n=n.replace(b.groupSeparator+b.groupSeparator,b.groupSeparator)}if(e.length>1){n+=b.radixPoint+e[1]}}k.length=n.length;for(var m=0,g=n.length;m<g;m++){k[m]=n.charAt(m)}var o=a.inArray("?",k);if(!f){k.splice(o,1)}return f?p:o},regex:{number:function(f){var c=a.inputmask.escapeRegex.call(this,f.groupSeparator);var b=a.inputmask.escapeRegex.call(this,f.radixPoint);var e=isNaN(f.digits)?f.digits:"{0,"+f.digits+"}";var d=f.allowPlus||f.allowMinus?"["+(f.allowPlus?"+":"")+(f.allowMinus?"-":"")+"]?":"";return new RegExp("^"+d+"(\\d+|\\d{1,"+f.groupSize+"}(("+c+"\\d{"+f.groupSize+"})?)+)("+b+"\\d"+e+")?$")}},onKeyDown:function(h,d,b){var j=a(this),l=this;if(h.keyCode==b.keyCode.TAB){var g=a.inArray(b.radixPoint,d);if(g!=-1){var k=j.data("_inputmask")["masksets"];var c=j.data("_inputmask")["activeMasksetIndex"];for(var f=1;f<=b.digits&&f<b.getMaskLength(k[c]["_buffer"],k[c]["greedy"],k[c]["repeat"],d,b);f++){if(d[g+f]==undefined||d[g+f]==""){d[g+f]="0"}}l._valueSet(d.join(""))}}else{if(h.keyCode==b.keyCode.DELETE||h.keyCode==b.keyCode.BACKSPACE){b.postFormat(d,0,true,b);l._valueSet(d.join(""));return true}}},definitions:{"~":{validator:function(c,g,k,l,b){if(c==""){return false}if(!l&&k<=1&&g[0]==="0"&&new RegExp("[\\d-]").test(c)&&g.join("").length==1){g[0]="";return{pos:0}}var e=l?g.slice(0,k):g.slice();e.splice(k,0,c);var d=e.join("");var f=a.inputmask.escapeRegex.call(this,b.groupSeparator);d=d.replace(new RegExp(f,"g"),"");var m=b.regex.number(b).test(d);if(!m){d+="0";m=b.regex.number(b).test(d);if(!m){var n=d.lastIndexOf(b.groupSeparator);for(var h=d.length-n;h<=3;h++){d+="0"}m=b.regex.number(b).test(d);if(!m&&!l){if(c==b.radixPoint){m=b.regex.number(b).test("0"+d+"0");if(m){g[k]="0";k++;return{pos:k}}}}}}if(m!=false&&!l&&c!=b.radixPoint){var j=b.postFormat(g,k,false,b);return{pos:j}}return m},cardinality:1,prevalidator:null}},insertMode:true,autoUnmask:false},integer:{regex:{number:function(d){var b=a.inputmask.escapeRegex.call(this,d.groupSeparator);var c=d.allowPlus||d.allowMinus?"["+(d.allowPlus?"+":"")+(d.allowMinus?"-":"")+"]?":"";return new RegExp("^"+c+"(\\d+|\\d{1,"+d.groupSize+"}(("+b+"\\d{"+d.groupSize+"})?)+)$")}},alias:"decimal"}})})(jQuery);
+/*
+Input Mask plugin extensions
+http://github.com/RobinHerbots/jquery.inputmask
+Copyright (c) 2010 - 2014 Robin Herbots
+Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
+Version: 0.0.0
+
+Optional extensions on the jquery.inputmask base
+*/
+(function ($) {
+    //number aliases
+    $.extend($.inputmask.defaults.aliases, {
+        'decimal': {
+            mask: "~",
+            placeholder: "",
+            repeat: "*",
+            greedy: false,
+            numericInput: false,
+            isNumeric: true,
+            digits: "*", //number of fractionalDigits
+            groupSeparator: "",//",", // | "."
+            radixPoint: ".",
+            groupSize: 3,
+            autoGroup: false,
+            allowPlus: true,
+            allowMinus: true,
+            //todo
+            integerDigits: "*", //number of integerDigits
+            defaultValue: "",
+            prefix: "",
+            suffix: "",
+
+            //todo
+            getMaskLength: function (buffer, greedy, repeat, currentBuffer, opts) { //custom getMaskLength to take the groupSeparator into account
+                var calculatedLength = buffer.length;
+
+                if (!greedy) {
+                    if (repeat == "*") {
+                        calculatedLength = currentBuffer.length + 1;
+                    } else if (repeat > 1) {
+                        calculatedLength += (buffer.length * (repeat - 1));
+                    }
+                }
+
+                var escapedGroupSeparator = $.inputmask.escapeRegex.call(this, opts.groupSeparator);
+                var escapedRadixPoint = $.inputmask.escapeRegex.call(this, opts.radixPoint);
+                var currentBufferStr = currentBuffer.join(''), strippedBufferStr = currentBufferStr.replace(new RegExp(escapedGroupSeparator, "g"), "").replace(new RegExp(escapedRadixPoint), ""),
+                groupOffset = currentBufferStr.length - strippedBufferStr.length;
+                return calculatedLength + groupOffset;
+            },
+            postFormat: function (buffer, pos, reformatOnly, opts) {
+                if (opts.groupSeparator == "") return pos;
+                var cbuf = buffer.slice(),
+                    radixPos = $.inArray(opts.radixPoint, buffer);
+                if (!reformatOnly) {
+                    cbuf.splice(pos, 0, "?"); //set position indicator
+                }
+                var bufVal = cbuf.join('');
+                if (opts.autoGroup || (reformatOnly && bufVal.indexOf(opts.groupSeparator) != -1)) {
+                    var escapedGroupSeparator = $.inputmask.escapeRegex.call(this, opts.groupSeparator);
+                    bufVal = bufVal.replace(new RegExp(escapedGroupSeparator, "g"), '');
+                    var radixSplit = bufVal.split(opts.radixPoint);
+                    bufVal = radixSplit[0];
+                    var reg = new RegExp('([-\+]?[\\d\?]+)([\\d\?]{' + opts.groupSize + '})');
+                    while (reg.test(bufVal)) {
+                        bufVal = bufVal.replace(reg, '$1' + opts.groupSeparator + '$2');
+                        bufVal = bufVal.replace(opts.groupSeparator + opts.groupSeparator, opts.groupSeparator);
+                    }
+                    if (radixSplit.length > 1)
+                        bufVal += opts.radixPoint + radixSplit[1];
+                }
+                buffer.length = bufVal.length; //align the length
+                for (var i = 0, l = bufVal.length; i < l; i++) {
+                    buffer[i] = bufVal.charAt(i);
+                }
+                var newPos = $.inArray("?", buffer);
+                if (!reformatOnly) buffer.splice(newPos, 1);
+
+                return reformatOnly ? pos : newPos;
+            },
+            regex: {
+                number: function (opts) {
+                    var escapedGroupSeparator = $.inputmask.escapeRegex.call(this, opts.groupSeparator);
+                    var escapedRadixPoint = $.inputmask.escapeRegex.call(this, opts.radixPoint);
+                    var digitExpression = isNaN(opts.digits) ? opts.digits : '{0,' + opts.digits + '}';
+                    var signedExpression = opts.allowPlus || opts.allowMinus ? "[" + (opts.allowPlus ? "\+" : "") + (opts.allowMinus ? "-" : "") + "]?" : "";
+                    return new RegExp("^" + signedExpression + "(\\d+|\\d{1," + opts.groupSize + "}((" + escapedGroupSeparator + "\\d{" + opts.groupSize + "})?)+)(" + escapedRadixPoint + "\\d" + digitExpression + ")?$");
+                }
+            },
+            onKeyDown: function (e, buffer, opts) {
+                var $input = $(this), input = this;
+                if (e.keyCode == opts.keyCode.TAB) {
+                    var radixPosition = $.inArray(opts.radixPoint, buffer);
+                    if (radixPosition != -1) {
+                        var masksets = $input.data('_inputmask')['masksets'];
+                        var activeMasksetIndex = $input.data('_inputmask')['activeMasksetIndex'];
+                        for (var i = 1; i <= opts.digits && i < opts.getMaskLength(masksets[activeMasksetIndex]["_buffer"], masksets[activeMasksetIndex]["greedy"], masksets[activeMasksetIndex]["repeat"], buffer, opts) ; i++) {
+                            if (buffer[radixPosition + i] == undefined || buffer[radixPosition + i] == "") buffer[radixPosition + i] = "0";
+                        }
+                        input._valueSet(buffer.join(''));
+                    }
+                } else if (e.keyCode == opts.keyCode.DELETE || e.keyCode == opts.keyCode.BACKSPACE) {
+                    opts.postFormat(buffer, 0, true, opts);
+                    input._valueSet(buffer.join(''));
+                    return true;
+                }
+            },
+            definitions: {
+                '~': { //real number
+                    validator: function (chrs, buffer, pos, strict, opts) {
+                        if (chrs == "") return false;
+                        if (!strict && pos <= 1 && buffer[0] === '0' && new RegExp("[\\d-]").test(chrs) && buffer.join('').length == 1) { //handle first char
+                            buffer[0] = "";
+                            return { "pos": 0 };
+                        }
+
+                        var cbuf = strict ? buffer.slice(0, pos) : buffer.slice();
+
+                        cbuf.splice(pos, 0, chrs);
+                        var bufferStr = cbuf.join('');
+
+                        //strip groupseparator
+                        var escapedGroupSeparator = $.inputmask.escapeRegex.call(this, opts.groupSeparator);
+                        bufferStr = bufferStr.replace(new RegExp(escapedGroupSeparator, "g"), '');
+
+                        var isValid = opts.regex.number(opts).test(bufferStr);
+                        if (!isValid) {
+                            //let's help the regex a bit
+                            bufferStr += "0";
+                            isValid = opts.regex.number(opts).test(bufferStr);
+                            if (!isValid) {
+                                //make a valid group
+                                var lastGroupSeparator = bufferStr.lastIndexOf(opts.groupSeparator);
+                                for (var i = bufferStr.length - lastGroupSeparator; i <= 3; i++) {
+                                    bufferStr += "0";
+                                }
+
+                                isValid = opts.regex.number(opts).test(bufferStr);
+                                if (!isValid && !strict) {
+                                    if (chrs == opts.radixPoint) {
+                                        isValid = opts.regex.number(opts).test("0" + bufferStr + "0");
+                                        if (isValid) {
+                                            buffer[pos] = "0";
+                                            pos++;
+                                            return { "pos": pos };
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if (isValid != false && !strict && chrs != opts.radixPoint) {
+                            var newPos = opts.postFormat(buffer, pos, false, opts);
+                            return { "pos": newPos };
+                        }
+
+                        return isValid;
+                    },
+                    cardinality: 1,
+                    prevalidator: null
+                }
+            },
+            insertMode: true,
+            autoUnmask: false
+        },
+        'integer': {
+            regex: {
+                number: function (opts) {
+                    var escapedGroupSeparator = $.inputmask.escapeRegex.call(this, opts.groupSeparator);
+                    var signedExpression = opts.allowPlus || opts.allowMinus ? "[" + (opts.allowPlus ? "\+" : "") + (opts.allowMinus ? "-" : "") + "]?" : "";
+                    return new RegExp("^" + signedExpression + "(\\d+|\\d{1," + opts.groupSize + "}((" + escapedGroupSeparator + "\\d{" + opts.groupSize + "})?)+)$");
+                }
+            },
+            alias: "decimal"
+        }
+    });
+})(jQuery);
