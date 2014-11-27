@@ -57,7 +57,7 @@ figure.effect-sadie h4,.main-container a.blog-post-title h2, #blog-container .bl
 /*LOGO*/
 a#logo-navigation{
 	top: -10px; /*ADAPT TO YOUR LOGO SIZE*/
-	height: 55px;
+	height: 100px;
 	background-image: url("../images/logo-header.png");
 	min-width: 200px;
 	background-size: 200px;
@@ -71,8 +71,8 @@ a#logo-navigation{
 #loader #loading-logo{
 	background-image: url("../images/logo-fixed-menu.png");
 	background-size: 150px;
-	width: 150px;
-	height: 35px;
+	width: 135px;
+	height: 51px;
 }
 /*BIG SHADE HEADER*/
 #shade{
