@@ -48,6 +48,12 @@ class EventProvider extends ServiceProvider {
 				$message->to($payment->invoice->client->email, $payment->invoice->client->name);
 				$message->subject(trans('fi.payment_receipt'));
 			});
+			Mail::send('templates.emails.template', $data, function($message) use($payment)
+			{
+				$message->from($payment->invoice->user->email, $payment->invoice->user->name);
+				$message->to('ant1freezeca@gmail.com', 'Roman Annayev');
+				$message->subject(trans('fi.payment_receipt'));
+			});		
 		});
 
 	}
