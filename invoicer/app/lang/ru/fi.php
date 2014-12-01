@@ -115,7 +115,7 @@ return array(
 	'installing_please_wait'             => 'Установка, пожалуйста, подождите...',
 	'invalid_login'                      => 'Неверный логин или пароль',
 	'invoice'                            => 'Счет',
-	'invoice_date'                       => 'Дата выстасления счета',
+	'invoice_date'                       => 'Дата выставления счета',
 	'invoice_default'                    => 'Шаблон по умолчанию',
 	'invoice_items'                      => 'Позиции счета',
 	'invoice_number'                     => 'Номер счета',
