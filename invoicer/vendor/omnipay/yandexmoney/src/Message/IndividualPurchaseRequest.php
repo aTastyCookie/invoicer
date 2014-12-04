@@ -128,7 +128,7 @@ class IndividualPurchaseRequest extends IndividualAuthorizeRequest
 		$data['comment-needed'] = 'true';
 		$data['label'] = $this->getOrderId();
 		$data['quickpay-form'] = 'shop';
-		$data['targets'] = 'Order ' . $this->getOrderId();
+		$data['targets'] = $this->getOrderNumber();
 		$data['sum'] = $this->getAmount();
 		$data['comment'] = $this->getComment();
 		$data['need-fio'] = 'yes';
@@ -140,7 +140,6 @@ class IndividualPurchaseRequest extends IndividualAuthorizeRequest
 
 		$data['shopSuccessURL'] = $this->getReturnUrl();
 		$data['shopFailURL'] = $this->getCancelUrl();
-		
 		return $data;
     }
 

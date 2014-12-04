@@ -142,24 +142,24 @@ class PurchaseRequest extends \Omnipay\Common\Message\AbstractRequest
 	
     public function getData()
     {
-		$this->validate('shopid', 'scid', 'customerNumber', 'amount', 'orderId', 
+	$this->validate('shopid', 'scid', 'customerNumber', 'amount', 'orderId', 
 						'method', 'returnUrl', 'cancelUrl');
 
 			
         $data = array();
-		$data['scid'] = $this->getScid();
-		$data['shopid'] = $this->getShopId();
-		$data['customerNumber'] = $this->getCustomerNumber();
-		$data['orderNumber'] = $this->getOrderId();
-		$data['sum'] = $this->getAmount();
-		$data['orderSumCurrencyPaycash'] = $this->getCurrencyNum();
+	$data['scid'] = $this->getScid();
+	$data['shopid'] = $this->getShopId();
+	$data['customerNumber'] = $this->getOrderNumber();
+	$data['orderNumber'] = $this->getOrderId();
+	$data['sum'] = $this->getAmount();
+	$data['orderSumCurrencyPaycash'] = $this->getCurrencyNum();
 
-		$data['paymentType'] = $this->getMethod();	
+	$data['paymentType'] = $this->getMethod();	
 
-		$data['shopSuccessURL'] = $this->getReturnUrl();
-		$data['shopFailURL'] = $this->getCancelUrl();
+	$data['shopSuccessURL'] = $this->getReturnUrl();
+	$data['shopFailURL'] = $this->getCancelUrl();
 		
-		return $data;
+	return $data;
     }
 
     public function sendData($data)
