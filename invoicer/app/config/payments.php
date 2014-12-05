@@ -8,11 +8,11 @@ return array(
 
 	// The merchant account to use for your transactions. Choose from the
 	// list of merchants below.
-	'default' => 'YandexMoneyIndividual',
+	'default' => 'YandexMoney',
 
 	// When testing your payment gateway integration, set this to true.
 	// When using your payment gateway in production, set this to false.
-	'testMode' => false,
+	'testMode' => true,
 
 	// This is the list of supported merchants and the required settings for
 	// each merchant.
@@ -28,7 +28,7 @@ return array(
 
 		'YandexMoney' => array(
 
-			'password'  => 'bytehand',// Пароль магазина в системе Яндекс.Деньги. Выдается оператором системы.
+			'password'  => '132654789',// Пароль магазина в системе Яндекс.Деньги. Выдается оператором системы.
 			'method_pc' => 1, // электронная валюта Яндекс.Деньги. 1 - используется, 0 - нет 
 			'method_ac' => 1, // банковские карты VISA, MasterCard, Maestro. 1 - используется, 0 - нет 
 			'method_gp' => 1, // Только для юридического лица! Наличными в кассах и терминалах партнеров. 1 - используется, 0 - нет 

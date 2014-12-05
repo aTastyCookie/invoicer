@@ -219,8 +219,8 @@ class MerchantController extends \BaseController {
 	/* add YandexMoney */
 	public function invoiceYandexMoney()
 	{
-		
-		if (isset($_GET['action']) && $_GET['action'] == 'PaymentSuccess') {
+
+	if (isset($_GET['action']) && $_GET['action'] == 'PaymentSuccess') {
 			$id = (int)$_GET['orderNumber'];
 			$invoice = $this->invoice->find($id);
 			return Redirect::route('clientCenter.invoice.show', array($invoice->url_key));

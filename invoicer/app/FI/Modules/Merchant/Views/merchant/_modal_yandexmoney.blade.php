@@ -15,7 +15,7 @@ YANDEX MONEY TEST
     <form action="{{ route('merchant.invoice.payCc', array($invoice->url_key)) }}" method="POST" class="form-horizontal" id="payment-form">
 		<input type="hidden" name="client" value="<?php echo $invoice->client->id; ?>" />
 		<input type="hidden" name="id" value="<?php echo $invoice->id; ?>" />
-		<input type="hidden" name="number" value="<?php echo $invoice->number; ?>" />
+                <input type="hidden" name="number" value="<?php echo $invoice->number; ?>" />
 
         <div class="modal-dialog">
             <div class="modal-content">
