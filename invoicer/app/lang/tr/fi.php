@@ -270,7 +270,7 @@ return array(
 	'weeks'                              => 'Hafta',
 	'what_to_import'                     => 'Neyş ımport etmek istiyorsunuz ?',
 	'year'                               => 'Yıl',
-	'years'                              => 'Yıl',
+	'years'                              => 'Yıllar',
 	'year_prefix'                        => 'Yıllık',
 	'yes'                                => 'Evet',
 	'zip_code'                           => 'Posta Kodu',
