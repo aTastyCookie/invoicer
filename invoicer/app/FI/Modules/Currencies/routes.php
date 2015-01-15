@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-Route::group(array('before' => 'auth'), function()
+Route::group(array('before' => 'auth', 'namespace' => 'FI\Modules\Currencies\Controllers'), function()
 {
 	Route::get('currencies', array('uses' => 'CurrencyController@index', 'as' => 'currencies.index'));
 	Route::get('currencies/create', array('uses' => 'CurrencyController@create', 'as' => 'currencies.create'));

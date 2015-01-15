@@ -19,14 +19,6 @@ class ModuleProvider extends ServiceProvider {
 	{
         $this->app->bind('InvoiceGroupRepository', 'FI\Modules\InvoiceGroups\Repositories\InvoiceGroupRepository');
         $this->app->bind('InvoiceGroupValidator', 'FI\Modules\InvoiceGroups\Validators\InvoiceGroupValidator');
-
-        $this->app->bind('InvoiceGroupController', function($app)
-        {
-            return new \FI\Modules\InvoiceGroups\Controllers\InvoiceGroupController(
-                $app->make('InvoiceGroupRepository'),
-                $app->make('InvoiceGroupValidator')
-            );
-        });
 	}
 
 }

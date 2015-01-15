@@ -14,10 +14,11 @@ namespace FI\Modules\Invoices\Repositories;
 use App;
 use Config;
 use Event;
+use FI\Libraries\BaseRepository;
 use FI\Libraries\DateFormatter;
 use FI\Modules\Invoices\Models\RecurringInvoice;
 
-class RecurringInvoiceRepository extends \FI\Libraries\BaseRepository {
+class RecurringInvoiceRepository extends BaseRepository {
 
 	public function __construct(RecurringInvoice $model)
 	{

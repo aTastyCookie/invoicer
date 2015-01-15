@@ -8,19 +8,6 @@ $(function() {
 
     $("#create_created_at").inputmask(datepickerFormat);
 
-    var clients = new Bloodhound({
-        datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.num); },
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        remote: clientNameLookupRoute + '?query=%QUERY'
-    });
-
-    clients.initialize();
-
-    $('#create_client_name').typeahead(null, {
-        minLength: 3,
-        source: clients.ttAdapter()
-    });
-
     $('#quote-create-confirm').click(function() {
 
         $.post(storeQuoteRoute, { 

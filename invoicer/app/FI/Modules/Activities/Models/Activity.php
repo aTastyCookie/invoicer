@@ -11,9 +11,10 @@
 
 namespace FI\Modules\Activities\Models;
 
+use Eloquent;
 use FI\Libraries\DateFormatter;
 
-class Activity extends \Eloquent {
+class Activity extends Eloquent {
 
 	protected $table = 'activities';
 	

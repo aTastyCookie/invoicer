@@ -19,14 +19,6 @@ class ModuleProvider extends ServiceProvider {
 	{
         $this->app->bind('PaymentMethodRepository', 'FI\Modules\PaymentMethods\Repositories\PaymentMethodRepository');
         $this->app->bind('PaymentMethodValidator', 'FI\Modules\PaymentMethods\Validators\PaymentMethodValidator');
-
-        $this->app->bind('PaymentMethodController', function($app)
-        {
-            return new \FI\Modules\PaymentMethods\Controllers\PaymentMethodController(
-                $app->make('PaymentMethodRepository'),
-                $app->make('PaymentMethodValidator')
-            );
-        });
 	}
 
 }

@@ -29,7 +29,6 @@ $(function() {
         row.removeAttr('id').addClass('item').show();
         row.find('input[name="item_name"]').addClass('item-lookup').typeahead(null, settings);
         typeaheadTrigger();
-        iCheck();           
     }
 
     // Sets up .item-lookup to populate proper fields when item is selected

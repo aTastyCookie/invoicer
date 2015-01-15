@@ -45,7 +45,7 @@
 
 						<div class="form-group">
 							<label class="">{{ trans('fi.description') }}: </label>
-							{{ Form::text('description', null, array('id' => 'description', 'class' => 'form-control')) }}
+							{{ Form::textarea('description', null, array('id' => 'description', 'class' => 'form-control')) }}
 						</div>
 
 						<div class="form-group">

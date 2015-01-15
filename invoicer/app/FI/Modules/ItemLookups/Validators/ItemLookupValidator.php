@@ -19,7 +19,6 @@ class ItemLookupValidator {
 	{
 		return Validator::make($input, array(
 			'name'        => 'required',
-			'description' => 'required',
 			'price'       => 'required|numeric'
 			)
 		);

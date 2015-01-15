@@ -11,13 +11,15 @@
 
 namespace FI\Modules\Users\Controllers;
 
+use App;
+use BaseController;
 use FI\Libraries\BackPath;
 use Hash;
 use Input;
 use Redirect;
 use View;
 
-class UserPasswordController extends \BaseController {
+class UserPasswordController extends BaseController {
 
 	/**
 	 * User Repository
@@ -31,15 +33,10 @@ class UserPasswordController extends \BaseController {
 	 */
 	protected $validator;
 
-	/**
-	 * Dependency injection
-	 * @param UserRepository $user
-	 * @param UserValidator $validator
-	 */
-	public function __construct($user, $validator)
+	public function __construct()
 	{
-		$this->user      = $user;
-		$this->validator = $validator;
+		$this->user      = App::make('UserRepository');
+		$this->validator = App::make('UserValidator');
 	}
 
 	/**

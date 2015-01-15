@@ -11,12 +11,15 @@
 
 namespace FI\Modules\Import\Controllers;
 
-use App, Config, Input, Redirect, View;
-
-use FI\Libraries\DateFormatter;
+use App;
+use BaseController;
+use Config;
 use FI\Modules\Import\Importers\ImportFactory;
+use Input;
+use Redirect;
+use View;
 
-class ImportController extends \BaseController {
+class ImportController extends BaseController {
 
 	/**
 	 * Display the initial import screen

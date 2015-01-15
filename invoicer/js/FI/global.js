@@ -24,13 +24,6 @@ function clearErrors() {
     $('.input-group.has-error').removeClass('has-error');
 }
 
-function iCheck() {
-    $("input[type='checkbox'], input[type='radio']").iCheck({
-        checkboxClass: 'icheckbox_minimal',
-        radioClass: 'iradio_minimal'
-    });    
-}
-
 $(function() {
 
     $('ul.sidebar-menu li.treeview ul.treeview-menu li').each(function() {
@@ -73,3 +66,15 @@ $(function() {
     });
 
 });
+
+function resizeIframe(obj, minHeight) {
+    obj.style.height = '';
+    var height = obj.contentWindow.document.body.scrollHeight;
+
+    if (height < minHeight) {
+        obj.style.height = minHeight + 'px';
+    }
+    else {
+        obj.style.height = (height + 50) + 'px';
+    }
+}

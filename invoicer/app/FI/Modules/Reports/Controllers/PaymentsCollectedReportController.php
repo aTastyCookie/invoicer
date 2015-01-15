@@ -11,13 +11,16 @@
 
 namespace FI\Modules\Reports\Controllers;
 
+use App;
+use BaseController;
+use FI\Libraries\PDF\PDFFactory;
 use Input;
 use Response;
 use View;
 
 use FI\Libraries\DateFormatter;
 
-class PaymentsCollectedReportController extends \BaseController {
+class PaymentsCollectedReportController extends BaseController {
 
 	/**
 	 * Payments collected report repository
@@ -31,16 +34,12 @@ class PaymentsCollectedReportController extends \BaseController {
 	 */
 	protected $validator;
 
-	/**
-	 * Dependency injection
-	 * @param PaymentsCollectedReportRepository $paymentsCollectedReport
-	 */
-	public function __construct($paymentsCollectedReport, $validator)
+	public function __construct()
 	{
-		$this->paymentsCollectedReport = $paymentsCollectedReport;
-		$this->validator               = $validator;
+		$this->paymentsCollectedReport = App::make('PaymentsCollectedReportRepository');
+		$this->validator               = App::make('ReportValidator');
 	}
-	
+
 	/**
 	 * Display the report interface
 	 * @return View
@@ -50,11 +49,7 @@ class PaymentsCollectedReportController extends \BaseController {
 		return View::make('reports.payments_collected');
 	}
 
-	/**
-	 * Run the report and display the results
-	 * @return View
-	 */
-	public function ajaxRunReport()
+	public function ajaxValidate()
 	{
 		$validator = $this->validator->getDateRangeValidator(Input::all());
 
@@ -66,8 +61,27 @@ class PaymentsCollectedReportController extends \BaseController {
 			), 400);
 		}
 
+		return Response::json(array('success' => true));
+	}
+
+	public function html()
+	{
+		$results = $this->paymentsCollectedReport->getResults(DateFormatter::unformat(Input::get('from_date')), DateFormatter::unformat(Input::get('to_date')));
+
 		return View::make('reports._payments_collected')
-		->with('results', $this->paymentsCollectedReport->getResults(DateFormatter::unformat(Input::get('from_date')), DateFormatter::unformat(Input::get('to_date'))));
+			->with('results', $results);
+	}
+
+	public function pdf()
+	{
+		$pdf = PDFFactory::create();
+
+		$results = $this->paymentsCollectedReport->getResults(DateFormatter::unformat(Input::get('from_date')), DateFormatter::unformat(Input::get('to_date')));
+
+		$html = View::make('reports._payments_collected')
+			->with('results', $results)->render();
+
+		$pdf->download($html, trans('fi.payments_collected') . '.pdf');
 	}
 
 }

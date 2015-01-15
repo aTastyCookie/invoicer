@@ -4,18 +4,31 @@
 
 <script type="text/javascript">
 	$(function() {
-		$('#btn-submit').click(function() {
-			$.post("{{ route('reports.revenueByClient.ajax.run') }}", { 
-				year: $('#year').val()
-			}).done(function(response) {
+		$('#btn-run-report').click(function() {
+
+			var year = $('#year').val();
+
+			$.post("{{ route('reports.revenueByClient.ajax.validate') }}", {
+				year: year
+			}).done(function() {
 				clearErrors();
-				$('#report-results').html(response);
+				$('#form-validation-placeholder').html('');
+				var output_type = $("input[name=output_type]:checked").val();
+				query_string = "?year=" + year;
+				if (output_type == 'preview') {
+					$('#preview').show();
+					$('#preview-results').attr('src', "{{ route('reports.revenueByClient.html') }}" + query_string);
+				}
+				else if (output_type == 'pdf') {
+					window.open("{{ route('reports.revenueByClient.pdf') }}" + query_string);
+				}
 			}).fail(function(response) {
 				showErrors($.parseJSON(response.responseText).errors, '#form-validation-placeholder');
 			});
 		});
 	});
 </script>
+
 @stop
 
 @section('content')
@@ -23,18 +36,12 @@
 <aside class="right-side">
 
 	<section class="content-header">
-		<h1 class="pull-left">
-			{{ trans('fi.revenue_by_client') }}
-		</h1>
-		@if ($years)
-		<div class="pull-right">
-			<button class="btn btn-primary" id="btn-submit">{{ trans('fi.run_report') }}</button>
-		</div>
-		@endif
-		<div class="clearfix"></div>
+		<h1>{{ trans('fi.revenue_by_client') }}</h1>
 	</section>
 
 	<section class="content">
+
+		<div id="form-validation-placeholder"></div>
 
 		<div class="row">
 
@@ -55,10 +62,32 @@
 									{{ Form::select('year', $years, date('Y'), array('id' => 'year', 'class' => 'form-control')) }}
 								</div>
 								@else
-								<p>This report will be available once you have some payments entered in the system.</p>
+								<p>{{ trans('fi.report_rev_client_notice') }}</p>
 								@endif
 							</div>
 
+						</div>
+
+						<div class="row">
+							<div class="col-md-4">
+								<div class="input-group">
+									<label>{{ trans('fi.output_type') }}</label><br>
+									<label class="radio-inline">
+										<input type="radio" name="output_type" value="preview" checked="checked"> {{ trans('fi.preview') }}
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="output_type" value="pdf"> {{ trans('fi.pdf') }}
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<br>
+
+						<div class="row">
+							<div class="col-md-12">
+								<button class="btn btn-primary" id="btn-run-report">{{ trans('fi.run_report') }}</button>
+							</div>
 						</div>
 
 					</div>
@@ -68,8 +97,10 @@
 
 		</div>
 
-		<div id="report-results">
-
+		<div class="row" id="preview" style="height: 100%; background-color: #e6e6e6; padding: 25px; margin: 0px; display: none;">
+			<div class="col-lg-10 col-lg-offset-1" style="background-color: white;">
+				<iframe src="about:blank" id="preview-results" frameborder="0" style="width: 100%;" scrolling="no" onload="javascript:resizeIframe(this, 500);"></iframe>
+			</div>
 		</div>
 
 	</section>

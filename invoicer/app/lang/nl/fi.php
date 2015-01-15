@@ -83,7 +83,6 @@ return array(
 	'email_address'                      => 'E-mail Adres',
 	'email_invoice'                      => 'E-mail Factuur',
 	'email_quote'                        => 'E-mail Offerte',
-	'email_receipt'                      => 'E-mail Bevestiging',
 	'email_send_method'                  => 'E-mail Verzendmethode',
 	'email_send_method_phpmail'          => 'PHP Mail',
 	'email_send_method_sendmail'         => 'Sendmail',
@@ -229,7 +228,6 @@ return array(
 	'table_name'                         => 'Tabelnaam',
 	'tax'                                => 'BTW',
 	'tax_rate'                           => 'BTW Percentage ',
-	'tax_rate_decimal_places'            => 'BTW Percentage Decimalen',
 	'tax_rate_form'                      => 'BTW Percentage Formulier',
 	'tax_rate_name'                      => 'BTW Percentage Naam',
 	'tax_rate_percent'                   => 'BTW Percentage',
@@ -388,6 +386,19 @@ return array(
     'save_and_apply_exchange_rate' => 'Bewaar en activeer wisselkoers',
     'template'                     => 'Template',
     'update_exchange_rate'         => 'Werk wisselkoers bij',
-    'welcome'                      => 'Welkom'
+    'welcome'                      => 'Welkom',
+
+	// Added for 2.5.0
+	'bill_from'                    => 'Bill From',
+	'bill_to'                      => 'Bill To',
+	'binary_path'                  => 'Binary Path',
+	'client_statement'             => 'Client Statement',
+	'output_type'                  => 'Output Type',
+	'pay'                          => 'Pay',
+	'pdf_driver'                   => 'PDF Driver',
+	'preview'                      => 'Preview',
+	'quotation'                    => 'Quotation',
+	'report_rev_client_notice'     => 'This report will be available once you have some payments entered in the system.',
+	'view_all_payments_for_client' => 'View all payments for this client'
 	
 );

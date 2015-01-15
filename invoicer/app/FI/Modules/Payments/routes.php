@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-Route::group(array('before' => 'auth'), function()
+Route::group(array('before' => 'auth', 'namespace' => 'FI\Modules\Payments\Controllers'), function()
 {
 	Route::get('payments', array('uses' => 'PaymentController@index', 'as' => 'payments.index'));
 	Route::get('payments/{payment}/invoice/{invoice}', array('uses' => 'PaymentController@edit', 'as' => 'payments.edit'));

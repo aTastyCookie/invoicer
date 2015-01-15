@@ -20,13 +20,7 @@ class ModuleProvider extends ServiceProvider {
         $this->app->bind('PaymentRepository', 'FI\Modules\Payments\Repositories\PaymentRepository');
         $this->app->bind('PaymentValidator', 'FI\Modules\Payments\Validators\PaymentValidator');
 
-        $this->app->bind('PaymentController', function($app)
-        {
-            return new \FI\Modules\Payments\Controllers\PaymentController(
-                $app->make('PaymentRepository'),
-                $app->make('PaymentValidator')
-            );
-        });
+        $this->app->bind('PaymentMailer', 'FI\Modules\Payments\Mail\PaymentMailer');
 	}
 
 }

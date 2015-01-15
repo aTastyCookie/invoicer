@@ -12,11 +12,11 @@
 namespace FI\Modules\Quotes\Repositories;
 
 use DB;
+use FI\Libraries\BaseRepository;
 use FI\Libraries\CurrencyFormatter;
 use FI\Modules\Quotes\Models\QuoteAmount;
-use FI\Statuses\QuoteStatuses;
 
-class QuoteAmountRepository extends \FI\Libraries\BaseRepository {
+class QuoteAmountRepository extends BaseRepository {
 
     public function __construct(QuoteAmount $model)
     {

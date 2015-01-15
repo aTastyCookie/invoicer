@@ -12,11 +12,10 @@
 namespace FI\Modules\Invoices\Repositories;
 
 use Event;
-
+use FI\Libraries\BaseRepository;
 use FI\Modules\Invoices\Models\InvoiceItem;
-use FI\Modules\Invoices\Models\InvoiceItemAmount;
 
-class InvoiceItemRepository extends \FI\Libraries\BaseRepository {
+class InvoiceItemRepository extends BaseRepository {
 
 	public function __construct(InvoiceItem $model)
 	{
@@ -57,8 +56,6 @@ class InvoiceItemRepository extends \FI\Libraries\BaseRepository {
 		$invoiceItem = $this->model->find($id);
 
 		$invoice = $invoiceItem->invoice;
-
-		$invoiceId = $invoiceItem->invoice_id;
 
 		$invoiceItem->amount->delete();
 		$invoiceItem->delete();

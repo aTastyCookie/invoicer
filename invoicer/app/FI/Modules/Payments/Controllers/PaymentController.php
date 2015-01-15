@@ -12,19 +12,20 @@
 namespace FI\Modules\Payments\Controllers;
 
 use App;
+use BaseController;
 use Config;
 use Event;
 use FI\Libraries\CustomFields;
 use FI\Libraries\DateFormatter;
 use FI\Libraries\NumberFormatter;
+use FI\Libraries\Parser;
 use Input;
 use Mail;
 use Redirect;
 use Response;
-use Swift_TransportException;
 use View;
 
-class PaymentController extends \BaseController {
+class PaymentController extends BaseController {
 
 	/**
 	 * Payment repository
@@ -37,16 +38,11 @@ class PaymentController extends \BaseController {
 	 * @var PaymentValidator
 	 */
 	protected $validator;
-	
-	/**
-	 * Dependency injection
-	 * @param PaymentRepository $payment
-	 * @param PaymentValidator $validator
-	 */
-	public function __construct($payment, $validator)
+
+	public function __construct()
 	{
-		$this->payment       = $payment;
-		$this->validator     = $validator;
+		$this->payment       = App::make('PaymentRepository');
+		$this->validator     = App::make('PaymentValidator');
 	}
 
 	/**
@@ -55,11 +51,10 @@ class PaymentController extends \BaseController {
 	 */
 	public function index()
 	{
-		$payments = $this->payment->getPaged(Input::get('search'));
+		$payments = $this->payment->getPaged(Input::get('search'), Input::get('client'));
 
 		return View::make('payments.index')
 		->with('payments', $payments)
-		->with('mailConfigured', (Config::get('fi.mailDriver')) ? true : false)
 		->with('filterRoute', route('payments.index'));
 	}
 
@@ -152,8 +147,7 @@ class PaymentController extends \BaseController {
 		->with('date', $date)
 		->with('paymentMethods', App::make('PaymentMethodRepository')->lists())
 		->with('customFields', App::make('CustomFieldRepository')->getByTable('payments'))
-		->with('redirectTo', Input::get('redirectTo'))
-		->with('mailConfigured', (Config::get('fi.mailDriver')) ? true : false);
+		->with('redirectTo', Input::get('redirectTo'));
 	}
 
 	/**
@@ -193,5 +187,41 @@ class PaymentController extends \BaseController {
 
 		return Response::json(array('success' => true), 200);
 	}
+
+    /**
+     * Display the modal to send mail
+     * @return View
+     */
+    public function modalMailPayment()
+    {
+        $payment = $this->payment->find(Input::get('payment_id'));
+
+        return View::make('payments._modal_mail')
+            ->with('paymentId', $payment->id)
+            ->with('redirectTo', Input::get('redirectTo'))
+            ->with('to', $payment->invoice->client->email)
+            ->with('cc', Config::get('fi.mailCcDefault'))
+            ->with('subject', trans('fi.payment_receipt_for_invoice', array('invoiceNumber' => $payment->invoice->number)))
+            ->with('body', Parser::parse($payment, Config::get('fi.paymentReceiptBody')));
+    }
+
+    /**
+     * Attempt to send the mail
+     * @return json
+     */
+    public function mailPayment()
+    {
+        $payment = $this->payment->find(Input::get('payment_id'));
+
+        $paymentMailer = App::make('PaymentMailer');
+
+        if (!$paymentMailer->send($payment, Input::get('to'), Input::get('subject'), Input::get('body'), Input::get('cc'), (Input::get('attach_pdf') == 'true') ? true : false))
+        {
+            return Response::json(array(
+                'success' => false,
+                'errors'  => array(array($paymentMailer->errors()))
+            ), 400);
+        }
+    }
 
 }

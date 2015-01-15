@@ -11,7 +11,9 @@
 
 namespace FI\Modules\CustomFields\Models;
 
-class CustomField extends \Eloquent {
+use Eloquent;
+
+class CustomField extends Eloquent {
 
     /**
      * Guarded properties

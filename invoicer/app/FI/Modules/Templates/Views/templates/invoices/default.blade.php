@@ -1,150 +1,160 @@
 <!doctype html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<title>{{{ trans('fi.invoice') }}} #{{{ $invoice->number }}}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>{{{ trans('fi.invoice') }}} #{{{ $invoice->number }}}</title>
 
-	<style>
-		* {
-			margin:0px;
-		}
-		body {
-			font-family: times;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            padding-left: 20px;
-            padding-right: 20px;
-		}
-		table {
-			width: 100%;
-			border-collapse: collapse;
-		}
+    <style>
+        @page {
+            margin: 25px;
+        }
 
-		td, th {
-			vertical-align: top;
-			padding-left: 5px;
-			padding-right: 5px;
-			text-align: left;
-		}
+        body {
+            color: #001028;
+            background: #FFFFFF;
+            font-family: sans-serif;
+            font-size: 12px;
+            margin-bottom: 50px;
+        }
 
-		.text-right {
-			text-align: right;
-		}
+        a {
+            color: #5D6975;
+            text-decoration: underline;
+        }
 
-		.footer {
-			position: fixed;
-			bottom: 100px;
-			margin-left: 75px;
-			margin-right: 75px;
-			text-align: center;
-		}
+        h1 {
+            color: #5D6975;
+            font-size: 2.8em;
+            line-height: 1.4em;
+            font-weight: bold;
+            margin: 0;
+        }
 
-		.border-top {
-			border-top: 1px dotted #000000;
-		}
+        table {
+            width: 100%;
+            border-spacing: 0;
+            margin-bottom: 20px;
+        }
 
-		.border-bottom {
-			border-bottom: 1px dotted #000000;
-		}
+        th {
+            padding: 5px 10px;
+            color: #5D6975;
+            border-bottom: 1px solid #C1CED9;
+            white-space: nowrap;
+            font-weight: normal;
+        }
 
-		.invoice-table {
-			font-size: 80%;
-		}
+        td {
+            padding: 10px;
+        }
 
-		.invoice-table td {
-			padding-top: 5px;
-		}
-	</style>
+        table.alternate tr:nth-child(even) td {
+            background: #F5F5F5;
+        }
+
+        th.amount, td.amount {
+            text-align: right;
+        }
+
+        .info span {
+            color: #5D6975;
+            font-weight: bold;
+        }
+
+        .footer {
+            position: fixed;
+            height: 50px;
+            width: 100%;
+            bottom: 0px;
+            text-align: center;
+        }
+
+    </style>
 </head>
 <body>
 
-	<table>
-		<tr>
-			<td class="border-bottom" style="width: 50%;">
-				{{ $logo }}
-			</td>
-			<td class="border-bottom" style="width: 50%; text-align: right;">
-				<h1 style="margin: 0;">{{{ trans('fi.invoice') }}}</h1>
-				{{{ trans('fi.invoice') }}} #{{{ $invoice->number }}}<br>
-				{{{ trans('fi.issued') }}} {{{ $invoice->formatted_created_at }}}<br>
-				{{{ trans('fi.due') }}} {{{ $invoice->formatted_due_at }}}
-			</td>
-		</tr>
-	</table>
+<table>
+    <tr>
+        <td style="width: 50%;" valign="top">
+            <h1>{{{ mb_strtoupper(trans('fi.invoice')) }}}</h1>
+            <div class="info">
+                <span>{{{ mb_strtoupper(trans('fi.invoice')) }}} #</span>{{{ $invoice->number }}}<br>
+                <span>{{{ mb_strtoupper(trans('fi.issued')) }}}</span> {{{ $invoice->formatted_created_at }}}<br>
+                <span>{{{ mb_strtoupper(trans('fi.due_date')) }}}</span> {{{ $invoice->formatted_due_at }}}<br><br>
+                <span>{{{ mb_strtoupper(trans('fi.bill_to')) }}}</span><br>{{{ $invoice->client->name }}}<br>
+                @if ($invoice->client->address) {{ $invoice->client->formatted_address }}<br>@endif
+            </div>
+        </td>
+        <td style="width: 50%; text-align: right;" valign="top">
+            {{ $logo }}<br>
+            {{{ $invoice->user->company }}}<br>
+            {{ $invoice->user->formatted_address }}<br>
+            @if ($invoice->user->phone) {{{ $invoice->user->phone }}}<br>@endif
+            @if ($invoice->user->email) <a href="mailto:{{{ $invoice->user->email }}}">{{{ $invoice->user->email }}}</a>@endif
+        </td>
+    </tr>
+</table>
 
-	<table style="margin-top: 20px; margin-bottom: 20px;">
-		<tr>
-			<td style="width: 50%;">
-				<strong>{{{ trans('fi.from') }}}:</strong><br>
-				@if ($invoice->user->company) {{{ $invoice->user->company }}}<br> @endif
-				{{{ $invoice->user->name }}}<br>
-				{{ $invoice->user->formatted_address }}<br>
-				{{{ $invoice->user->email }}}<br>
-				{{{ $invoice->user->phone }}}
-			</td>
-			<td style="width: 50%;">
-				<strong>{{{ trans('fi.to') }}}:</strong><br>
-				{{{ $invoice->client->name }}}<br>
-				{{ $invoice->client->formatted_address }}<br>
-				{{{ $invoice->client->email }}}<br>
-				{{{ $invoice->client->phone }}}
-			</td>
-		</tr>
-	</table>
+<table class="alternate">
+    <thead>
+    <tr>
+        <th style="width: 30%;">{{{ mb_strtoupper(trans('fi.product')) }}}</th>
+        <th style="width: 40%;">{{{ mb_strtoupper(trans('fi.description')) }}}</th>
+        <th style="width: 10%;" class="amount">{{{ mb_strtoupper(trans('fi.quantity')) }}}</th>
+        <th style="width: 10%;" class="amount">{{{ mb_strtoupper(trans('fi.price')) }}}</th>
+        <th style="width: 10%;" class="amount">{{{ mb_strtoupper(trans('fi.total')) }}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach ($invoice->items as $item)
+    <tr>
+        <td>{{{ $item->name }}}</td>
+        <td>{{ $item->formatted_description }}</td>
+        <td class="amount">{{{ $item->formatted_quantity }}}</td>
+        <td class="amount">{{{ $item->formatted_price }}}</td>
+        <td class="amount">{{{ $item->amount->formatted_subtotal }}}</td>
+    </tr>
+    @endforeach
 
-	<table class="invoice-table">
-		<thead>
-			<tr style="background-color: #e8e8e8;">
-				<th class="border-top">{{{ trans('fi.product') }}}</th>
-				<th class="border-top">{{{ trans('fi.description') }}}</th>
-				<th class="border-top text-right">{{{ trans('fi.quantity') }}}</th>
-				<th class="border-top text-right">{{{ trans('fi.price') }}}</th>
-				<th class="border-top text-right">{{{ trans('fi.total') }}}</th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach ($invoice->items as $item)
-			<tr>
-				<td>{{{ $item->name }}}</td>
-				<td>{{ $item->formatted_description }}</td>
-				<td class="text-right">{{{ $item->formatted_quantity }}}</td>
-				<td class="text-right">{{{ $item->formatted_price }}}</td>
-				<td class="text-right">{{{ $item->amount->formatted_subtotal }}}</td>
-			</tr>
-			@endforeach
-			<tr>
-				<td colspan="5"></td>
-			</tr>
-			<tr>
-				<td colspan="4" class="border-top text-right">{{{ trans('fi.subtotal') }}}</td>
-				<td class="border-top text-right">{{{ $invoice->amount->formatted_item_subtotal }}}</td>
-			</tr>
-			<tr>
-				<td colspan="4" class="text-right">{{{ trans('fi.tax') }}}</td>
-				<td class="text-right">{{{ $invoice->amount->formatted_total_tax }}}</td>
-			</tr>
-			<tr>
-				<td colspan="4" class="text-right">{{{ trans('fi.total') }}}</td>
-				<td class="text-right">{{{ $invoice->amount->formatted_total }}}</td>
-			</tr>
-			<tr>
-				<td colspan="4" class="text-right">{{{ trans('fi.paid') }}}</td>
-				<td class="text-right">{{{ $invoice->amount->formatted_paid }}}</td>
-			</tr>
-			<tr>
-				<td colspan="4" class="text-right">{{{ trans('fi.balance') }}}</td>
-				<td class="text-right">{{{ $invoice->amount->formatted_balance }}}</td>
-			</tr>
-		</tbody>
+    <tr>
+        <td colspan="4" class="amount">{{{ mb_strtoupper(trans('fi.subtotal')) }}}</td>
+        <td class="amount">{{{ $invoice->amount->formatted_item_subtotal }}}</td>
+    </tr>
 
-	</table>
+    @foreach ($invoice->summarized_taxes as $tax)
+    <tr>
+        <td colspan="4" class="amount">{{{ mb_strtoupper($tax->name) }}} ({{{ $tax->percent }}})</td>
+        <td class="amount">{{{ $tax->total }}}</td>
+    </tr>
+    @endforeach
 
-	@if ($invoice->terms)
-	<strong>{{{ trans('fi.terms_and_conditions') }}}</strong>
-	<p>{{ $invoice->formatted_terms }}</p>
-	@endif
+    <tr>
+        <td colspan="4" class="amount">{{{ mb_strtoupper(trans('fi.total')) }}}</td>
+        <td class="amount">{{{ $invoice->amount->formatted_total }}}</td>
+    </tr>
+    <tr>
+        <td colspan="4" class="amount">{{{ mb_strtoupper(trans('fi.paid')) }}}</td>
+        <td class="amount">{{{ $invoice->amount->formatted_paid }}}</td>
+    </tr>
+    <tr>
+        <td colspan="4" class="amount">{{{ mb_strtoupper(trans('fi.balance')) }}}</td>
+        <td class="amount">{{{ $invoice->amount->formatted_balance }}}</td>
+    </tr>
+    </tbody>
+</table>
 
-	<div class="footer">{{ $invoice->formatted_footer }}</div>
+@if ($invoice->terms)
+<table style="margin-top: 50px;">
+    <tr>
+        <th>{{ mb_strtoupper(trans('fi.terms_and_conditions')) }}</th>
+    </tr>
+    <tr>
+        <td>{{ $invoice->formatted_terms }}</td>
+    </tr>
+</table>
+@endif
+
+<div class="footer">{{ $invoice->formatted_footer }}</div>
 
 </body>
 </html>

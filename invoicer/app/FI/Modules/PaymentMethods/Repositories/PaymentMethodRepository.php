@@ -12,9 +12,10 @@
 namespace FI\Modules\PaymentMethods\Repositories;
 
 use Config;
+use FI\Libraries\BaseRepository;
 use FI\Modules\PaymentMethods\Models\PaymentMethod;
 
-class PaymentMethodRepository extends \FI\Libraries\BaseRepository {
+class PaymentMethodRepository extends BaseRepository {
 
 	public function __construct(PaymentMethod $model)
 	{

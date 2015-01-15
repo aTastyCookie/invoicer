@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-Route::group(array('before' => 'auth'), function()
+Route::group(array('before' => 'auth', 'namespace' => 'FI\Modules\Clients\Controllers'), function()
 {
 	Route::get('clients', array('uses' => 'ClientController@index', 'as' => 'clients.index'));
 	Route::get('clients/create', array('uses' => 'ClientController@create', 'as' => 'clients.create'));

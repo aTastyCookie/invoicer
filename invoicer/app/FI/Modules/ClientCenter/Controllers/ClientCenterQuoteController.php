@@ -11,19 +11,20 @@
 
 namespace FI\Modules\ClientCenter\Controllers;
 
+use App;
+use BaseController;
 use Config;
 use Event;
-use FI\Libraries\HTML;
-use FI\Libraries\PDF;
+use FI\Libraries\PDF\PDFFactory;
 use FI\Statuses\QuoteStatuses;
 use Redirect;
 use View;
 
-class ClientCenterQuoteController extends \BaseController {
+class ClientCenterQuoteController extends BaseController {
 
-	public function __construct($quote)
+	public function __construct()
 	{
-		$this->quote = $quote;
+		$this->quote = App::make('QuoteRepository');
 	}
 
 	public function show($urlKey)
@@ -42,18 +43,16 @@ class ClientCenterQuoteController extends \BaseController {
 	{
 		$quote = $this->quote->findByUrlKey($urlKey);
 
-		$html = HTML::quote($quote);
+		$pdf = PDFFactory::create();
 
-		$pdf = new PDF($html);
-
-		$pdf->download(trans('fi.quote') . '_' . $quote->number . '.pdf');
+		$pdf->download($quote->html, trans('fi.quote') . '_' . $quote->number . '.pdf');
 	}
 
 	public function html($urlKey)
 	{
 		$quote = $this->quote->findByUrlKey($urlKey);
 
-		return HTML::quote($quote);
+		return $quote->html;
 	}
 
 	public function approve($urlKey)

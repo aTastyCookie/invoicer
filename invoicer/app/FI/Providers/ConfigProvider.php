@@ -58,6 +58,8 @@ class ConfigProvider extends ServiceProvider {
             }
 
             App::setLocale((Config::get('fi.language')) ?: 'en');
+
+            Config::set('mailConfigured', (Config::get('fi.mailDriver') ? true : false));
         });
     }  
 

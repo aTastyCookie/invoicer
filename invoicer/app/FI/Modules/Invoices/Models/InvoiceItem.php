@@ -11,10 +11,11 @@
 
 namespace FI\Modules\Invoices\Models;
 
+use Eloquent;
 use FI\Libraries\CurrencyFormatter;
 use FI\Libraries\NumberFormatter;
 
-class InvoiceItem extends \Eloquent {
+class InvoiceItem extends Eloquent {
 
     /**
      * Guarded properties

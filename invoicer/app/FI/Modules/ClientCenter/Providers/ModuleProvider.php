@@ -18,20 +18,6 @@ class ModuleProvider extends ServiceProvider {
 	public function register()
 	{
 		$this->app->register('FI\Modules\ClientCenter\Providers\EventProvider');
-
-		$this->app->bind('ClientCenterInvoiceController', function($app)
-		{
-			return new \FI\Modules\ClientCenter\Controllers\ClientCenterInvoiceController(
-				$app->make('InvoiceRepository')
-			);
-		});
-
-		$this->app->bind('ClientCenterQuoteController', function($app)
-		{
-			return new \FI\Modules\ClientCenter\Controllers\ClientCenterQuoteController(
-				$app->make('QuoteRepository')
-			);
-		});
 	}
 
 }

@@ -20,14 +20,6 @@ class ModuleProvider extends ServiceProvider {
         $this->app->bind('CurrencyRepository', 'FI\Modules\Currencies\Repositories\CurrencyRepository');
         $this->app->bind('CurrencyValidator', 'FI\Modules\Currencies\Validators\CurrencyValidator');
 
-        $this->app->bind('CurrencyController', function($app)
-        {
-            return new \FI\Modules\Currencies\Controllers\CurrencyController(
-                $app->make('CurrencyRepository'),
-                $app->make('CurrencyValidator')
-            );
-        });
-
         $this->app->bind('CurrencyConverter', function()
         {
             return new \FI\Modules\Currencies\Libraries\YQLCurrencyConverter;

@@ -17,10 +17,22 @@
 
 <div class="row">
 
-	<div class="col-md-12">
+	<div class="col-md-8">
 		<div class="form-group">
 			<label>{{ trans('fi.header_title_text') }}: </label>
 			{{ Form::text('setting_headerTitleText', Config::get('fi.headerTitleText'), array('class' => 'form-control')) }}
+		</div>
+	</div>
+
+	<div class="col-md-4">
+		<div class="form-group">
+			<label>{{ trans('fi.version') }}: </label>
+			<div class="input-group">
+				{{ Form::text('version', Config::get('fi.version'), array('class' => 'form-control', 'disabled' => 'disabled')) }}
+				<span class="input-group-btn">
+					<button class="btn btn-default" id="btn-check-update" type="button">{{ trans('fi.check_for_update') }}</button>
+				</span>
+			</div>
 		</div>
 	</div>
 
@@ -64,24 +76,6 @@
 		<div class="form-group">
 			<label>{{ trans('fi.exchange_rate_mode') }}: </label>
 			{{ Form::select('setting_exchangeRateMode', $exchangeRateModes, Config::get('fi.exchangeRateMode'), array('class' => 'form-control')) }}
-		</div>
-	</div>
-
-</div>
-
-<div class="row">
-
-	<div class="col-md-6">
-		<div class="form-group">
-			<label>{{ trans('fi.paper_size') }}: </label>
-			{{ Form::select('setting_paperSize', $paperSizes, Config::get('fi.paperSize'), array('class' => 'form-control')) }}
-		</div>
-	</div>
-
-	<div class="col-md-6">
-		<div class="form-group">
-			<label>{{ trans('fi.paper_orientation') }}: </label>
-			{{ Form::select('setting_paperOrientation', $paperOrientations, Config::get('fi.paperOrientation'), array('class' => 'form-control')) }}
 		</div>
 	</div>
 

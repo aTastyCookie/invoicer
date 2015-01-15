@@ -83,7 +83,6 @@ return array(
 	'email_address'                      => 'Email Addresse',
 	'email_invoice'                      => 'Email Faktura',
 	'email_quote'                        => 'Email Anbud',
-	'email_receipt'                      => 'Email Kvittering',
 	'email_send_method'                  => 'Email Sendings Måte',
 	'email_send_method_phpmail'          => 'PHP Mail',
 	'email_send_method_sendmail'         => 'Sendmail',
@@ -229,7 +228,6 @@ return array(
 	'table_name'                         => 'Tabell Navn',
 	'tax'                                => 'Skatt',
 	'tax_rate'                           => 'Skattesats',
-	'tax_rate_decimal_places'            => 'Skattesats Desimal Plassering',
 	'tax_rate_form'                      => 'Skattesats Skjema',
 	'tax_rate_name'                      => 'Skattesats Navn',
 	'tax_rate_percent'                   => 'Skattesats Prosent',
@@ -388,6 +386,19 @@ return array(
     'save_and_apply_exchange_rate' => 'Save and Apply Exchange Rate',
     'template'                     => 'Template',
     'update_exchange_rate'         => 'Update Exchange Rate',
-    'welcome'                      => 'Welcome'
+    'welcome'                      => 'Welcome',
+
+	// Added for 2.5.0
+	'bill_from'                    => 'Bill From',
+	'bill_to'                      => 'Bill To',
+	'binary_path'                  => 'Binary Path',
+	'client_statement'             => 'Client Statement',
+	'output_type'                  => 'Output Type',
+	'pay'                          => 'Pay',
+	'pdf_driver'                   => 'PDF Driver',
+	'preview'                      => 'Preview',
+	'quotation'                    => 'Quotation',
+	'report_rev_client_notice'     => 'This report will be available once you have some payments entered in the system.',
+	'view_all_payments_for_client' => 'View all payments for this client'
 
 );

@@ -298,6 +298,7 @@
                             {{ Form::text('due_at', $invoice->formatted_due_at, array('id' => 'due_at', 'class'
                             => 'form-control input-sm')) }}
                         </div>
+
                         <div class="form-group">
                             <label>{{ trans('fi.currency') }}</label>
                             {{ Form::select('currency_code', $currencies, $invoice->currency_code, array('id' =>

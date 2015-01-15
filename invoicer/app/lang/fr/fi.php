@@ -83,7 +83,6 @@ return array(
     'email_address'                      => 'Adresse email ',
     'email_invoice'                      => 'Envoyer la facture',
     'email_quote'                        => 'Envoyer le devis',
-    'email_receipt'                      => 'Envoyer le reçu',
     'email_send_method'                  => 'Méthode d\'envoi des emails ',
     'email_send_method_phpmail'          => 'PHP Mail',
     'email_send_method_sendmail'         => 'Sendmail',
@@ -229,7 +228,6 @@ return array(
     'table_name'                         => 'Nom de la table ',
     'tax'                                => 'TVA ',
     'tax_rate'                           => 'Taux de TVA',
-    'tax_rate_decimal_places'            => 'Nombre de décimales pour les taux de TVA ',
     'tax_rate_form'                      => 'Édition d\'un taux de TVA',
     'tax_rate_name'                      => 'Désignation du taux de TVA ',
     'tax_rate_percent'                   => 'Pourcentage de taux de TVA ',
@@ -388,6 +386,19 @@ return array(
     'save_and_apply_exchange_rate' => 'Enregistrer et Appliquer le taux de change',
     'template'                     => 'Template',
     'update_exchange_rate'         => 'Mettre à jour le taux de change',
-    'welcome'                      => 'Bienvenue'
+    'welcome'                      => 'Bienvenue',
+
+    // Added for 2.5.0
+    'bill_from'                    => 'Bill From',
+    'bill_to'                      => 'Bill To',
+    'binary_path'                  => 'Binary Path',
+    'client_statement'             => 'Client Statement',
+    'output_type'                  => 'Output Type',
+    'pay'                          => 'Pay',
+    'pdf_driver'                   => 'PDF Driver',
+    'preview'                      => 'Preview',
+    'quotation'                    => 'Quotation',
+    'report_rev_client_notice'     => 'This report will be available once you have some payments entered in the system.',
+    'view_all_payments_for_client' => 'View all payments for this client'
 
 );

@@ -11,136 +11,132 @@
 
 namespace FI\Modules\TaxRates\Controllers;
 
+use App;
+use BaseController;
+use FI\Libraries\NumberFormatter;
 use Input;
 use Redirect;
 use View;
 
-use FI\Libraries\NumberFormatter;
+class TaxRateController extends BaseController {
 
-class TaxRateController extends \BaseController {
-	
-	/**
-	 * Tax rate repository
-	 * @var TaxRateRepository
-	 */
-	protected $taxRate;
+    /**
+     * Tax rate repository
+     * @var TaxRateRepository
+     */
+    protected $taxRate;
 
-	/**
-	 * Tax rate validator
-	 * @var TaxRateValidator
-	 */
-	protected $validator;
-	
-	/**
-	 * Dependency injection
-	 * @param TaxRateRepository $taxRate
-	 * @param TaxRateValidator $validator
-	 */
-	public function __construct($taxRate, $validator)
-	{
-		$this->taxRate = $taxRate;
-		$this->validator = $validator;
-	}
+    /**
+     * Tax rate validator
+     * @var TaxRateValidator
+     */
+    protected $validator;
 
-	/**
-	 * Display paginated list
-	 * @return \Illuminate\View\View
-	 */
-	public function index()
-	{
-		$taxRates = $this->taxRate->getPaged();
+    public function __construct()
+    {
+        $this->taxRate   = App::make('TaxRateRepository');
+        $this->validator = App::make('TaxRateValidator');
+    }
 
-		return View::make('tax_rates.index')
-		->with('taxRates', $taxRates);
-	}
+    /**
+     * Display paginated list
+     * @return \Illuminate\View\View
+     */
+    public function index()
+    {
+        $taxRates = $this->taxRate->getPaged();
 
-	/**
-	 * Display form for new record
-	 * @return \Illuminate\View\View
-	 */
-	public function create()
-	{
-		return View::make('tax_rates.form')
-		->with('editMode', false);
-	}
+        return View::make('tax_rates.index')
+            ->with('taxRates', $taxRates);
+    }
 
-	/**
-	 * Validate and handle new record form submission
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	public function store()
-	{
-		$input = Input::all();
+    /**
+     * Display form for new record
+     * @return \Illuminate\View\View
+     */
+    public function create()
+    {
+        return View::make('tax_rates.form')
+            ->with('editMode', false);
+    }
 
-		$input['percent'] = NumberFormatter::unformat($input['percent']);
+    /**
+     * Validate and handle new record form submission
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store()
+    {
+        $input = Input::all();
 
-		$validator = $this->validator->getValidator($input);
+        $input['percent'] = NumberFormatter::unformat($input['percent']);
 
-		if ($validator->fails())
-		{
-			return Redirect::route('taxRates.create')
-			->with('editMode', false)
-			->withErrors($validator)
-			->withInput();
-		}
+        $validator = $this->validator->getValidator($input);
 
-		$this->taxRate->create($input);
-		
-		return Redirect::route('taxRates.index')
-		->with('alertSuccess', trans('fi.record_successfully_created'));
-	}
+        if ($validator->fails())
+        {
+            return Redirect::route('taxRates.create')
+                ->with('editMode', false)
+                ->withErrors($validator)
+                ->withInput();
+        }
 
-	/**
-	 * Display form for existing record
-	 * @param  int $id
-	 * @return \Illuminate\View\View
-	 */
-	public function edit($id)
-	{
-		$taxRate = $this->taxRate->find($id);
-		
-		return View::make('tax_rates.form')
-		->with(array('editMode' => true, 'taxRate' => $taxRate));
-	}
+        $this->taxRate->create($input);
 
-	/**
-	 * Validate and handle existing record form submission
-	 * @param  int $id
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	public function update($id)
-	{
-		$input = Input::all();
+        return Redirect::route('taxRates.index')
+            ->with('alertSuccess', trans('fi.record_successfully_created'));
+    }
 
-		$input['percent'] = NumberFormatter::unformat($input['percent']);
+    /**
+     * Display form for existing record
+     * @param  int $id
+     * @return \Illuminate\View\View
+     */
+    public function edit($id)
+    {
+        $taxRate = $this->taxRate->find($id);
 
-		$validator = $this->validator->getValidator($input);
+        return View::make('tax_rates.form')
+            ->with(array('editMode' => true, 'taxRate' => $taxRate));
+    }
 
-		if ($validator->fails())
-		{
-			return Redirect::route('taxRates.edit', array($id))
-			->with('editMode', true)
-			->withErrors($validator)
-			->withInput();
-		}
+    /**
+     * Validate and handle existing record form submission
+     * @param  int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update($id)
+    {
+        $input = Input::all();
 
-		$this->taxRate->update($input, $id);
+        $input['percent'] = NumberFormatter::unformat($input['percent']);
 
-		return Redirect::route('taxRates.index')
-		->with('alertInfo', trans('fi.record_successfully_updated'));
-	}
+        $validator = $this->validator->getValidator($input);
 
-	/**
-	 * Delete a record
-	 * @param  int $id
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	public function delete($id)
-	{
-		$this->taxRate->delete($id);
+        if ($validator->fails())
+        {
+            return Redirect::route('taxRates.edit', array($id))
+                ->with('editMode', true)
+                ->withErrors($validator)
+                ->withInput();
+        }
 
-		return Redirect::route('taxRates.index')
-		->with('alert', trans('fi.record_successfully_deleted'));
-	}
+        $this->taxRate->update($input, $id);
+
+        return Redirect::route('taxRates.index')
+            ->with('alertInfo', trans('fi.record_successfully_updated'));
+    }
+
+    /**
+     * Delete a record
+     * @param  int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete($id)
+    {
+        $this->taxRate->delete($id);
+
+        return Redirect::route('taxRates.index')
+            ->with('alert', trans('fi.record_successfully_deleted'));
+    }
 
 }

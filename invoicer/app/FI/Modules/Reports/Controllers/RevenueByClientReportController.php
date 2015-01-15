@@ -11,13 +11,16 @@
 
 namespace FI\Modules\Reports\Controllers;
 
+use App;
+use BaseController;
+use FI\Libraries\PDF\PDFFactory;
 use Input;
 use Response;
 use View;
 
 use FI\Libraries\DateFormatter;
 
-class RevenueByClientReportController extends \BaseController {
+class RevenueByClientReportController extends BaseController {
 
 	/**
 	 * Revenue by client report repository
@@ -31,17 +34,12 @@ class RevenueByClientReportController extends \BaseController {
 	 */
 	protected $validator;
 
-	/**
-	 * Dependency injection
-	 * @param RevenueByClientReportRepository $revenueByClientReport
-	 * @param  ReportValidator $validator
-	 */
-	public function __construct($revenueByClientReport, $validator)
+	public function __construct()
 	{
-		$this->revenueByClientReport = $revenueByClientReport;
-		$this->validator             = $validator;
+		$this->revenueByClientReport = App::make('RevenueByClientReportRepository');
+		$this->validator             = App::make('ReportValidator');
 	}
-	
+
 	/**
 	 * Display the report interface
 	 * @return View
@@ -49,14 +47,10 @@ class RevenueByClientReportController extends \BaseController {
 	public function index()
 	{
 		return View::make('reports.revenue_by_client')
-		->with('years', $this->revenueByClientReport->getDistinctYears());
+			->with('years', $this->revenueByClientReport->getDistinctYears());
 	}
 
-	/**
-	 * Run the report and display the results
-	 * @return View
-	 */
-	public function ajaxRunReport()
+	public function ajaxValidate()
 	{
 		$validator = $this->validator->getYearValidator(Input::all());
 
@@ -68,6 +62,13 @@ class RevenueByClientReportController extends \BaseController {
 			), 400);
 		}
 
+		return Response::json(array('success' => true));
+	}
+
+	public function html()
+	{
+		$results = $this->revenueByClientReport->getResults(Input::get('year'));
+
 		$months  = array();
 
 		foreach(range(1, 12) as $month)
@@ -76,8 +77,30 @@ class RevenueByClientReportController extends \BaseController {
 		}
 
 		return View::make('reports._revenue_by_client')
-		->with('months', $months)
-		->with('results', $this->revenueByClientReport->getResults(Input::get('year')));
+			->with('results', $results)
+			->with('months', $months);
+	}
+
+	public function pdf()
+	{
+		$pdf = PDFFactory::create();
+
+		$results = $this->revenueByClientReport->getResults(Input::get('year'));
+
+		$months  = array();
+
+		foreach(range(1, 12) as $month)
+		{
+			$months[$month] = DateFormatter::getMonthShortName($month);
+		}
+
+		$html = View::make('reports._revenue_by_client')
+			->with('results', $results)
+			->with('months', $months)
+			->render();
+
+		$pdf->setPaperOrientation('landscape');
+		$pdf->download($html, trans('fi.revenue_by_client') . '.pdf');
 	}
 
 }

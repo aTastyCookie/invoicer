@@ -11,9 +11,10 @@
 
 namespace FI\Modules\Merchant\Repositories;
 
+use FI\Libraries\BaseRepository;
 use FI\Modules\Merchant\Models\InvoiceTransaction;
 
-class InvoiceTransactionRepository extends \FI\Libraries\BaseRepository {
+class InvoiceTransactionRepository extends BaseRepository {
 
 	public function __construct(InvoiceTransaction $model)
 	{

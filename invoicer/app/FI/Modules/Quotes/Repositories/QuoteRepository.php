@@ -12,11 +12,13 @@
 namespace FI\Modules\Quotes\Repositories;
 
 use Config;
+use DB;
 use Event;
+use FI\Libraries\BaseRepository;
 use FI\Modules\Quotes\Models\Quote;
 use FI\Statuses\QuoteStatuses;
 
-class QuoteRepository extends \FI\Libraries\BaseRepository {
+class QuoteRepository extends BaseRepository {
 
 	public function __construct(Quote $model)
 	{
@@ -32,7 +34,7 @@ class QuoteRepository extends \FI\Libraries\BaseRepository {
 	 */
 	public function getPagedByStatus($status = 'all', $filter = null, $clientId = null)
 	{
-		$quote = $this->model->has('amount')->with(array('amount', 'client'))->orderBy('created_at', 'DESC')->orderBy('number', 'DESC');
+        $quote = $this->model->has('amount')->with(array('amount', 'client'))->orderBy('created_at', 'DESC')->orderBy(DB::raw('length(number)'), 'DESC')->orderBy('number', 'DESC');
 
 		switch ($status)
 		{

@@ -17,44 +17,14 @@ class ModuleProvider extends ServiceProvider {
 
 	public function register()
 	{
+        $this->app->bind('ClientStatementReportRepository', 'FI\Modules\Reports\Repositories\ClientStatementReportRepository');
         $this->app->bind('ItemSalesReportRepository', 'FI\Modules\Reports\Repositories\ItemSalesReportRepository');
         $this->app->bind('PaymentsCollectedReportRepository', 'FI\Modules\Reports\Repositories\PaymentsCollectedReportRepository');
         $this->app->bind('RevenueByClientReportRepository', 'FI\Modules\Reports\Repositories\RevenueByClientReportRepository');
         $this->app->bind('TaxSummaryReportRepository', 'FI\Modules\Reports\Repositories\TaxSummaryReportRepository');
 
+        $this->app->bind('ClientStatementReportValidator', 'FI\Modules\Reports\Validators\ClientStatementReportValidator');
         $this->app->bind('ReportValidator', 'FI\Modules\Reports\Validators\ReportValidator');
-
-        $this->app->bind('ItemSalesReportController', function($app)
-        {
-            return new \FI\Modules\Reports\Controllers\ItemSalesReportController(
-                $app->make('ItemSalesReportRepository'),
-                $app->make('ReportValidator')
-            );
-        });
-
-        $this->app->bind('PaymentsCollectedReportController', function($app)
-        {
-            return new \FI\Modules\Reports\Controllers\PaymentsCollectedReportController(
-                $app->make('PaymentsCollectedReportRepository'),
-                $app->make('ReportValidator')
-            );
-        });
-
-        $this->app->bind('RevenueByClientReportController', function($app)
-        {
-            return new \FI\Modules\Reports\Controllers\RevenueByClientReportController(
-                $app->make('RevenueByClientReportRepository'),
-                $app->make('ReportValidator')
-            );
-        });
-
-        $this->app->bind('TaxSummaryReportController', function($app)
-        {
-            return new \FI\Modules\Reports\Controllers\TaxSummaryReportController(
-                $app->make('TaxSummaryReportRepository'),
-                $app->make('ReportValidator')
-            );
-        });
 	}
 
 }

@@ -12,11 +12,12 @@
 namespace FI\Modules\Invoices\Repositories;
 
 use DB;
+use FI\Libraries\BaseRepository;
 use FI\Libraries\CurrencyFormatter;
 use FI\Modules\Invoices\Models\InvoiceAmount;
 use FI\Statuses\InvoiceStatuses;
 
-class InvoiceAmountRepository extends \FI\Libraries\BaseRepository {
+class InvoiceAmountRepository extends BaseRepository {
 
     public function __construct(InvoiceAmount $model)
     {

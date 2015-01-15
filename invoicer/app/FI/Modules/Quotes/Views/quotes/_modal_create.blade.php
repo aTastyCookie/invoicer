@@ -4,9 +4,9 @@
 <script type="text/javascript">
     var storeQuoteRoute = '{{ route('quotes.store') }}';
     var createQuoteReturnUrl = '{{ url('quotes') }}';
-    var clientNameLookupRoute = '{{ route('clients.ajax.nameLookup') }}';
 </script>
 
+<script src="{{ asset('js/FI/client_lookup.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/FI/quote_create.js') }}" type="text/javascript"></script>
 
 <div class="modal fade" id="create-quote">

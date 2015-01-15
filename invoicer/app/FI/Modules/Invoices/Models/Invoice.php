@@ -14,10 +14,13 @@ namespace FI\Modules\Invoices\Models;
 use App;
 use Config;
 use DB;
+use Eloquent;
+use FI\Libraries\CurrencyFormatter;
 use FI\Libraries\DateFormatter;
+use FI\Libraries\HTML;
 use FI\Statuses\InvoiceStatuses;
 
-class Invoice extends \Eloquent {
+class Invoice extends Eloquent {
 
     /**
      * Guarded properties
@@ -34,7 +37,7 @@ class Invoice extends \Eloquent {
     public function activities()
     {
         return $this->morphMany('FI\Modules\Activities\Models\Activity', 'audit');
-    }   
+    }
 
     public function amount()
     {
@@ -54,7 +57,7 @@ class Invoice extends \Eloquent {
     public function items()
     {
         return $this->hasMany('FI\Modules\Invoices\Models\InvoiceItem')
-        ->orderBy('display_order');
+            ->orderBy('display_order');
     }
 
     public function payments()
@@ -80,6 +83,11 @@ class Invoice extends \Eloquent {
     public function recurring()
     {
         return $this->hasMany('FI\Modules\Invoices\Models\RecurringInvoice');
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany('FI\Modules\Merchant\Models\InvoiceTransaction');
     }
 
     /*
@@ -168,6 +176,64 @@ class Invoice extends \Eloquent {
         return Config::get('fi.invoiceTemplate');
     }
 
+    public function getHtmlAttribute()
+    {
+        return HTML::invoice($this);
+    }
+
+    /**
+     * Gathers a summary of both invoice and item taxes to be displayed on invoice
+     * @return array
+     */
+    public function getSummarizedTaxesAttribute()
+    {
+        $taxes = array();
+
+        foreach ($this->taxRates as $taxRate)
+        {
+            $key = $taxRate->taxRate->name;
+
+            if (!isset($taxes[$key]))
+            {
+                $taxes[$key]          = new \stdClass();
+                $taxes[$key]->name    = $taxRate->taxRate->name;
+                $taxes[$key]->percent = $taxRate->taxRate->formatted_percent;
+                $taxes[$key]->total   = $taxRate->tax_total;
+            }
+            else
+            {
+                $taxes[$key]->total += $taxRate->tax_total;
+            }
+        }
+
+        foreach ($this->items as $item)
+        {
+            if ($item->taxRate)
+            {
+                $key = $item->taxRate->name;
+
+                if (!isset($taxes[$key]))
+                {
+                    $taxes[$key]          = new \stdClass();
+                    $taxes[$key]->name    = $item->taxRate->name;
+                    $taxes[$key]->percent = $item->taxRate->formatted_percent;
+                    $taxes[$key]->total   = $item->amount->tax_total;
+                }
+                else
+                {
+                    $taxes[$key]->total += $item->amount->tax_total;
+                }
+            }
+        }
+
+        foreach ($taxes as $key => $tax)
+        {
+            $taxes[$key]->total = CurrencyFormatter::format($tax->total, $this->currency_code);
+        }
+
+        return $taxes;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Mutators
@@ -218,25 +284,37 @@ class Invoice extends \Eloquent {
         return $query->where('invoice_status_id', '=', InvoiceStatuses::getStatusId('canceled'));
     }
 
+    public function scopeStatusIn($query, $statuses)
+    {
+        $statusCodes = array();
+
+        foreach ($statuses as $status)
+        {
+            $statusCodes[] = InvoiceStatuses::getStatusId($status);
+        }
+
+       return $query->whereIn('invoice_status_id', $statusCodes);
+    }
+
     public function scopeOverdue($query)
     {
         // Only invoices in Sent status qualify to be overdue
         return $query
-        ->where('invoice_status_id', '=', InvoiceStatuses::getStatusId('sent'))
-        ->where('due_at', '<', date('Y-m-d'));
+            ->where('invoice_status_id', '=', InvoiceStatuses::getStatusId('sent'))
+            ->where('due_at', '<', date('Y-m-d'));
     }
 
     public function scopeKeywords($query, $keywords)
     {
         $keywords = strtolower($keywords);
 
-        $query->where(DB::raw('lower(number)'), 'like', '%'.$keywords.'%')
-        ->orWhere('created_at', 'like', '%'.$keywords.'%')
-        ->orWhere('due_at', 'like', '%'.$keywords.'%')
-        ->orWhereIn('client_id', function($query) use($keywords)
-        {
-            $query->select('id')->from('clients')->where(DB::raw('lower(name)'), 'like', '%'.$keywords.'%');
-        });
+        $query->where(DB::raw('lower(number)'), 'like', '%' . $keywords . '%')
+            ->orWhere('created_at', 'like', '%' . $keywords . '%')
+            ->orWhere('due_at', 'like', '%' . $keywords . '%')
+            ->orWhereIn('client_id', function ($query) use ($keywords)
+            {
+                $query->select('id')->from('clients')->where(DB::raw('lower(name)'), 'like', '%' . $keywords . '%');
+            });
 
         return $query;
     }

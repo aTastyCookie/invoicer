@@ -11,11 +11,13 @@
 
 namespace FI\Modules\PaymentMethods\Controllers;
 
+use App;
+use BaseController;
 use Input;
 use Redirect;
 use View;
 
-class PaymentMethodController extends \BaseController {
+class PaymentMethodController extends BaseController {
 	
 	/**
 	 * Payment method repository
@@ -28,16 +30,11 @@ class PaymentMethodController extends \BaseController {
 	 * @var PaymentMethodValidator
 	 */
 	protected $validator;
-	
-	/**
-	 * Dependency injection
-	 * @param PaymentMethodRepository $paymentMethod
-	 * @param PaymentMethodValidator $validator
-	 */
-	public function __construct($paymentMethod, $validator)
+
+	public function __construct()
 	{
-		$this->paymentMethod = $paymentMethod;
-		$this->validator     = $validator;
+		$this->paymentMethod = App::make('PaymentMethodRepository');
+		$this->validator     = App::make('PaymentMethodValidator');
 	}
 
 	/**

@@ -11,9 +11,10 @@
 
 namespace FI\Modules\Quotes\Repositories;
 
+use FI\Libraries\BaseRepository;
 use FI\Modules\Quotes\Models\QuoteItemAmount;
 
-class QuoteItemAmountRepository extends \FI\Libraries\BaseRepository {
+class QuoteItemAmountRepository extends BaseRepository {
 
 	public function __construct(QuoteItemAmount $model)
 	{

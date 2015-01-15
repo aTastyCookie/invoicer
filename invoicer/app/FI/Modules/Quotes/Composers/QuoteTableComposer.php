@@ -9,8 +9,7 @@ class QuoteTableComposer {
 
 	public function compose($view)
 	{
-		$view->with('statuses', QuoteStatuses::statuses())
-		->with('mailConfigured', (Config::get('fi.mailDriver')) ? true : false);
+		$view->with('statuses', QuoteStatuses::statuses());
 	}
 
 }

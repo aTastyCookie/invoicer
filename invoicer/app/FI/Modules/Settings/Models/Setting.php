@@ -11,7 +11,9 @@
 
 namespace FI\Modules\Settings\Models;
 
-class Setting extends \Eloquent {
+use Eloquent;
+
+class Setting extends Eloquent {
 
 	/**
 	 * Guarded properties

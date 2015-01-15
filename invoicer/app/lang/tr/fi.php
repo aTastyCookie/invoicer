@@ -83,7 +83,6 @@ return array(
 	'email_address'                      => 'E-mail Adresi',
 	'email_invoice'                      => 'E-mail Fatura',
 	'email_quote'                        => 'E-mail Teklif',
-	'email_receipt'                      => 'E-mail Onaylama',
 	'email_send_method'                  => 'E-mail Gönderi metodu',
 	'email_send_method_phpmail'          => 'PHP Mail',
 	'email_send_method_sendmail'         => 'Sendmail',
@@ -229,7 +228,6 @@ return array(
 	'table_name'                         => 'Tablo adı',
 	'tax'                                => 'KDV',
 	'tax_rate'                           => 'KDV Yüzdesi',
-	'tax_rate_decimal_places'            => 'KDV Yüzdesi ondalık',
 	'tax_rate_form'                      => 'KDV Yüzdesi formu',
 	'tax_rate_name'                      => 'KDV Adı',
 	'tax_rate_percent'                   => 'KDV Yüzdesi',
@@ -270,7 +268,7 @@ return array(
 	'weeks'                              => 'Hafta',
 	'what_to_import'                     => 'Neyş ımport etmek istiyorsunuz ?',
 	'year'                               => 'Yıl',
-	'years'                              => 'Yıllar',
+	'years'                              => 'Yıl',
 	'year_prefix'                        => 'Yıllık',
 	'yes'                                => 'Evet',
 	'zip_code'                           => 'Posta Kodu',
@@ -388,6 +386,19 @@ return array(
     'save_and_apply_exchange_rate' => 'Save and Apply Exchange Rate',
     'template'                     => 'Template',
     'update_exchange_rate'         => 'Update Exchange Rate',
-    'welcome'                      => 'Welcome'
+    'welcome'                      => 'Welcome',
+
+	// Added for 2.5.0
+	'bill_from'                    => 'Bill From',
+	'bill_to'                      => 'Bill To',
+	'binary_path'                  => 'Binary Path',
+	'client_statement'             => 'Client Statement',
+	'output_type'                  => 'Output Type',
+	'pay'                          => 'Pay',
+	'pdf_driver'                   => 'PDF Driver',
+	'preview'                      => 'Preview',
+	'quotation'                    => 'Quotation',
+	'report_rev_client_notice'     => 'This report will be available once you have some payments entered in the system.',
+	'view_all_payments_for_client' => 'View all payments for this client'
 	
 );

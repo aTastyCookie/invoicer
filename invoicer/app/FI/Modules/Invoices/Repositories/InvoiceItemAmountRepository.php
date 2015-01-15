@@ -11,9 +11,10 @@
 
 namespace FI\Modules\Invoices\Repositories;
 
+use FI\Libraries\BaseRepository;
 use FI\Modules\Invoices\Models\InvoiceItemAmount;
 
-class InvoiceItemAmountRepository extends \FI\Libraries\BaseRepository {
+class InvoiceItemAmountRepository extends BaseRepository {
 
 	public function __construct(InvoiceItemAmount $model)
 	{

@@ -16,7 +16,7 @@
 
 	$(function() {
 
-		$('.mail-payment-receipt').click(function() {
+		$('.email-payment-receipt').click(function() {
 			$('#modal-placeholder').load("{{ route('payments.ajax.modalMailPayment') }}", { 
 				payment_id: $(this).data('payment-id'),
 				redirectTo: $(this).data('redirect-to')

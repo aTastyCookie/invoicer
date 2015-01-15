@@ -17,16 +17,7 @@ class ModuleProvider extends ServiceProvider {
 
 	public function register()
 	{
-        $this->app->bind('DashboardController', function($app)
-        {
-            return new \FI\Modules\Dashboard\Controllers\DashboardController(
-                $app->make('ActivityRepository'),
-                $app->make('InvoiceRepository'),
-                $app->make('QuoteRepository'),
-                $app->make('InvoiceAmountRepository'),
-                $app->make('QuoteAmountRepository')
-            );
-        });
+        // Nothing to see here now...
 	}
 
 }

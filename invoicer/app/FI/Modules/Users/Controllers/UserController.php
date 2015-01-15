@@ -11,13 +11,15 @@
 
 namespace FI\Modules\Users\Controllers;
 
+use App;
+use BaseController;
 use FI\Libraries\CustomFields;
 use Hash;
 use Input;
 use Redirect;
 use View;
 
-class UserController extends \BaseController {
+class UserController extends BaseController {
 
 	/**
 	 * Custom field repository
@@ -43,17 +45,12 @@ class UserController extends \BaseController {
 	 */
 	protected $validator;
 
-	/**
-	 * Dependency injection
-	 * @param UserRepository $user
-	 * @param UserValidator $validator
-	 */
-	public function __construct($customField, $user, $userCustom, $validator)
+	public function __construct()
 	{
-		$this->customField = $customField;
-		$this->user        = $user;
-		$this->userCustom  = $userCustom;
-		$this->validator   = $validator;
+		$this->customField = App::make('CustomFieldRepository');
+		$this->user        = App::make('UserRepository');
+		$this->userCustom  = App::make('UserCustomRepository');
+		$this->validator   = App::make('UserValidator');
 	}
 
 	/**

@@ -11,9 +11,10 @@
 
 namespace FI\Modules\Invoices\Models;
 
+use Eloquent;
 use FI\Libraries\CurrencyFormatter;
 
-class InvoiceTaxRate extends \Eloquent {
+class InvoiceTaxRate extends Eloquent {
 
     /**
      * Guarded properties

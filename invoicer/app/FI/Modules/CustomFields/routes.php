@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-Route::group(array('before' => 'auth'), function()
+Route::group(array('before' => 'auth', 'namespace' => 'FI\Modules\CustomFields\Controllers'), function()
 {
 	Route::get('custom_fields', array('uses' => 'CustomFieldController@index', 'as' => 'customFields.index'));
 	Route::get('custom_fields/create', array('uses' => 'CustomFieldController@create', 'as' => 'customFields.create'));

@@ -13,10 +13,11 @@ namespace FI\Modules\Payments\Repositories;
 
 use Config;
 use Event;
+use FI\Libraries\BaseRepository;
 
 use FI\Modules\Payments\Models\Payment;
 
-class PaymentRepository extends \FI\Libraries\BaseRepository {
+class PaymentRepository extends BaseRepository {
 
 	public function __construct(Payment $model)
 	{
@@ -28,16 +29,24 @@ class PaymentRepository extends \FI\Libraries\BaseRepository {
 	 * @param  string $filter
 	 * @return Payment
 	 */
-	public function getPaged($filter = null)
+	public function getPaged($filter = null, $clientId = null)
 	{
-		if (!$filter)
-		{
-			return $this->model->orderBy('paid_at', 'desc')->orderBy('created_at', 'desc')->paginate(Config::get('fi.defaultNumPerPage'));
+        $payments = $this->model->orderBy('paid_at', 'desc')->orderBy('created_at', 'desc');
+
+        if ($filter)
+        {
+            $payments->keywords($filter);
 		}
-		else
-		{
-			return $this->model->orderBy('paid_at', 'desc')->orderBy('created_at', 'desc')->keywords($filter)->paginate(Config::get('fi.defaultNumPerPage'));
-		}
+
+        if ($clientId)
+        {
+            $payments->whereHas('invoice', function($query) use($clientId)
+            {
+                $query->where('client_id', $clientId);
+            });
+        }
+
+        return $payments->paginate(Config::get('fi.defaultNumPerPage'));
 	}
 
 	/**
@@ -49,6 +58,14 @@ class PaymentRepository extends \FI\Libraries\BaseRepository {
 	{
 		return $this->model->where('invoice_id', $invoiceId)->sum('amount');
 	}
+
+    public function getByClientId($clientId)
+    {
+        return $this->model->whereHas('invoice', function($query) use($clientId)
+        {
+            $query->where('client_id', $clientId);
+        })->orderBy('paid_at', 'desc')->get();
+    }
 
 	/**
 	 * Get a single record

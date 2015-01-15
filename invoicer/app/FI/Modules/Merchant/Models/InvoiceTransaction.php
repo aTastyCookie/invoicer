@@ -11,7 +11,9 @@
 
 namespace FI\Modules\Merchant\Models;
 
-class InvoiceTransaction extends \Eloquent {
+use Eloquent;
+
+class InvoiceTransaction extends Eloquent {
 
 	protected $table = 'invoice_transactions';
 

@@ -11,13 +11,16 @@
 
 namespace FI\Modules\Reports\Controllers;
 
+use App;
+use BaseController;
+use FI\Libraries\PDF\PDFFactory;
 use Input;
 use Response;
 use View;
 
 use FI\Libraries\DateFormatter;
 
-class ItemSalesReportController extends \BaseController {
+class ItemSalesReportController extends BaseController {
 
 	/**
 	 * Item sales report repository
@@ -31,15 +34,10 @@ class ItemSalesReportController extends \BaseController {
 	 */
 	protected $validator;
 
-	/**
-	 * Dependency injection
-	 * @param ItemSalesReportRepository $itemSalesReport
-	 * @param ReportValidator $validator
-	 */
-	public function __construct($itemSalesReport, $validator)
+	public function __construct()
 	{
-		$this->itemSalesReport = $itemSalesReport;
-		$this->validator       = $validator;
+		$this->itemSalesReport = App::make('ItemSalesReportRepository');
+		$this->validator       = App::make('ReportValidator');
 	}
 	
 	/**
@@ -51,11 +49,7 @@ class ItemSalesReportController extends \BaseController {
 		return View::make('reports.item_sales');
 	}
 
-	/**
-	 * Run the report and display the results
-	 * @return View
-	 */
-	public function ajaxRunReport()
+	public function ajaxValidate()
 	{
 		$validator = $this->validator->getDateRangeValidator(Input::all());
 
@@ -67,8 +61,27 @@ class ItemSalesReportController extends \BaseController {
 			), 400);
 		}
 
+		return Response::json(array('success' => true));
+	}
+
+	public function html()
+	{
+		$results = $this->itemSalesReport->getResults(DateFormatter::unformat(Input::get('from_date')), DateFormatter::unformat(Input::get('to_date')));
+
 		return View::make('reports._item_sales')
-		->with('results', $this->itemSalesReport->getResults(DateFormatter::unformat(Input::get('from_date')), DateFormatter::unformat(Input::get('to_date'))));
+			->with('results', $results);
+	}
+
+	public function pdf()
+	{
+		$pdf = PDFFactory::create();
+
+		$results = $this->itemSalesReport->getResults(DateFormatter::unformat(Input::get('from_date')), DateFormatter::unformat(Input::get('to_date')));
+
+		$html = View::make('reports._item_sales')
+			->with('results', $results)->render();
+
+		$pdf->download($html, trans('fi.item_sales') . '.pdf');
 	}
 
 }

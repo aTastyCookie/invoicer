@@ -11,20 +11,18 @@
 
 namespace FI\Providers;
 
-use Illuminate\Support\ServiceProvider;
-
 use FI\Libraries\Directory;
-
+use Illuminate\Support\ServiceProvider;
 use Paginator;
 
 class StartProvider extends ServiceProvider {
 
     public function boot()
     {
+        $this->app->view->composer('*', 'FI\Composers\GlobalPageComposer');
         $this->app->view->composer('layouts.master', 'FI\Composers\LayoutComposer');
         $this->app->view->composer('layouts.empty', 'FI\Composers\LayoutComposer');
         $this->app->view->composer('sessions.login', 'FI\Composers\LayoutComposer');
-
         $this->app->view->composer(Paginator::getViewName(), 'FI\Composers\PaginationComposer');
     }
 
