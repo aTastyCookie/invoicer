@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-Route::group(array('before' => 'auth'), function()
+Route::group(array('before' => 'auth', 'namespace' => 'FI\Modules\InvoiceGroups\Controllers'), function()
 {
 	Route::get('invoice_groups', array('uses' => 'InvoiceGroupController@index', 'as' => 'invoiceGroups.index'));
 	Route::get('invoice_groups/create', array('uses' => 'InvoiceGroupController@create', 'as' => 'invoiceGroups.create'));

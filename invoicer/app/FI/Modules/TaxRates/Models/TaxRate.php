@@ -11,9 +11,10 @@
 
 namespace FI\Modules\TaxRates\Models;
 
+use Eloquent;
 use FI\Libraries\NumberFormatter;
 
-class TaxRate extends \Eloquent {
+class TaxRate extends Eloquent {
 
 	/**
 	 * Guarded properties

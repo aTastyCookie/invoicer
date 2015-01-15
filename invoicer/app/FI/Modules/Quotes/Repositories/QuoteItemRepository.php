@@ -12,10 +12,10 @@
 namespace FI\Modules\Quotes\Repositories;
 
 use Event;
+use FI\Libraries\BaseRepository;
 use FI\Modules\Quotes\Models\QuoteItem;
-use FI\Modules\Quotes\Models\QuoteItemAmount;
 
-class QuoteItemRepository extends \FI\Libraries\BaseRepository {
+class QuoteItemRepository extends BaseRepository {
 
 	public function __construct(QuoteItem $model)
 	{

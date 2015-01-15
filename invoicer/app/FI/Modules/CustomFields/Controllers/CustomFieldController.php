@@ -11,13 +11,14 @@
 
 namespace FI\Modules\CustomFields\Controllers;
 
+use App;
+use BaseController;
+use FI\Modules\CustomFields\Libraries\CustomFields;
 use Input;
 use Redirect;
 use View;
 
-use FI\Modules\CustomFields\Libraries\CustomFields;
-
-class CustomFieldController extends \BaseController {
+class CustomFieldController extends BaseController {
 
 	/**
 	 * Custom field repository
@@ -31,15 +32,10 @@ class CustomFieldController extends \BaseController {
 	 */
 	protected $validator;
 
-	/**
-	 * Dependency injection
-	 * @param CustomFieldRepository $customField
-	 * @param CustomFieldValidator $validator
-	 */
-	public function __construct($customField, $validator)
+	public function __construct()
 	{
-		$this->customField	 = $customField;
-		$this->validator	 = $validator;
+		$this->customField	 = App::make('CustomFieldRepository');
+		$this->validator	 = App::make('CustomFieldValidator');
 	}
 
 	/**

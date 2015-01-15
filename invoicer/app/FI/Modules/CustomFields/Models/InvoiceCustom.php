@@ -11,7 +11,9 @@
 
 namespace FI\Modules\CustomFields\Models;
 
-class InvoiceCustom extends \Eloquent {
+use Eloquent;
+
+class InvoiceCustom extends Eloquent {
 
 	/**
 	 * The table name

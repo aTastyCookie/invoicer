@@ -11,30 +11,17 @@
 
 namespace FI\Modules\Dashboard\Controllers;
 
+use App;
+use BaseController;
 use View;
 
-use FI\Statuses\InvoiceStatuses;
-use FI\Statuses\QuoteStatuses;
-
-class DashboardController extends \BaseController {
+class DashboardController extends BaseController {
 
 	/**
 	 * Activity Repository
 	 * @var ActivityRepository
 	 */
 	protected $activity;
-	
-	/**
-	 * Invoice repository
-	 * @var InvoiceRepository
-	 */
-	protected $invoice;
-
-	/**
-	 * Quote repository
-	 * @var QuoteRepository
-	 */
-	protected $quote;
 
 	/**
 	 * Invoice amount repository
@@ -48,23 +35,13 @@ class DashboardController extends \BaseController {
 	 */
 	protected $quoteAmount;
 
-	/**
-	 * Dependency injection
-	 * @param ActivityRepository $activity
-	 * @param InvoiceRepository $invoice
-	 * @param QuoteRepository $quote
-	 * @param InvoiceAmountRepository $invoiceAmount
-	 * @param QuoteAmountRepository $quoteAmount
-	 */
-	public function __construct($activity, $invoice, $quote, $invoiceAmount, $quoteAmount)
+	public function __construct()
 	{
 		parent::__construct();
 
-		$this->activity      = $activity;
-		$this->invoice       = $invoice;
-		$this->quote         = $quote;
-		$this->invoiceAmount = $invoiceAmount;
-		$this->quoteAmount   = $quoteAmount;
+		$this->activity      = App::make('ActivityRepository');
+		$this->invoiceAmount = App::make('InvoiceAmountRepository');
+		$this->quoteAmount   = App::make('QuoteAmountRepository');
 	}
 
 	/**

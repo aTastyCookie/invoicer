@@ -11,13 +11,16 @@
 
 namespace FI\Modules\Reports\Controllers;
 
+use App;
+use BaseController;
+use FI\Libraries\PDF\PDFFactory;
 use Input;
 use Response;
 use View;
 
 use FI\Libraries\DateFormatter;
 
-class TaxSummaryReportController extends \BaseController {
+class TaxSummaryReportController extends BaseController {
 
 	/**
 	 * Tax summary report repository
@@ -31,15 +34,10 @@ class TaxSummaryReportController extends \BaseController {
 	 */
 	protected $validator;
 
-	/**
-	 * Dependency injection
-	 * @param TaxSummaryReportRepository $taxSummaryReport
-	 * @param ReportValidator $validator
-	 */
-	public function __construct($taxSummaryReport, $validator)
+	public function __construct()
 	{
-		$this->taxSummaryReport = $taxSummaryReport;
-		$this->validator        = $validator;
+		$this->taxSummaryReport = App::make('TaxSummaryReportRepository');
+		$this->validator        = App::make('ReportValidator');
 	}
 	
 	/**
@@ -51,11 +49,7 @@ class TaxSummaryReportController extends \BaseController {
 		return View::make('reports.tax_summary');
 	}
 
-	/**
-	 * Run the report and display the results
-	 * @return View
-	 */
-	public function ajaxRunReport()
+	public function ajaxValidate()
 	{
 		$validator = $this->validator->getDateRangeValidator(Input::all());
 
@@ -66,9 +60,28 @@ class TaxSummaryReportController extends \BaseController {
 				'errors'  => $validator->messages()->toArray()
 			), 400);
 		}
-		
+
+		return Response::json(array('success' => true));
+	}
+
+	public function html()
+	{
+		$results = $this->taxSummaryReport->getResults(DateFormatter::unformat(Input::get('from_date')), DateFormatter::unformat(Input::get('to_date')));
+
 		return View::make('reports._tax_summary')
-		->with('results', $this->taxSummaryReport->getResults(DateFormatter::unformat(Input::get('from_date')), DateFormatter::unformat(Input::get('to_date'))));
+			->with('results', $results);
+	}
+
+	public function pdf()
+	{
+		$pdf = PDFFactory::create();
+
+		$results = $this->taxSummaryReport->getResults(DateFormatter::unformat(Input::get('from_date')), DateFormatter::unformat(Input::get('to_date')));
+
+		$html = View::make('reports._tax_summary')
+			->with('results', $results)->render();
+
+		$pdf->download($html, trans('fi.tax_summary') . '.pdf');
 	}
 
 }

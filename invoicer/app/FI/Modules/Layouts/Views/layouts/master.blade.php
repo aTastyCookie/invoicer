@@ -6,13 +6,19 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
     <link href="{{ asset('favicon.png') }}" rel="icon" type="image/png">
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/ionicons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/AdminLTE.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
 
     <link href='{{ $protocol }}://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,300italic,400italic,600italic' rel='stylesheet' type='text/css'>
+
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/FI/global.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/FI/app.js') }}" type="text/javascript"></script>
 
     @yield('head')
 
@@ -32,6 +38,16 @@
 
             <div class="navbar-right">
                 <ul class="nav navbar-nav">
+
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{{ trans('fi.help') }}">
+                            <i class="fa fa-question-circle"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                        <li><a href="https://www.HubPay.com/docs" target="_blank">{{ trans('fi.documentation') }}</a></li>
+                        <li><a href="https://www.HubPay.com/support" target="_blank">{{ trans('fi.customer_support') }}</a></li>
+                        </ul>
+                    </li>
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{{ trans('fi.system') }}">
@@ -62,7 +78,7 @@
     </header>
     <div class="wrapper row-offcanvas row-offcanvas-left">
 
-        <aside class="left-side sidebar-offcanvas">                
+        <aside class="left-side sidebar-offcanvas">
 
             <section class="sidebar">
 
@@ -125,6 +141,7 @@
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
+                            <li><a href="{{ route('reports.clientStatement') }}"><i class="fa fa-angle-double-right"></i> {{ trans('fi.client_statement') }}</a></li>
                             <li><a href="{{ route('reports.itemSales') }}"><i class="fa fa-angle-double-right"></i> {{ trans('fi.item_sales') }}</a></li>
                             <li><a href="{{ route('reports.paymentsCollected') }}"><i class="fa fa-angle-double-right"></i> {{ trans('fi.payments_collected') }}</a></li>
                             <li><a href="{{ route('reports.revenueByClient') }}"><i class="fa fa-angle-double-right"></i> {{ trans('fi.revenue_by_client') }}</a></li>
@@ -150,13 +167,8 @@
         var enterPaymentRoute       = '{{ route('payments.ajax.modalEnterPayment') }}';
         var datepickerFormat        = '{{ Config::get('fi.datepickerFormat') }}';
         var unknownError            = '{{ trans('fi.unknown_error') }}';
+        var clientNameLookupRoute   = '{{ route('clients.ajax.nameLookup') }}';
     </script>
-
-    <script src="{{ asset('js/jquery-2.0.2.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/jquery-ui-1.10.3.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/FI/global.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/FI/app.js') }}" type="text/javascript"></script>
 
     @section('jscript')
     @show

@@ -12,11 +12,12 @@
 namespace FI\Modules\Payments\Models;
 
 use DB;
+use Eloquent;
 use FI\Libraries\DateFormatter;
 use FI\Libraries\CurrencyFormatter;
 use FI\Libraries\NumberFormatter;
 
-class Payment extends \Eloquent {
+class Payment extends Eloquent {
 
     /**
      * Guarded properties
@@ -64,6 +65,11 @@ class Payment extends \Eloquent {
     public function getFormattedNumericAmountAttribute()
     {
         return NumberFormatter::format($this->attributes['amount']);
+    }
+
+    public function getFormattedNoteAttribute()
+    {
+        return nl2br($this->attributes['note']);
     }
 
     /*

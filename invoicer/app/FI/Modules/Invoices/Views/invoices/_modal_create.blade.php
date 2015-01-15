@@ -4,9 +4,9 @@
 <script type="text/javascript">
     var storeInvoiceRoute = '{{ route('invoices.store') }}';
     var createInvoiceReturnUrl = '{{ url('invoices') }}';
-    var clientNameLookupRoute = '{{ route('clients.ajax.nameLookup') }}';
 </script>
 
+<script src="{{ asset('js/FI/client_lookup.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/FI/invoice_create.js') }}" type="text/javascript"></script>
 
 <div class="modal fade" id="create-invoice">

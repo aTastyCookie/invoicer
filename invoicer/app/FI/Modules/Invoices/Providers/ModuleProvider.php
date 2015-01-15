@@ -37,31 +37,6 @@ class ModuleProvider extends ServiceProvider {
         $this->app->bind('InvoiceTaxRateValidator', 'FI\Modules\Invoices\Validators\InvoiceTaxRateValidator');
 
         $this->app->bind('InvoiceMailer', 'FI\Modules\Invoices\Mail\InvoiceMailer');
-        
-        $this->app->bind('InvoiceController', function($app)
-        {
-            return new \FI\Modules\Invoices\Controllers\InvoiceController(
-                $app->make('InvoiceRepository'),
-                $app->make('InvoiceGroupRepository'),
-                $app->make('InvoiceItemRepository'),
-                $app->make('InvoiceTaxRateRepository'),
-                $app->make('InvoiceValidator')
-            );
-        });
-
-        $this->app->bind('RecurringController', function($app)
-        {
-            return new \FI\Modules\Invoices\Controllers\RecurringController(
-                $app->make('RecurringInvoiceRepository')
-            );
-        });
-
-        $this->app->bind('PublicInvoiceController', function($app)
-        {
-            return new \FI\Modules\Invoices\Controllers\PublicInvoiceController(
-                $app->make('InvoiceRepository')
-            );
-        });
 
         // Register artisan command for recurring invoices
         $this->app['command.fi.recurring'] = $this->app->share(function($app)

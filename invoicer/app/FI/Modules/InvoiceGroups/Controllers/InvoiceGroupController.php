@@ -11,11 +11,13 @@
 
 namespace FI\Modules\InvoiceGroups\Controllers;
 
+use App;
+use BaseController;
 use Input;
 use Redirect;
 use View;
 
-class InvoiceGroupController extends \BaseController {
+class InvoiceGroupController extends BaseController {
 
 	/**
 	 * Invoice group repository
@@ -28,16 +30,11 @@ class InvoiceGroupController extends \BaseController {
 	 * @var InvoiceGroupValidator
 	 */
 	protected $validator;
-	
-	/**
-	 * Dependency injection
-	 * @param InvoiceGroupRepository $invoiceGroup
-	 * @param InvoiceValidator $validator
-	 */
-	public function __construct($invoiceGroup, $validator)
+
+	public function __construct()
 	{
-		$this->invoiceGroup = $invoiceGroup;
-		$this->validator    = $validator;
+		$this->invoiceGroup = App::make('InvoiceGroupRepository');
+		$this->validator    = App::make('InvoiceGroupValidator');
 	}
 
 	/**

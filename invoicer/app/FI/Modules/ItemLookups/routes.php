@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-Route::group(array('before' => 'auth'), function()
+Route::group(array('before' => 'auth', 'namespace' => 'FI\Modules\ItemLookups\Controllers'), function()
 {
 	Route::get('item_lookups', array('uses' => 'ItemLookupController@index', 'as' => 'itemLookups.index'));
 	Route::get('item_lookups/create', array('uses' => 'ItemLookupController@create', 'as' => 'itemLookups.create'));

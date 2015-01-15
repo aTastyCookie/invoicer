@@ -25,7 +25,10 @@
 			<td>{{{ $payment->note }}}</td>
 			<td>
 				<div class="btn-group">
-					<a href="{{ route('payments.edit', array($payment->id, $payment->invoice_id)) }}" class="btn btn-sm btn-default" title="{{ trans('fi.edit') }}"><i class="fa fa-edit"></i></a> 
+					<a href="{{ route('payments.edit', array($payment->id, $payment->invoice_id)) }}" class="btn btn-sm btn-default" title="{{ trans('fi.edit') }}"><i class="fa fa-edit"></i></a>
+                    @if ($mailConfigured)
+                    <a href="javascript:void(0)" class="btn btn-sm btn-default email-payment-receipt" data-payment-id="{{ $payment->id }}" data-redirect-to="{{ Request::fullUrl() }}" title="{{ trans('fi.email_payment_receipt') }}"><i class="fa fa-envelope"></i></a>
+                    @endif
 					<a href="{{ route('payments.delete', array($payment->id, $payment->invoice_id)) }}" class="btn btn-sm btn-default" title="{{ trans('fi.delete') }}" onclick="return confirm('{{ trans('fi.delete_record_warning') }}');"><i class="fa fa-trash-o"></i></a> 
 				</div>
 			</td>

@@ -12,9 +12,10 @@
 namespace FI\Modules\TaxRates\Repositories;
 
 use Config;
+use FI\Libraries\BaseRepository;
 use FI\Modules\TaxRates\Models\TaxRate;
 
-class TaxRateRepository extends \FI\Libraries\BaseRepository {
+class TaxRateRepository extends BaseRepository {
 
 	public function __construct(TaxRate $model)
 	{

@@ -11,7 +11,9 @@
 
 namespace FI\Modules\PaymentMethods\Models;
 
-class PaymentMethod extends \Eloquent {
+use Eloquent;
+
+class PaymentMethod extends Eloquent {
 
 	/**
 	 * Guarded properties

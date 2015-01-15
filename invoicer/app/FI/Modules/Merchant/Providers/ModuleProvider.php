@@ -18,15 +18,6 @@ class ModuleProvider extends ServiceProvider {
 	public function register()
 	{
 		$this->app->bind('InvoiceTransactionRepository', 'FI\Modules\Merchant\Repositories\InvoiceTransactionRepository');
-
-        $this->app->bind('MerchantController', function($app)
-        {
-            return new \FI\Modules\Merchant\Controllers\MerchantController(
-                $app->make('InvoiceRepository'),
-                $app->make('InvoiceTransactionRepository'),
-                $app->make('PaymentRepository')
-            );
-        });
 	}
 
 }

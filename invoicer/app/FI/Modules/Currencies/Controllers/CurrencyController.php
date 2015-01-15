@@ -12,6 +12,7 @@
 namespace FI\Modules\Currencies\Controllers;
 
 use App;
+use BaseController;
 use Config;
 use Input;
 use Redirect;
@@ -19,128 +20,123 @@ use View;
 
 use FI\Libraries\NumberFormatter;
 
-class CurrencyController extends \BaseController {
-	
-	/**
-	 * Tax rate repository
-	 * @var CurrencyRepository
-	 */
-	protected $currency;
+class CurrencyController extends BaseController {
 
-	/**
-	 * Tax rate validator
-	 * @var CurrencyValidator
-	 */
-	protected $validator;
-	
-	/**
-	 * Dependency injection
-	 * @param CurrencyRepository $currency
-	 * @param CurrencyValidator $validator
-	 */
-	public function __construct($currency, $validator)
-	{
-		$this->currency = $currency;
-		$this->validator = $validator;
-	}
+    /**
+     * Currency repository
+     * @var CurrencyRepository
+     */
+    protected $currency;
 
-	/**
-	 * Display paginated list
-	 * @return \Illuminate\View\View
-	 */
-	public function index()
-	{
-		$currencies = $this->currency->getPaged();
+    /**
+     * Currency validator
+     * @var CurrencyValidator
+     */
+    protected $validator;
 
-		return View::make('currencies.index')
-		->with('currencies', $currencies)
-		->with('baseCurrency', Config::get('fi.baseCurrency'));
-	}
+    public function __construct()
+    {
+        $this->currency  = App::make('CurrencyRepository');
+        $this->validator = App::make('CurrencyValidator');
+    }
 
-	/**
-	 * Display form for new record
-	 * @return \Illuminate\View\View
-	 */
-	public function create()
-	{
-		return View::make('currencies.form')
-		->with('editMode', false);
-	}
+    /**
+     * Display paginated list
+     * @return \Illuminate\View\View
+     */
+    public function index()
+    {
+        $currencies = $this->currency->getPaged();
 
-	/**
-	 * Validate and handle new record form submission
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	public function store()
-	{
-		$input = Input::all();
+        return View::make('currencies.index')
+            ->with('currencies', $currencies)
+            ->with('baseCurrency', Config::get('fi.baseCurrency'));
+    }
 
-		$validator = $this->validator->getValidator($input);
+    /**
+     * Display form for new record
+     * @return \Illuminate\View\View
+     */
+    public function create()
+    {
+        return View::make('currencies.form')
+            ->with('editMode', false);
+    }
 
-		if ($validator->fails())
-		{
-			return Redirect::route('currencies.create')
-			->with('editMode', false)
-			->withErrors($validator)
-			->withInput();
-		}
+    /**
+     * Validate and handle new record form submission
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store()
+    {
+        $input = Input::all();
 
-		$this->currency->create($input);
-		
-		return Redirect::route('currencies.index')
-		->with('alertSuccess', trans('fi.record_successfully_created'));
-	}
+        $validator = $this->validator->getValidator($input);
 
-	/**
-	 * Display form for existing record
-	 * @param  int $id
-	 * @return \Illuminate\View\View
-	 */
-	public function edit($id)
-	{
-		$currency = $this->currency->find($id);
-		
-		return View::make('currencies.form')
-		->with(array('editMode' => true, 'currency' => $currency, 'currencyInUse' => $this->currency->currencyInUse($id)));
-	}
+        if ($validator->fails())
+        {
+            return Redirect::route('currencies.create')
+                ->with('editMode', false)
+                ->withErrors($validator)
+                ->withInput();
+        }
 
-	/**
-	 * Validate and handle existing record form submission
-	 * @param  int $id
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	public function update($id)
-	{
-		$input = Input::all();
+        $this->currency->create($input);
 
-		$validator = $this->validator->getUpdateValidator($input, $id);
+        return Redirect::route('currencies.index')
+            ->with('alertSuccess', trans('fi.record_successfully_created'));
+    }
 
-		if ($validator->fails())
-		{
-			return Redirect::route('currencies.edit', array($id))
-			->with('editMode', true)
-			->withErrors($validator)
-			->withInput();
-		}
+    /**
+     * Display form for existing record
+     * @param  int $id
+     * @return \Illuminate\View\View
+     */
+    public function edit($id)
+    {
+        $currency = $this->currency->find($id);
 
-		$this->currency->update($input, $id);
+        return View::make('currencies.form')
+            ->with(array('editMode' => true, 'currency' => $currency, 'currencyInUse' => $this->currency->currencyInUse($id)));
+    }
 
-		return Redirect::route('currencies.index')
-		->with('alertInfo', trans('fi.record_successfully_updated'));
-	}
+    /**
+     * Validate and handle existing record form submission
+     * @param  int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update($id)
+    {
+        $input = Input::all();
 
-	/**
-	 * Delete a record
-	 * @param  int $id
-	 * @return \Illuminate\Http\RedirectResponse
-	 */
-	public function delete($id)
-	{
-		$alert = $this->currency->delete($id);
+        $validator = $this->validator->getUpdateValidator($input, $id);
 
-		return Redirect::route('currencies.index')
-		->with('alert', $alert);
-	}
+        if ($validator->fails())
+        {
+            return Redirect::route('currencies.edit', array($id))
+                ->with('editMode', true)
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $this->currency->update($input, $id);
+
+        return Redirect::route('currencies.index')
+            ->with('alertInfo', trans('fi.record_successfully_updated'));
+    }
+
+    /**
+     * Delete a record
+     * @param  int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete($id)
+    {
+        $alert = $this->currency->delete($id);
+
+        return Redirect::route('currencies.index')
+            ->with('alert', $alert);
+    }
 
     public function getExchangeRate()
     {

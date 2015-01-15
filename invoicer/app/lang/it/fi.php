@@ -83,7 +83,6 @@ return array(
 	'email_address'                      => 'Indirizzo Email',
 	'email_invoice'                      => 'Email Fattura',
 	'email_quote'                        => 'Email Preventivo',
-	'email_receipt'                      => 'Email Ricevuta',
 	'email_send_method'                  => 'Metodo di Invio Email',
 	'email_send_method_phpmail'          => 'PHP Mail',
 	'email_send_method_sendmail'         => 'Sendmail',
@@ -229,7 +228,6 @@ return array(
 	'table_name'                         => 'Nome Tabella',
 	'tax'                                => 'Tassa',
 	'tax_rate'                           => 'Tipo Tassa',
-	'tax_rate_decimal_places'            => 'Numero decimali in tasse',
 	'tax_rate_form'                      => 'Tax Rate Form',
 	'tax_rate_name'                      => 'Nome Tassa',
 	'tax_rate_percent'                   => 'Percentuale Tassa',
@@ -388,6 +386,19 @@ return array(
     'save_and_apply_exchange_rate' => 'Save and Apply Exchange Rate',
     'template'                     => 'Template',
     'update_exchange_rate'         => 'Update Exchange Rate',
-    'welcome'                      => 'Welcome'
+    'welcome'                      => 'Welcome',
+
+	// Added for 2.5.0
+	'bill_from'                    => 'Bill From',
+	'bill_to'                      => 'Bill To',
+	'binary_path'                  => 'Binary Path',
+	'client_statement'             => 'Client Statement',
+	'output_type'                  => 'Output Type',
+	'pay'                          => 'Pay',
+	'pdf_driver'                   => 'PDF Driver',
+	'preview'                      => 'Preview',
+	'quotation'                    => 'Quotation',
+	'report_rev_client_notice'     => 'This report will be available once you have some payments entered in the system.',
+	'view_all_payments_for_client' => 'View all payments for this client'
 
 );

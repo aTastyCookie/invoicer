@@ -12,13 +12,14 @@
 namespace FI\Modules\Currencies\Repositories;
 
 use Config;
+use FI\Libraries\BaseRepository;
 use FI\Modules\Clients\Models\Client;
 use FI\Modules\Currencies\Models\Currency;
 use FI\Modules\Invoices\Models\Invoice;
 use FI\Modules\Quotes\Models\Quote;
 
 
-class CurrencyRepository extends \FI\Libraries\BaseRepository {
+class CurrencyRepository extends BaseRepository {
 
 	public function __construct(Currency $model)
 	{

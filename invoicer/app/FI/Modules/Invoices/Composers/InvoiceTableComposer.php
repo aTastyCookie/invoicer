@@ -9,8 +9,7 @@ class InvoiceTableComposer {
 
 	public function compose($view)
 	{
-		$view->with('statuses', InvoiceStatuses::statuses())
-		->with('mailConfigured', (Config::get('fi.mailDriver')) ? true : false);
+		$view->with('statuses', InvoiceStatuses::statuses());
 	}
 
 }

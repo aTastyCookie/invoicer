@@ -12,8 +12,7 @@
 namespace FI\Modules\Invoices\Mail;
 
 use Event;
-use FI\Libraries\HTML;
-use FI\Libraries\PDF;
+use FI\Libraries\PDF\PDFFactory;
 use Mail;
 use Response;
 
@@ -31,12 +30,10 @@ class InvoiceMailer {
 			// Define the path
 			$pdfPath = app_path() . '/storage/' . trans('fi.invoice') . '_' . $invoice->number . '.pdf';
 
-			// Render the template
-			$html = HTML::invoice($invoice);
-
 			// Save the file
-			$pdf = new PDF($html);
-			$pdf->save($pdfPath);
+			$pdf = PDFFactory::create();
+
+			$pdf->save($invoice->html, $pdfPath);
 		}
 
 		try

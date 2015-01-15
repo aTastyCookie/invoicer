@@ -11,10 +11,11 @@
 
 namespace FI\Modules\Invoices\Models;
 
+use Eloquent;
 use FI\Libraries\CurrencyFormatter;
 use FI\Libraries\NumberFormatter;
 
-class InvoiceAmount extends \Eloquent {
+class InvoiceAmount extends Eloquent {
 
 	/**
 	 * Guarded properties
@@ -78,30 +79,15 @@ class InvoiceAmount extends \Eloquent {
 		return CurrencyFormatter::format($this->attributes['total'], $this->invoice->currency_code);
 	}
 
-//	public function getFormattedConvertedTotalAttribute()
-//	{
-//		return CurrencyFormatter::format($this->attributes['total'] * $this->invoice->exchange_rate, $this->invoice->currency_code);
-//	}
-
 	public function getFormattedPaidAttribute()
 	{
 		return CurrencyFormatter::format($this->attributes['paid'], $this->invoice->currency_code);
 	}
 
-//	public function getFormattedConvertedPaidAttribute()
-//	{
-//		return CurrencyFormatter::format($this->attributes['paid'] * $this->invoice->exchange_rate, $this->invoice->currency_code);
-//	}
-
 	public function getFormattedBalanceAttribute()
 	{
 		return CurrencyFormatter::format($this->attributes['balance'], $this->invoice->currency_code);
 	}
-
-//	public function getFormattedConvertedBalanceAttribute()
-//	{
-//		return CurrencyFormatter::format($this->attributes['balance'] * $this->invoice->exchange_rate, $this->invoice->currency_code);
-//	}
 
 	public function getFormattedNumericBalanceAttribute()
 	{

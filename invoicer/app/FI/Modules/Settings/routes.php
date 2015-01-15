@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-Route::group(array('before' => 'auth'), function()
+Route::group(array('before' => 'auth', 'namespace' => 'FI\Modules\Settings\Controllers'), function()
 {
 	Route::get('settings', array('uses' => 'SettingController@index', 'as' => 'settings.index'));
 	Route::post('settings', array('uses' => 'SettingController@update', 'as' => 'settings.update'));

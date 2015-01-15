@@ -11,10 +11,11 @@
 
 namespace FI\Modules\Quotes\Models;
 
+use Eloquent;
 use FI\Libraries\CurrencyFormatter;
 use FI\Libraries\NumberFormatter;
 
-class QuoteAmount extends \Eloquent {
+class QuoteAmount extends Eloquent {
 
 	/**
 	 * Guarded properties

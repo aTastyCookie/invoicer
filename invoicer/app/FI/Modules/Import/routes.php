@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-Route::group(array('before' => 'auth'), function()
+Route::group(array('before' => 'auth', 'namespace' => 'FI\Modules\Import\Controllers'), function()
 {
 	Route::get('import', array('uses' => 'ImportController@index', 'as' => 'import.index'));
 	Route::get('import/map/{import_type}', array('uses' => 'ImportController@mapImport', 'as' => 'import.map'));

@@ -18,13 +18,6 @@ class ModuleProvider extends ServiceProvider {
 	public function register()
 	{
         $this->app->bind('SettingRepository', 'FI\Modules\Settings\Repositories\SettingRepository');
-
-        $this->app->bind('SettingController', function($app)
-        {
-            return new \FI\Modules\Settings\Controllers\SettingController(
-                $app->make('SettingRepository')
-            );
-        });
 	}
 
 }

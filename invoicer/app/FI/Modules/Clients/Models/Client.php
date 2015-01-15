@@ -13,9 +13,10 @@ namespace FI\Modules\Clients\Models;
 
 use Config;
 use DB;
+use Eloquent;
 use FI\Libraries\CurrencyFormatter;
 
-class Client extends \Eloquent {
+class Client extends Eloquent {
 	
 	/**
 	 * Guarded properties
@@ -132,7 +133,7 @@ class Client extends \Eloquent {
     		{
     			$keyword = strtolower($keyword);
 
-    			$query->where(\DB::raw("CONCAT_WS('^',LOWER(name),LOWER(email),phone)"), 'LIKE', "%$keyword%");
+                $query->where(\DB::raw("CONCAT_WS('^',LOWER(name),LOWER(email),phone,fax,mobile)"), 'LIKE', "%$keyword%");
     		}
     	}
 

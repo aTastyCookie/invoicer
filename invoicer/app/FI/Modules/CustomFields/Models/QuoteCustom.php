@@ -11,7 +11,9 @@
 
 namespace FI\Modules\CustomFields\Models;
 
-class QuoteCustom extends \Eloquent {
+use Eloquent;
+
+class QuoteCustom extends Eloquent {
 
 	/**
 	 * The table name

@@ -11,7 +11,9 @@
 
 namespace FI\Modules\InvoiceGroups\Models;
 
-class InvoiceGroup extends \Eloquent {
+use Eloquent;
+
+class InvoiceGroup extends Eloquent {
 
 	/**
 	 * Guarded properties

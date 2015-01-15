@@ -11,9 +11,10 @@
 
 namespace FI\Modules\Invoices\Models;
 
+use Eloquent;
 use FI\Libraries\DateFormatter;
 
-class RecurringInvoice extends \Eloquent {
+class RecurringInvoice extends Eloquent {
 
     /**
      * Guarded properties

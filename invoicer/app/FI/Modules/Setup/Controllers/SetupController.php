@@ -13,6 +13,7 @@ namespace FI\Modules\Setup\Controllers;
 
 use App;
 use Artisan;
+use BaseController;
 use Config;
 use Hash;
 use Input;
@@ -20,9 +21,7 @@ use Redirect;
 use Response;
 use View;
 
-use FI\Modules\Setup\Setup;
-
-class SetupController extends \BaseController {
+class SetupController extends BaseController {
 
 	/**
 	 * Setting repository
@@ -42,17 +41,11 @@ class SetupController extends \BaseController {
 	 */
 	protected $validator;
 
-	/**
-	 * Controller injection
-	 * @param SettingRepository $setting
-	 * @param UserRepository $user
-	 * @param SetupValidator $validator
-	 */
-	public function __construct($setting, $user, $validator)
+	public function __construct()
 	{
-		$this->setting   = $setting;
-		$this->user      = $user;
-		$this->validator = $validator;
+		$this->setting   = App::make('SettingRepository');
+		$this->user      = App::make('UserRepository');
+		$this->validator = App::make('SetupValidator');
 	}
 
 	/**

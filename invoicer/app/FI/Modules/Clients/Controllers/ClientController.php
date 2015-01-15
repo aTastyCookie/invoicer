@@ -12,6 +12,7 @@
 namespace FI\Modules\Clients\Controllers;
 
 use App;
+use BaseController;
 use Config;
 use FI\Libraries\BackPath;
 use FI\Libraries\CustomFields;
@@ -22,7 +23,7 @@ use Redirect;
 use Session;
 use View;
 
-class ClientController extends \BaseController {
+class ClientController extends BaseController {
 
     /**
      * Client repository
@@ -48,21 +49,14 @@ class ClientController extends \BaseController {
      */
     protected $validator;
 
-    /**
-     * Dependency injection
-     * @param ClientRepository $client
-     * @param ClientCustomRepository $clientCustom
-     * @param CustomFieldRepository $customField
-     * @param ClientValidator $validator
-     */
-    public function __construct($client, $clientCustom, $customField, $validator)
+    public function __construct()
     {
         parent::__construct();
 
-        $this->client       = $client;
-        $this->clientCustom = $clientCustom;
-        $this->customField  = $customField;
-        $this->validator    = $validator;
+        $this->client       = App::make('ClientRepository');
+        $this->clientCustom = App::make('ClientCustomRepository');
+        $this->customField  = App::make('CustomFieldRepository');
+        $this->validator    = App::make('ClientValidator');
     }
 
     /**
@@ -149,10 +143,13 @@ class ClientController extends \BaseController {
             ->orderBy('id', 'DESC')
             ->take(Config::get('fi.defaultNumPerPage'))->get();
 
+        $payments = App::make('PaymentRepository')->getByClientId($clientId);
+
         return View::make('clients.view')
             ->with('client', $client)
             ->with('invoices', $invoices)
             ->with('quotes', $quotes)
+            ->with('payments', $payments)
             ->with('customFields', $this->customField->getByTable('clients'));
     }
 

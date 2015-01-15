@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-Route::group(array('prefix' => 'client_center'), function()
+Route::group(array('prefix' => 'client_center', 'namespace' => 'FI\Modules\ClientCenter\Controllers'), function()
 {
 	Route::get('invoice/{invoiceKey}', array('uses' => 'ClientCenterInvoiceController@show', 'as' => 'clientCenter.invoice.show'));
 	Route::get('invoice/{invoiceKey}/pdf', array('uses' => 'ClientCenterInvoiceController@pdf', 'as' => 'clientCenter.invoice.pdf'));

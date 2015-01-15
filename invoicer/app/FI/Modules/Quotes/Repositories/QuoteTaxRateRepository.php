@@ -12,10 +12,10 @@
 namespace FI\Modules\Quotes\Repositories;
 
 use Event;
-
+use FI\Libraries\BaseRepository;
 use FI\Modules\Quotes\Models\QuoteTaxRate;
 
-class QuoteTaxRateRepository extends \FI\Libraries\BaseRepository {
+class QuoteTaxRateRepository extends BaseRepository {
 
 	public function __construct(QuoteTaxRate $model)
 	{

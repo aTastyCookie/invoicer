@@ -14,23 +14,26 @@ namespace FI\Modules\Quotes\Models;
 use App;
 use Config;
 use DB;
+use Eloquent;
+use FI\Libraries\CurrencyFormatter;
 use FI\Libraries\DateFormatter;
+use FI\Libraries\HTML;
 use FI\Statuses\QuoteStatuses;
 
-class Quote extends \Eloquent {
+class Quote extends Eloquent {
 
     /**
      * Guarded properties
      * @var array
      */
-	protected $guarded = array('id');
+    protected $guarded = array('id');
 
     /*
     |--------------------------------------------------------------------------
     | Relationships
     |--------------------------------------------------------------------------
     */
-   
+
     public function activities()
     {
         return $this->morphMany('FI\Modules\Activities\Models\Activity', 'audit');
@@ -54,7 +57,7 @@ class Quote extends \Eloquent {
     public function items()
     {
         return $this->hasMany('FI\Modules\Quotes\Models\QuoteItem')
-        ->orderBy('display_order');
+            ->orderBy('display_order');
     }
 
     public function taxRates()
@@ -77,7 +80,7 @@ class Quote extends \Eloquent {
     | Accessors
     |--------------------------------------------------------------------------
     */
-   
+
     public function getFormattedCreatedAtAttribute()
     {
         return DateFormatter::format($this->attributes['created_at']);
@@ -149,6 +152,64 @@ class Quote extends \Eloquent {
         return Config::get('fi.quoteTemplate');
     }
 
+    public function getHtmlAttribute()
+    {
+        return HTML::quote($this);
+    }
+
+    /**
+     * Gathers a summary of both invoice and item taxes to be displayed on invoice
+     * @return array
+     */
+    public function getSummarizedTaxesAttribute()
+    {
+        $taxes = array();
+
+        foreach ($this->taxRates as $taxRate)
+        {
+            $key = $taxRate->taxRate->name;
+
+            if (!isset($taxes[$key]))
+            {
+                $taxes[$key]          = new \stdClass();
+                $taxes[$key]->name    = $taxRate->taxRate->name;
+                $taxes[$key]->percent = $taxRate->taxRate->formatted_percent;
+                $taxes[$key]->total   = $taxRate->tax_total;
+            }
+            else
+            {
+                $taxes[$key]->total += $taxRate->tax_total;
+            }
+        }
+
+        foreach ($this->items as $item)
+        {
+            if ($item->taxRate)
+            {
+                $key = $item->taxRate->name;
+
+                if (!isset($taxes[$key]))
+                {
+                    $taxes[$key]          = new \stdClass();
+                    $taxes[$key]->name    = $item->taxRate->name;
+                    $taxes[$key]->percent = $item->taxRate->formatted_percent;
+                    $taxes[$key]->total   = $item->amount->tax_total;
+                }
+                else
+                {
+                    $taxes[$key]->total += $item->amount->tax_total;
+                }
+            }
+        }
+
+        foreach ($taxes as $key => $tax)
+        {
+            $taxes[$key]->total = CurrencyFormatter::format($tax->total, $this->currency_code);
+        }
+
+        return $taxes;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Mutators
@@ -208,13 +269,13 @@ class Quote extends \Eloquent {
     {
         $keywords = strtolower($keywords);
 
-        $query->where(DB::raw('lower(number)'), 'like', '%'.$keywords.'%')
-        ->orWhere('created_at', 'like', '%'.$keywords.'%')
-        ->orWhere('expires_at', 'like', '%'.$keywords.'%')
-        ->orWhereIn('client_id', function($query) use($keywords)
-        {
-            $query->select('id')->from('clients')->where(DB::raw('lower(name)'), 'like', '%'.$keywords.'%');
-        });
+        $query->where(DB::raw('lower(number)'), 'like', '%' . $keywords . '%')
+            ->orWhere('created_at', 'like', '%' . $keywords . '%')
+            ->orWhere('expires_at', 'like', '%' . $keywords . '%')
+            ->orWhereIn('client_id', function ($query) use ($keywords)
+            {
+                $query->select('id')->from('clients')->where(DB::raw('lower(name)'), 'like', '%' . $keywords . '%');
+            });
 
         return $query;
     }

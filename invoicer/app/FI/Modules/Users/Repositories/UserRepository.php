@@ -12,9 +12,10 @@
 namespace FI\Modules\Users\Repositories;
 
 use Config;
+use FI\Libraries\BaseRepository;
 use FI\Modules\Users\Models\User;
 
-class UserRepository extends \FI\Libraries\BaseRepository {
+class UserRepository extends BaseRepository {
 
 	public function __construct(User $model)
 	{

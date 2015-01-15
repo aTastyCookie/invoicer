@@ -11,59 +11,58 @@
 
 namespace FI\Modules\ClientCenter\Controllers;
 
+use App;
+use BaseController;
 use Config;
 use Event;
-use FI\Libraries\HTML;
-use FI\Libraries\PDF;
+use FI\Libraries\PDF\PDFFactory;
 use FI\Statuses\InvoiceStatuses;
 use View;
 
-class ClientCenterInvoiceController extends \BaseController {
+class ClientCenterInvoiceController extends BaseController {
 
-	public function __construct($invoice)
-	{
-		$this->invoice = $invoice;
-	}
+    public function __construct()
+    {
+        $this->invoice = App::make('InvoiceRepository');
+    }
 
-	public function show($urlKey)
-	{
-		$invoice = $this->invoice->findByUrlKey($urlKey);
+    public function show($urlKey)
+    {
+        $invoice = $this->invoice->findByUrlKey($urlKey);
 
-		$merchantIsRedirect = false;
+        $merchantIsRedirect = false;
 
-		if (Config::get('payments.enabled'))
-		{
-			$merchant = Config::get('payments.default');
+        if (Config::get('payments.enabled'))
+        {
+            $merchant = Config::get('payments.default');
 
-			$merchantLib = '\\FI\\Modules\\Merchant\\Libraries\\' . $merchant;
+            $merchantLib = '\\FI\\Modules\\Merchant\\Libraries\\' . $merchant;
 
-			$merchantIsRedirect = $merchantLib::isRedirect();
-		}
+            $merchantIsRedirect = $merchantLib::isRedirect();
+        }
 
-		Event::fire('invoice.public.viewed', $invoice);
+        Event::fire('invoice.public.viewed', $invoice);
 
-		return View::make('client_center.invoice')
-		->with('invoice', $invoice)
-		->with('statuses', InvoiceStatuses::statuses())
-		->with('merchantIsRedirect', $merchantIsRedirect)
-		->with('urlKey', $urlKey);
-	}
+        return View::make('client_center.invoice')
+            ->with('invoice', $invoice)
+            ->with('statuses', InvoiceStatuses::statuses())
+            ->with('merchantIsRedirect', $merchantIsRedirect)
+            ->with('urlKey', $urlKey);
+    }
 
-	public function pdf($urlKey)
-	{
-		$invoice = $this->invoice->findByUrlKey($urlKey);
+    public function pdf($urlKey)
+    {
+        $invoice = $this->invoice->findByUrlKey($urlKey);
 
-		$html = HTML::invoice($invoice);
+        $pdf = PDFFactory::create();
 
-		$pdf = new PDF($html);
+        $pdf->download($invoice->html, trans('fi.invoice') . '_' . $invoice->number . '.pdf');
+    }
 
-		$pdf->download(trans('fi.invoice') . '_' . $invoice->number . '.pdf');
-	}
+    public function html($urlKey)
+    {
+        $invoice = $this->invoice->findByUrlKey($urlKey);
 
-	public function html($urlKey)
-	{
-		$invoice = $this->invoice->findByUrlKey($urlKey);
-
-		return HTML::invoice($invoice);
-	}
+        return $invoice->html;
+    }
 }

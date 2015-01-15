@@ -11,13 +11,14 @@
 
 namespace FI\Modules\Invoices\Controllers;
 
+use App;
+use BaseController;
+use FI\Libraries\Frequency;
 use Input;
 use Redirect;
 use View;
 
-use FI\Libraries\Frequency;
-
-class RecurringController extends \BaseController {
+class RecurringController extends BaseController {
 
 	/**
 	 * Recurring invoice repository
@@ -25,13 +26,9 @@ class RecurringController extends \BaseController {
 	 */
 	protected $recurringInvoice;
 
-	/**
-	 * Controller injection
-	 * @param RecurringInvoiceRepository $recurringInvoice
-	 */
-	public function __construct($recurringInvoice)
+	public function __construct()
 	{
-		$this->recurringInvoice = $recurringInvoice;
+		$this->recurringInvoice = App::make('RecurringInvoiceRepository');
 	}
 
 	/**

@@ -11,10 +11,11 @@
 
 namespace FI\Modules\ItemLookups\Models;
 
+use Eloquent;
 use FI\Libraries\CurrencyFormatter;
 use FI\Libraries\NumberFormatter;
 
-class ItemLookup extends \Eloquent {
+class ItemLookup extends Eloquent {
 
 	/**
 	 * Guarded properties

@@ -14,9 +14,10 @@ namespace FI\Modules\Clients\Repositories;
 use App;
 use Config;
 use DB;
+use FI\Libraries\BaseRepository;
 use FI\Modules\Clients\Models\Client;
 
-class ClientRepository extends \FI\Libraries\BaseRepository {
+class ClientRepository extends BaseRepository {
 
 	public function __construct(Client $model)
 	{

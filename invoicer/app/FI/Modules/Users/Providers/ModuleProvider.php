@@ -19,24 +19,6 @@ class ModuleProvider extends ServiceProvider {
 	{
         $this->app->bind('UserRepository', 'FI\Modules\Users\Repositories\UserRepository');
         $this->app->bind('UserValidator', 'FI\Modules\Users\Validators\UserValidator');
-
-        $this->app->bind('UserController', function($app)
-        {
-            return new \FI\Modules\Users\Controllers\UserController(
-                $app->make('CustomFieldRepository'),
-                $app->make('UserRepository'),
-                $app->make('UserCustomRepository'),
-                $app->make('UserValidator')
-            );
-        });
-
-        $this->app->bind('UserPasswordController', function($app)
-        {
-            return new \FI\Modules\Users\Controllers\UserPasswordController(
-                $app->make('UserRepository'),
-                $app->make('UserValidator')
-            );
-        });
     }
 
 }

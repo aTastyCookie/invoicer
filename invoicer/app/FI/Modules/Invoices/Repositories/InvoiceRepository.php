@@ -12,10 +12,12 @@
 namespace FI\Modules\Invoices\Repositories;
 
 use Config;
+use DB;
 use Event;
+use FI\Libraries\BaseRepository;
 use FI\Modules\Invoices\Models\Invoice;
 
-class InvoiceRepository extends \FI\Libraries\BaseRepository {
+class InvoiceRepository extends BaseRepository {
 
 	public function __construct(Invoice $model)
 	{
@@ -26,11 +28,12 @@ class InvoiceRepository extends \FI\Libraries\BaseRepository {
 	 * Get a list of records by status
 	 * @param  string  $status
 	 * @param  string  $filter
+	 * @param  integer $clientId
 	 * @return Invoice
 	 */
 	public function getPagedByStatus($status = 'all', $filter = null, $clientId = null)
 	{
-		$invoice = $this->model->has('amount')->with(array('amount', 'client'))->orderBy('created_at', 'DESC')->orderBy('number', 'desc');
+		$invoice = $this->model->has('amount')->with(array('amount', 'client'))->orderBy('created_at', 'DESC')->orderBy(DB::raw('length(number)'), 'DESC')->orderBy('number', 'DESC');
 
 		switch ($status)
 		{

@@ -19,16 +19,6 @@ class ModuleProvider extends ServiceProvider {
 	{
         $this->app->bind('ClientRepository', 'FI\Modules\Clients\Repositories\ClientRepository');
         $this->app->bind('ClientValidator', 'FI\Modules\Clients\Validators\ClientValidator');
-
-        $this->app->bind('ClientController', function($app)
-        {
-            return new \FI\Modules\Clients\Controllers\ClientController(
-                $app->make('ClientRepository'),
-                $app->make('ClientCustomRepository'),
-                $app->make('CustomFieldRepository'),
-                $app->make('ClientValidator')
-            );
-        });
 	}
 
 }

@@ -83,7 +83,6 @@ return array(
 	'email_address'                      => 'E-mail adresa',
 	'email_invoice'                      => 'E-mail račun',
 	'email_quote'                        => 'E-mail ponuda',
-	'email_receipt'                      => 'E-mail primatelj',
 	'email_send_method'                  => 'Način slanja e-mail poruka',
 	'email_send_method_phpmail'          => 'PHP Mail',
 	'email_send_method_sendmail'         => 'Sendmail',
@@ -229,7 +228,6 @@ return array(
 	'table_name'                         => 'Naziv tablice',
 	'tax'                                => 'Porez',
 	'tax_rate'                           => 'Porezna stopa',
-	'tax_rate_decimal_places'            => 'Decimalna mjesta poreza',
 	'tax_rate_form'                      => 'Porezni obrazac',
 	'tax_rate_name'                      => 'Naziv porezne stope',
 	'tax_rate_percent'                   => 'Postotak porezne stope',
@@ -388,6 +386,19 @@ return array(
     'save_and_apply_exchange_rate' => 'Save and Apply Exchange Rate',
     'template'                     => 'Template',
     'update_exchange_rate'         => 'Update Exchange Rate',
-    'welcome'                      => 'Welcome'
+    'welcome'                      => 'Welcome',
+
+	// Added for 2.5.0
+	'bill_from'                    => 'Bill From',
+	'bill_to'                      => 'Bill To',
+	'binary_path'                  => 'Binary Path',
+	'client_statement'             => 'Client Statement',
+	'output_type'                  => 'Output Type',
+	'pay'                          => 'Pay',
+	'pdf_driver'                   => 'PDF Driver',
+	'preview'                      => 'Preview',
+	'quotation'                    => 'Quotation',
+	'report_rev_client_notice'     => 'This report will be available once you have some payments entered in the system.',
+	'view_all_payments_for_client' => 'View all payments for this client'
 
 );

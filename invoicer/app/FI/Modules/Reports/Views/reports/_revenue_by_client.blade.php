@@ -1,37 +1,30 @@
-<div class="row">
-	<div class="col-md-12">
+@extends('reports.layouts.master')
 
-		<div class="box box-solid">
+@section('content')
 
-			<div class="box-body">
+<h1 style="text-align: center;">{{ trans('fi.revenue_by_client') }}</h1>
 
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>{{ trans('fi.client') }}</th>
-							@foreach ($months as $month)
-							<th>{{ $month }}</th>
-							@endforeach
-							<th>{{ trans('fi.total') }}</th>
-						</tr>
-					</thead>
-					<tbody>
-						@foreach ($results as $client=>$amounts)
-						<tr>
-							<td>{{ $client }}</td>
-							@foreach (array_keys($months) as $monthKey)
-							<td>{{ $amounts['months'][$monthKey] }}</td>
-							@endforeach
-							<td>{{ $amounts['total'] }}</td>
-							@endforeach
-						</tr>
-					</tbody>
-				</table>
+<table class="alternate">
+    <thead>
+    <tr>
+        <th>{{ trans('fi.client') }}</th>
+        @foreach ($months as $month)
+        <th>{{ $month }}</th>
+        @endforeach
+        <th>{{ trans('fi.total') }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach ($results as $client=>$amounts)
+    <tr>
+        <td>{{ $client }}</td>
+        @foreach (array_keys($months) as $monthKey)
+        <td>{{ $amounts['months'][$monthKey] }}</td>
+        @endforeach
+        <td>{{ $amounts['total'] }}</td>
+        @endforeach
+    </tr>
+    </tbody>
+</table>
 
-			</div>
-
-		</div>
-
-	</div>
-
-</div>
+@stop

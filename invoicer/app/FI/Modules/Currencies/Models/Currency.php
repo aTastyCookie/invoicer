@@ -11,7 +11,9 @@
 
 namespace FI\Modules\Currencies\Models;
 
-class Currency extends \Eloquent {
+use Eloquent;
+
+class Currency extends Eloquent {
 
 	protected $table = 'currencies';
 

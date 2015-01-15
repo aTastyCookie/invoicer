@@ -11,7 +11,9 @@
 
 namespace FI\Modules\Currencies\Libraries;
 
-class YQLCurrencyConverter extends \FI\Libraries\YQL {
+use FI\Libraries\YQL;
+
+class YQLCurrencyConverter extends YQL {
 
 	/**
 	 * Returns the currency conversion rate

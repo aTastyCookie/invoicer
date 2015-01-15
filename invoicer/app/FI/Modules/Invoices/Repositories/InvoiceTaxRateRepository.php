@@ -12,10 +12,10 @@
 namespace FI\Modules\Invoices\Repositories;
 
 use Event;
-
+use FI\Libraries\BaseRepository;
 use FI\Modules\Invoices\Models\InvoiceTaxRate;
 
-class InvoiceTaxRateRepository extends \FI\Libraries\BaseRepository {
+class InvoiceTaxRateRepository extends BaseRepository {
 
 	public function __construct(InvoiceTaxRate $model)
 	{

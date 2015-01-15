@@ -28,6 +28,7 @@
 						<li class="active"><a data-toggle="tab" href="#tab-details">{{ trans('fi.details') }}</a></li>
 						<li><a data-toggle="tab" href="#tab-quotes">{{ trans('fi.quotes') }}</a></li>
 						<li><a data-toggle="tab" href="#tab-invoices">{{ trans('fi.invoices') }}</a></li>
+                        <li><a data-toggle="tab" href="#tab-payments">{{ trans('fi.payments') }}</a></li>
 					</ul>
 					<div class="tab-content">
 
@@ -108,7 +109,14 @@
                                 @include('invoices._table')
                                 <div class="panel-footer"><p class="text-center"><strong><a href="{{ route('invoices.index') }}?client={{ $client->id }}">{{ trans('fi.view_all_invoices_for_client') }}</a></strong></p></div>
                             </div>
-						</div>
+                        </div>
+
+                        <div id="tab-payments" class="tab-pane">
+                            <div class="panel panel-default">
+                                @include('payments._table')
+                                <div class="panel-footer"><p class="text-center"><strong><a href="{{ route('payments.index') }}?client={{ $client->id }}">{{ trans('fi.view_all_payments_for_client') }}</a></strong></p></div>
+                            </div>
+                        </div>
 
 					</div>
 				</div>

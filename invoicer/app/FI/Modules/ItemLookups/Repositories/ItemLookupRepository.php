@@ -12,10 +12,11 @@
 namespace FI\Modules\ItemLookups\Repositories;
 
 use Config;
+use FI\Libraries\BaseRepository;
 use FI\Libraries\NumberFormatter;
 use FI\Modules\ItemLookups\Models\ItemLookup;
 
-class ItemLookupRepository extends \FI\Libraries\BaseRepository {
+class ItemLookupRepository extends BaseRepository {
 
 	public function __construct(ItemLookup $model)
 	{

@@ -41,6 +41,7 @@
 						<li><a data-toggle="tab" href="#tab-quotes">{{ trans('fi.quotes') }}</a></li>
 						<li><a data-toggle="tab" href="#tab-taxes">{{ trans('fi.taxes') }}</a></li>
 						<li><a data-toggle="tab" href="#tab-email">{{ trans('fi.email') }}</a></li>
+                        <li><a data-toggle="tab" href="#tab-pdf">{{ trans('fi.pdf') }}</a></li>
 					</ul>
 					<div class="tab-content">
 						<div id="tab-general" class="tab-pane active">
@@ -56,8 +57,11 @@
 							@include('settings._taxes')
 						</div>
 						<div id="tab-email" class="tab-pane">
-							@include('settings._email')
-						</div>
+                            @include('settings._email')
+                        </div>
+                        <div id="tab-pdf" class="tab-pane">
+                            @include('settings._pdf')
+                        </div>
 					</div>
 				</div>
 

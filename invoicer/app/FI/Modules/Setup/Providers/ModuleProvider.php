@@ -18,15 +18,6 @@ class ModuleProvider extends ServiceProvider {
 	public function register()
 	{
         $this->app->bind('SetupValidator', 'FI\Modules\Setup\Validators\SetupValidator');
-
-        $this->app->bind('SetupController', function($app)
-        {
-            return new \FI\Modules\Setup\Controllers\SetupController(
-            	$app->make('SettingRepository'),
-            	$app->make('UserRepository'),
-            	$app->make('SetupValidator')
-            );
-        });
 	}
 
 }

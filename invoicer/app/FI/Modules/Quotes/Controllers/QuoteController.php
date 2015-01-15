@@ -13,14 +13,14 @@ namespace FI\Modules\Quotes\Controllers;
 
 use App;
 use Auth;
+use BaseController;
 use Config;
 use Event;
 use FI\Libraries\BackPath;
 use FI\Libraries\DateFormatter;
-use FI\Libraries\HTML;
 use FI\Libraries\NumberFormatter;
 use FI\Libraries\Parser;
-use FI\Libraries\PDF;
+use FI\Libraries\PDF\PDFFactory;
 use FI\Libraries\QuoteTemplates;
 use FI\Statuses\QuoteStatuses;
 use Input;
@@ -29,7 +29,7 @@ use Response;
 use Session;
 use View;
 
-class QuoteController extends \BaseController {
+class QuoteController extends BaseController {
 
     /**
      * Invoice group repository
@@ -61,23 +61,15 @@ class QuoteController extends \BaseController {
      */
     protected $validator;
 
-    /**
-     * Dependency injection
-     * @param InvoiceGroupRepository $invoiceGroup
-     * @param QuoteItemRepository $quoteItem
-     * @param QuoteRepository $quote
-     * @param QuoteTaxRateRepository $quoteTaxRate
-     * @param QuoteValidator $validator
-     */
-    public function __construct($invoiceGroup, $quoteItem, $quote, $quoteTaxRate, $validator)
+    public function __construct()
     {
         parent::__construct();
 
-        $this->invoiceGroup = $invoiceGroup;
-        $this->quote        = $quote;
-        $this->quoteItem    = $quoteItem;
-        $this->quoteTaxRate = $quoteTaxRate;
-        $this->validator    = $validator;
+        $this->invoiceGroup = App::make('InvoiceGroupRepository');
+        $this->quote        = App::make('QuoteRepository');
+        $this->quoteItem    = App::make('QuoteItemRepository');
+        $this->quoteTaxRate = App::make('QuoteTaxRateRepository');
+        $this->validator    = App::make('QuoteValidator');
     }
 
     /**
@@ -255,7 +247,6 @@ class QuoteController extends \BaseController {
             ->with('taxRates', App::make('TaxRateRepository')->lists())
             ->with('quoteTaxRates', $this->quoteTaxRate->findByQuoteId($id))
             ->with('customFields', App::make('CustomFieldRepository')->getByTable('quotes'))
-            ->with('mailConfigured', (Config::get('fi.mailDriver')) ? true : false)
             ->with('backPath', BackPath::getBackPath())
             ->with('templates', QuoteTemplates::lists());
     }
@@ -466,12 +457,10 @@ class QuoteController extends \BaseController {
             // Define the path
             $pdfPath = app_path() . '/storage/' . trans('fi.quote') . '_' . $quote->number . '.pdf';
 
-            // Render the template
-            $html = HTML::quote($quote);
-
             // Save the file
-            $pdf = new PDF($html);
-            $pdf->save($pdfPath);
+            $pdf = PDFFactory::create();
+
+            $pdf->save($quote->html, $pdfPath);
         }
 
         if (!$quoteMailer->send($quote, Input::get('to'), Input::get('subject'), Input::get('body'), Input::get('cc'), $pdfPath))
@@ -504,10 +493,9 @@ class QuoteController extends \BaseController {
     {
         $quote = $this->quote->find($id);
 
-        $html = HTML::quote($quote);
+        $pdf = PDFFactory::create();
 
-        $pdf = new PDF($html);
-        $pdf->download(trans('fi.quote') . '_' . $quote->number . '.pdf');
+        $pdf->download($quote->html, trans('fi.quote') . '_' . $quote->number . '.pdf');
     }
 
 }

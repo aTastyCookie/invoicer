@@ -11,12 +11,14 @@
 
 namespace FI\Modules\Sessions\Controllers;
 
+use App;
 use Auth;
+use BaseController;
 use Input;
 use Redirect;
 use View;
 
-class SessionController extends \BaseController {
+class SessionController extends BaseController {
 
 	/**
 	 * Session validator
@@ -24,13 +26,9 @@ class SessionController extends \BaseController {
 	 */
 	protected $validator;
 
-	/**
-	 * Dependency injection
-	 * @param SessionValidator $validator
-	 */
-	public function __construct($validator)
+	public function __construct()
 	{
-		$this->validator = $validator;
+		$this->validator = App::make('SessionValidator');
 	}
 	
 	/**

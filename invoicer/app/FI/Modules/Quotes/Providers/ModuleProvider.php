@@ -36,24 +36,6 @@ class ModuleProvider extends ServiceProvider {
         $this->app->bind('QuoteValidator', 'FI\Modules\Quotes\Validators\QuoteValidator');
 
         $this->app->bind('QuoteMailer', 'FI\Modules\Quotes\Mail\QuoteMailer');
-
-        $this->app->bind('PublicQuoteController', function($app)
-        {
-            return new \FI\Modules\Quotes\Controllers\PublicQuoteController(
-                $app->make('QuoteRepository')
-            );
-        });
-
-        $this->app->bind('QuoteController', function($app)
-        {
-            return new \FI\Modules\Quotes\Controllers\QuoteController(
-                $app->make('InvoiceGroupRepository'),
-                $app->make('QuoteItemRepository'),
-                $app->make('QuoteRepository'),
-                $app->make('QuoteTaxRateRepository'),
-                $app->make('QuoteValidator')
-            );
-        });
 	}
 
 }

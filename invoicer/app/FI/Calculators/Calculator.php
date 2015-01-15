@@ -30,7 +30,7 @@ abstract class Calculator {
 	 * @var array
 	 */
 	protected $taxRates = array();
-	
+
 	/**
 	 * An array to store calculated item amounts
 	 * @var array

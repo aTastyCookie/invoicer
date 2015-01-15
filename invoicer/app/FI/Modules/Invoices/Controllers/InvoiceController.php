@@ -13,16 +13,16 @@ namespace FI\Modules\Invoices\Controllers;
 
 use App;
 use Auth;
+use BaseController;
 use Config;
 use Event;
 use FI\Libraries\BackPath;
 use FI\Libraries\DateFormatter;
 use FI\Libraries\Frequency;
-use FI\Libraries\HTML;
 use FI\Libraries\InvoiceTemplates;
 use FI\Libraries\NumberFormatter;
 use FI\Libraries\Parser;
-use FI\Libraries\PDF;
+use FI\Libraries\PDF\PDFFactory;
 use FI\Statuses\InvoiceStatuses;
 use Input;
 use Redirect;
@@ -30,7 +30,7 @@ use Response;
 use Session;
 use View;
 
-class InvoiceController extends \BaseController {
+class InvoiceController extends BaseController {
 
     /**
      * Invoice repository
@@ -62,23 +62,15 @@ class InvoiceController extends \BaseController {
      */
     protected $validator;
 
-    /**
-     * Dependency injection
-     * @param InvoiceRepository $invoice
-     * @param InvoiceGroupRepository $invoiceGroup
-     * @param InvoiceItemRepository $invoiceItem
-     * @param InvoiceTaxRateRepository $invoiceTaxRate
-     * @param InvoiceValidator $validator
-     */
-    public function __construct($invoice, $invoiceGroup, $invoiceItem, $invoiceTaxRate, $validator)
+    public function __construct()
     {
         parent::__construct();
 
-        $this->invoice        = $invoice;
-        $this->invoiceGroup   = $invoiceGroup;
-        $this->invoiceItem    = $invoiceItem;
-        $this->invoiceTaxRate = $invoiceTaxRate;
-        $this->validator      = $validator;
+        $this->invoice        = App::make('InvoiceRepository');
+        $this->invoiceGroup   = App::make('InvoiceGroupRepository');
+        $this->invoiceItem    = App::make('InvoiceItemRepository');
+        $this->invoiceTaxRate = App::make('InvoiceTaxRateRepository');
+        $this->validator      = App::make('InvoiceValidator');
     }
 
     /**
@@ -264,7 +256,6 @@ class InvoiceController extends \BaseController {
             ->with('taxRates', App::make('TaxRateRepository')->lists())
             ->with('invoiceTaxRates', $this->invoiceTaxRate->findByInvoiceId($id))
             ->with('customFields', App::make('CustomFieldRepository')->getByTable('invoices'))
-            ->with('mailConfigured', (Config::get('fi.mailDriver')) ? true : false)
             ->with('backPath', BackPath::getBackPath())
             ->with('templates', InvoiceTemplates::lists());
     }
@@ -444,10 +435,9 @@ class InvoiceController extends \BaseController {
     {
         $invoice = $this->invoice->find($id);
 
-        $html = HTML::invoice($invoice);
+        $pdf = PDFFactory::create();
 
-        $pdf = new PDF($html);
-        $pdf->download(trans('fi.invoice') . '_' . $invoice->number . '.pdf');
+        $pdf->download($invoice->html, trans('fi.invoice') . '_' . $invoice->number . '.pdf');
     }
 
 }
