@@ -41,7 +41,19 @@ $(function()
 <aside class="right-side">                
 
 	<section class="content-header">
-		<h1>{{ trans('fi.invoice') }} #{{{ $invoice->number }}}</h1>
+		<h1>{{ trans('fi.invoice') }} #{{{ $invoice->number }}}
+			
+			@if (Config::get('payments.enabled') and $invoice->amount->balance > 0)
+			@if ($merchantIsRedirect)
+			<a href="{{ route('merchant.invoice.pay', array($invoice->url_key)) }}"  class="btn btn-success">
+			@else
+			<a href="javascript:void(0)"  class="btn btn-success" id="btn-direct-payment" data-url-key="{{ $invoice->url_key }}">	
+			@endif
+				<span>{{ trans('fi.pay_now') }}</span>
+			</a>
+			@endif
+		</h1>
+		
 	</section>
 
 	<div class="row" style="height: 100%; background-color: #cccccc; padding: 25px;">
