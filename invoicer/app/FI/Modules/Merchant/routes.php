@@ -20,10 +20,10 @@ Route::group(array('namespace' => 'FI\Modules\Merchant\Controllers'), function()
         Route::post('merchant/invoice/{urlKey}/modal_cc', array('uses' => 'MerchantController@invoiceModalCc', 'as' => 'merchant.invoice.modalCc'));
         Route::post('merchant/invoice/{urlKey}/validate', array('uses' => 'MerchantController@invoicePay', 'as' => 'merchant.invoice.payCc'));
 
-   Route::get('merchant/invoice/{urlKey}/modal_cc', array('uses' => 'MerchantController@invoiceModalCc', 'as' => 'merchant.invoice.modalCc'));
-   Route::get('merchant/invoice/{urlKey}/validate', array('uses' => 'MerchantController@invoiceCancel', 'as' => 'merchant.invoice.cancel'));
-   Route::post('merchant/invoice/yandexmoney', array('uses' => 'MerchantController@invoiceYandexMoney', 'as' => 'merchant.invoice.yandexmoney'));
-   Route::get('merchant/invoice/yandexmoney', array('uses' => 'MerchantController@invoiceYandexMoney', 'as' => 'merchant.yandexmoney'));
+        Route::get('merchant/invoice/{urlKey}/modal_cc', array('uses' => 'MerchantController@invoiceModalCc', 'as' => 'merchant.invoice.modalCc'));
+        Route::get('merchant/invoice/{urlKey}/validate', array('uses' => 'MerchantController@invoiceCancel', 'as' => 'merchant.invoice.cancel'));
+        Route::post('merchant/invoice/yandexmoney', array('uses' => 'MerchantController@invoiceYandexMoney', 'as' => 'merchant.invoice.yandexmoney'));
+        Route::get('merchant/invoice/yandexmoney', array('uses' => 'MerchantController@invoiceYandexMoney', 'as' => 'merchant.yandexmoney'));
  
     });
 });
