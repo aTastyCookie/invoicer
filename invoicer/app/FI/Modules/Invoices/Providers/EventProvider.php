@@ -189,7 +189,7 @@ class EventProvider extends ServiceProvider {
 
 				$template = ($invoice->is_overdue) ? Config::get('fi.overdueInvoiceEmailBody') : Config::get('fi.invoiceEmailBody');
 
-				$invoiceMailer->send($invoice, $invoice->client->email, trans('fi.invoice') . ' #' . $invoice->number, Parser::parse($invoice, $template), null, (Config::get('fi.attachPdf')) ? true : false);
+				$invoiceMailer->send($invoice, $invoice->client->email, trans('fi.invoice') . ' #' . $invoice->number, Parser::parse($invoice, $template), Config::get('fi.mailDefaultCc'), (Config::get('fi.attachPdf')) ? true : false);
 			}
 		});
 

@@ -72,6 +72,11 @@
   {{ Form::select('setting_attachPdf', $yesNoArray, Config::get('fi.attachPdf'), array('id' => 'attachPdf', 'class' => 'form-control')) }}
 </div>
 
+<div class="form-group smtp-option sendmail-option phpmail-option email-option">
+    <label>{{ trans('fi.automatic_cc') }}: </label>
+    {{ Form::text('setting_mailDefaultCc', Config::get('fi.mailDefaultCc'), array('class' => 'form-control')) }}
+</div>
+
 <div class="form-group">
     <label>{{ trans('fi.default_quote_email_body') }}: </label>
     {{ Form::textarea('setting_quoteEmailBody', Config::get('fi.quoteEmailBody'), array('class' => 'form-control')) }}

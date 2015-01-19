@@ -200,7 +200,7 @@ class PaymentController extends BaseController {
             ->with('paymentId', $payment->id)
             ->with('redirectTo', Input::get('redirectTo'))
             ->with('to', $payment->invoice->client->email)
-            ->with('cc', Config::get('fi.mailCcDefault'))
+            ->with('cc', Config::get('fi.mailDefaultCc'))
             ->with('subject', trans('fi.payment_receipt_for_invoice', array('invoiceNumber' => $payment->invoice->number)))
             ->with('body', Parser::parse($payment, Config::get('fi.paymentReceiptBody')));
     }

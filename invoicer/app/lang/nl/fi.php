@@ -399,6 +399,9 @@ return array(
 	'preview'                      => 'Preview',
 	'quotation'                    => 'Quotation',
 	'report_rev_client_notice'     => 'This report will be available once you have some payments entered in the system.',
-	'view_all_payments_for_client' => 'View all payments for this client'
+	'view_all_payments_for_client' => 'View all payments for this client',
+
+	// Added for 2.5.1
+	'automatic_cc' => 'Automatically CC All Outgoing Emails to this Address'
 	
 );

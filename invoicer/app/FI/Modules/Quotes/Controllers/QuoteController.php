@@ -434,7 +434,7 @@ class QuoteController extends BaseController {
             ->with('quoteId', $quote->id)
             ->with('redirectTo', Input::get('redirectTo'))
             ->with('to', $quote->client->email)
-            ->with('cc', Config::get('fi.mailCcDefault'))
+            ->with('cc', Config::get('fi.mailDefaultCc'))
             ->with('subject', trans('fi.quote') . ' #' . $quote->number)
             ->with('body', Parser::parse($quote, Config::get('fi.quoteEmailBody')));
     }

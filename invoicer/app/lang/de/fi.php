@@ -389,16 +389,19 @@ return array(
     'welcome'                      => 'Willkommen',
 
     // Added for 2.5.0
-    'bill_from'                    => 'Rechnung von',
-    'bill_to'                      => 'Rechnung an',
-    'binary_path'                  => 'Binary Path',
-    'client_statement'             => 'Client Statement',
-    'output_type'                  => 'Output Type',
-    'pay'                          => 'Zahlen',
-    'pdf_driver'                   => 'PDF-Treiber',
-    'preview'                      => 'Preview',
-    'quotation'                    => 'Angebot',
-    'report_rev_client_notice'     => 'Dieser Bericht steht erst zur Verfügung, nachdem Sie einige Zahlungen im System erfasst haben.',
-    'view_all_payments_for_client' => 'Alle Zahlungen dieses Kunden anzeigen'
+    'bill_from'                    => 'Van',
+    'bill_to'                      => 'Aan',
+    'binary_path'                  => 'Pad naar uitvoerbaar bestand',
+    'client_statement'             => 'Klant Rapport',
+    'output_type'                  => 'Laat zien als',
+    'pay'                          => 'Betaal',
+    'pdf_driver'                   => 'PDF Stuurprogramma',
+    'preview'                      => 'Voorvertoning',
+    'quotation'                    => 'Offerte overzicht',
+    'report_rev_client_notice'     => 'Dit rapport is zichtbaar zodra er betalingen zijn ingevoerd.',
+    'view_all_payments_for_client' => 'Geef alle betalingen weer voor deze klant',
+
+    // Added for 2.5.1
+    'automatic_cc' => 'Automatically CC All Outgoing Emails to this Address'
 
 );

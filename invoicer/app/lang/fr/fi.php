@@ -389,16 +389,19 @@ return array(
     'welcome'                      => 'Bienvenue',
 
     // Added for 2.5.0
-    'bill_from'                    => 'Bill From',
-    'bill_to'                      => 'Bill To',
-    'binary_path'                  => 'Binary Path',
-    'client_statement'             => 'Client Statement',
-    'output_type'                  => 'Output Type',
-    'pay'                          => 'Pay',
-    'pdf_driver'                   => 'PDF Driver',
-    'preview'                      => 'Preview',
-    'quotation'                    => 'Quotation',
-    'report_rev_client_notice'     => 'This report will be available once you have some payments entered in the system.',
-    'view_all_payments_for_client' => 'View all payments for this client'
+    'bill_from'                    => 'Facturé de',
+    'bill_to'                      => 'Facturé à',
+    'binary_path'                  => 'Chemin binaire',
+    'client_statement'             => 'Relevé d\'un client',
+    'output_type'                  => 'Type de sortie',
+    'pay'                          => 'Payer',
+    'pdf_driver'                   => 'Pilote PDF',
+    'preview'                      => 'Aperçu',
+    'quotation'                    => 'Estimation',
+    'report_rev_client_notice'     => 'Ce relevé sera disponible dès que vous aurez des paiements entrés dans le système.',
+    'view_all_payments_for_client' => 'Voir tous les paiements pour ce client',
+
+    // Added for 2.5.1
+    'automatic_cc' => 'Automatically CC All Outgoing Emails to this Address'
 
 );

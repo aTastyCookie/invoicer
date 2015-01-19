@@ -23,19 +23,7 @@
 			{{ Form::text('setting_headerTitleText', Config::get('fi.headerTitleText'), array('class' => 'form-control')) }}
 		</div>
 	</div>
-
-	<div class="col-md-4">
-		<div class="form-group">
-			<label>{{ trans('fi.version') }}: </label>
-			<div class="input-group">
-				{{ Form::text('version', Config::get('fi.version'), array('class' => 'form-control', 'disabled' => 'disabled')) }}
-				<span class="input-group-btn">
-					<button class="btn btn-default" id="btn-check-update" type="button">{{ trans('fi.check_for_update') }}</button>
-				</span>
-			</div>
-		</div>
-	</div>
-
+	
 </div>
 
 <div class="row">

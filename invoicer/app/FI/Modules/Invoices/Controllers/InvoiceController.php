@@ -402,7 +402,7 @@ class InvoiceController extends BaseController {
             ->with('invoiceId', $invoice->id)
             ->with('redirectTo', Input::get('redirectTo'))
             ->with('to', $invoice->client->email)
-            ->with('cc', Config::get('fi.mailCcDefault'))
+            ->with('cc', Config::get('fi.mailDefaultCc'))
             ->with('subject', trans('fi.invoice') . ' #' . $invoice->number)
             ->with('body', Parser::parse($invoice, $template));
     }
